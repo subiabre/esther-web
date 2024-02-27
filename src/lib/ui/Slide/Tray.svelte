@@ -44,6 +44,7 @@
             },
             {
                 root: trayScroll,
+                rootMargin: "-5% 0% -5% 0%",
                 threshold: [0.25, 0.50, 0.75, 0.9, 1],
             },
         );

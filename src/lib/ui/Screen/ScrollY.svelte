@@ -1,4 +1,8 @@
-<div class="scroll-y">
+<script lang="ts">
+    export let div: undefined|HTMLDivElement = undefined;
+</script>
+
+<div bind:this={div} class="scroll-y">
     <slot />
 </div>
 

@@ -3,6 +3,8 @@
     import ScrollX from "../Screen/ScrollX.svelte";
     import SnapStop from "../Screen/SnapStop.svelte";
 
+    export let id: string;
+
     let reelScroll: HTMLDivElement;
 
     let currentSlideId: string | undefined;
@@ -60,7 +62,7 @@
     });
 </script>
 
-<SnapStop>
+<SnapStop id={`reelsnap_${id}`}>
     <ScrollX bind:div={reelScroll}>
         <slot />
     </ScrollX>

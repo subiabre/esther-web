@@ -7,7 +7,7 @@
 </script>
 
 <Screen>
-    <Reel>
+    <Reel id="r1">
         <Slide id="i1_1">
             <Text>
                 <BigTitle>1#1</BigTitle>
@@ -33,7 +33,7 @@
             </Text>
         </Slide>
     </Reel>
-    <Reel>
+    <Reel id="r2">
         <Slide id="i2_1">
             <Text>
                 <BigTitle>2#1</BigTitle>
@@ -53,7 +53,7 @@
             </Text>
         </Slide>
     </Reel>
-    <Reel>
+    <Reel id="r3">
         <Slide id="i3_1">
             <Text>
                 <BigTitle>3#1</BigTitle>

@@ -1,10 +1,10 @@
 <script lang="ts">
-    import ScrollY from "./ScrollY.svelte";
+    import Tray from "../Slide/Tray.svelte";
 </script>
 <main>
-    <ScrollY>
+    <Tray>
         <slot />
-    </ScrollY>
+    </Tray>
 </main>
 
 <style>

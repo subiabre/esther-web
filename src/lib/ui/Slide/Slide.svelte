@@ -4,7 +4,7 @@
     export let id: string;
 </script>
 
-<SnapStop>
+<SnapStop id={`slidesnap_${id}`}>
     <div {id} class="slide">
         <slot />
     </div>

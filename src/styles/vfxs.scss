@@ -1,0 +1,17 @@
+.scroll-x .slide {
+    filter: opacity(0.5);
+
+    &.current {
+        filter: opacity(1);
+        transition: filter 0.2s ease;
+    }
+}
+
+.scroll-y > .snap-stop {
+    filter: opacity(0.5);
+
+    &.current {
+        filter: opacity(1);
+        transition: filter 0.2s ease;
+    }
+}

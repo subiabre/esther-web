@@ -39,6 +39,11 @@
                         element?.classList.add("current");
 
                         currentReelId = targetReelId;
+                        
+                        let reelScroll = element?.getElementsByClassName('scroll-x').item(0);
+                        if (reelScroll instanceof HTMLElement) {
+                            reelScroll.focus();
+                        }
                     }
                 }
             },

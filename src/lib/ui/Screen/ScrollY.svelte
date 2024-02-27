@@ -11,7 +11,7 @@
 
     .scroll-y {
         width: 100vw;
-        height: 100svh;
+        height: 100dvh;
 
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
@@ -19,5 +19,11 @@
         display: flex;
         flex-direction: column;
         @include scroll-y-gap($slide-height);
+
+        &:focus,
+        &:focus-within,
+        &:focus-visible {
+            outline: none;
+        }
     }
 </style>

@@ -19,5 +19,11 @@
         display: flex;
         flex-direction: row;
         @include scroll-x-gap($slide-width);
+
+        &:focus,
+        &:focus-within,
+        &:focus-visible {
+            outline: none;
+        }
     }
 </style>

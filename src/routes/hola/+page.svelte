@@ -4,6 +4,7 @@
     import Screen from "$lib/ui/Screen/Screen.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
+    import "../../app.scss";
 </script>
 
 <Screen>

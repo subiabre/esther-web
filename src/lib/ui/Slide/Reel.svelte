@@ -20,24 +20,19 @@
                     }
 
                     if (
-                        entry.intersectionRatio > 0.5 &&
-                        currentSlideId !== undefined &&
-                        currentSlideId === targetSlideId
+                        currentSlideId === targetSlideId &&
+                        entry.intersectionRatio < 0.9
                     ) {
                         let element = document.getElementById(currentSlideId);
                         element?.classList.remove("current");
+
+                        currentSlideId = undefined;
                     }
 
                     if (
-                        entry.intersectionRatio > 0.9 &&
-                        currentSlideId !== undefined &&
+                        entry.intersectionRatio === 1 &&
                         currentSlideId !== targetSlideId
                     ) {
-                        // play slide sound effect
-                        console.log(currentSlideId);
-                    }
-
-                    if (entry.intersectionRatio > 0.9) {
                         let element = document.getElementById(targetSlideId);
                         element?.classList.add("current");
 
@@ -47,13 +42,12 @@
             },
             {
                 root: reelScroll,
-                rootMargin: "0% -5% 0% -5%",
                 threshold: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
             },
         );
 
         reelScroll
-            .querySelectorAll(".slide")
+            .querySelectorAll(":scope > .snap-stop")
             .forEach((slide) => observer.observe(slide));
     }
 

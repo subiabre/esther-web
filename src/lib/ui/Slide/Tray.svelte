@@ -17,30 +17,28 @@
                     }
 
                     if (
-                        entry.intersectionRatio > 0.5 &&
-                        currentReelId !== undefined &&
-                        currentReelId === targetReelId
+                        currentReelId === targetReelId &&
+                        entry.intersectionRatio < 0.9
                     ) {
-                        let element = document.getElementById(currentReelId);
+                        let element = document.getElementById(targetReelId);
                         element?.classList.remove("current");
+
+                        currentReelId = undefined;
                     }
+
 
                     if (
-                        entry.intersectionRatio > 0.9 &&
-                        currentReelId !== undefined &&
+                        entry.intersectionRatio === 1 &&
                         currentReelId !== targetReelId
                     ) {
-                        // play reel sound effect
-                        console.log(currentReelId);
-                    }
-
-                    if (entry.intersectionRatio > 0.9) {
                         let element = document.getElementById(targetReelId);
                         element?.classList.add("current");
 
                         currentReelId = targetReelId;
-                        
-                        let reelScroll = element?.getElementsByClassName('scroll-x').item(0);
+
+                        let reelScroll = element
+                            ?.getElementsByClassName("scroll-x")
+                            .item(0);
                         if (reelScroll instanceof HTMLElement) {
                             reelScroll.focus();
                         }
@@ -49,8 +47,7 @@
             },
             {
                 root: trayScroll,
-                rootMargin: "-5% 0% -5% 0%",
-                threshold: [0.25, 0.50, 0.75, 0.9, 1],
+                threshold: [0.25, 0.5, 0.75, 0.9, 1],
             },
         );
 

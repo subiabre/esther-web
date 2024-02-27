@@ -1,9 +1,9 @@
-.scroll-x .slide {
+.scroll-x > .snap-stop {
     filter: opacity(0.5);
 
     &.current {
         filter: opacity(1);
-        transition: filter 0.2s ease;
+        transition: filter 0.3s ease;
     }
 }
 
@@ -12,6 +12,6 @@
 
     &.current {
         filter: opacity(1);
-        transition: filter 0.2s ease;
+        transition: filter 0.3s ease;
     }
 }

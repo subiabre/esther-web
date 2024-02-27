@@ -1,6 +1,5 @@
-<script>
+<script lang="ts">
     import ScrollY from "./ScrollY.svelte";
-
 </script>
 <main>
     <ScrollY>

@@ -1,4 +1,8 @@
-<div class="scroll-x">
+<script lang="ts">
+    export let div: undefined|HTMLDivElement;
+</script>
+
+<div bind:this={div} class="scroll-x">
     <slot />
 </div>
 

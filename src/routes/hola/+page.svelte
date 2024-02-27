@@ -8,61 +8,67 @@
 
 <Screen>
     <Reel>
-        <Slide>
+        <Slide id="i1_1">
             <Text>
-                <BigTitle>Hola.</BigTitle>
+                <BigTitle>1#1</BigTitle>
                 <p>Psst, desliza... tengo algo que contarte.</p>
             </Text>
         </Slide>
-        <Slide>
+        <Slide id="i1_2">
             <Text>
-                <BigTitle>Me llamo Esther.</BigTitle>
+                <BigTitle>1#2</BigTitle>
                 <p>Encantada de conocerte.</p>
             </Text>
         </Slide>
-        <Slide>
+        <Slide id="i1_3">
             <Text>
-                <BigTitle>Me llamo Esther.</BigTitle>
+                <BigTitle>1#3</BigTitle>
+                <p>Encantada de conocerte.</p>
+            </Text>
+        </Slide>
+        <Slide id="i1_4">
+            <Text>
+                <BigTitle>1#4</BigTitle>
                 <p>Encantada de conocerte.</p>
             </Text>
         </Slide>
     </Reel>
     <Reel>
-        <Slide>
+        <Slide id="i2_1">
             <Text>
-                <BigTitle>Hola.</BigTitle>
+                <BigTitle>2#1</BigTitle>
                 <p>Psst, desliza... tengo algo que contarte.</p>
             </Text>
         </Slide>
-        <Slide>
+        <Slide id="i2_2_">
             <Text>
-                <BigTitle>Me llamo Esther.</BigTitle>
+                <BigTitle>2#2</BigTitle>
                 <p>Encantada de conocerte.</p>
             </Text>
         </Slide>
-        <Slide>
+        <Slide id="i2_3">
             <Text>
-                <BigTitle>Me llamo Esther.</BigTitle>
+                <BigTitle>2#3</BigTitle>
                 <p>Encantada de conocerte.</p>
             </Text>
         </Slide>
     </Reel>
     <Reel>
-        <Slide>
+        <Slide id="i3_1">
             <Text>
-                <BigTitle>Hola.</BigTitle>
+                <BigTitle>3#1</BigTitle>
                 <p>Psst, desliza... tengo algo que contarte.</p>
             </Text>
         </Slide>
-        <Slide>
+        <Slide id="i3_2">
             <Text>
-                <BigTitle>Me llamo Esther.</BigTitle>
+                <BigTitle>3#2</BigTitle>
                 <p>Encantada de conocerte.</p>
             </Text>
         </Slide>
-        <Slide>
+        <Slide id="i3_3">
             <Text>
-                <BigTitle>Me llamo Esther.</BigTitle>
+                <BigTitle>3#3</BigTitle>
                 <p>Encantada de conocerte.</p>
             </Text>
         </Slide>

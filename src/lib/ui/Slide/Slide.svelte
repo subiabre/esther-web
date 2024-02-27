@@ -1,9 +1,11 @@
-<script>
+<script lang="ts">
     import SnapStop from "../Screen/SnapStop.svelte";
+
+    export let id: string;
 </script>
 
 <SnapStop>
-    <div class="slide">
+    <div {id} class="slide">
         <slot />
     </div>
 </SnapStop>

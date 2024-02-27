@@ -1,6 +1,7 @@
 @forward "./styles/vars.scss";
 
 @import "./styles/scroll.scss";
+@import "./styles/text.scss";
 @import "./styles/vfxs.scss";
 
 @mixin screen-size-sm($property, $value) {

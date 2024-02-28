@@ -3,6 +3,7 @@
     import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
+    import MainNav from "$lib/ui/Content/Nav/MainNav.svelte";
 </script>
 
 <Reel id="error">
@@ -13,5 +14,8 @@
             <p>{$page.status}</p>
             <p>{$page.error?.message}</p>
         </Text>
+    </Slide>
+    <Slide id="nav">
+        <MainNav />
     </Slide>
 </Reel>

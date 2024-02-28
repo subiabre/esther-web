@@ -1,27 +1,29 @@
-.scroll-x > .snap-stop {
-    filter: opacity(0.5);
-
-    &.current {
-        filter: opacity(1);
-        transition: filter 0.3s ease;
+body.has-visualFxs {
+    .scroll-x > .snap-stop {
+        filter: opacity(0.5);
+    
+        &.current {
+            filter: opacity(1);
+            transition: filter 0.3s ease;
+        }
     }
-}
-
-.scroll-y > .snap-stop {
-    filter: opacity(0.5);
-
-    &.current {
-        filter: opacity(1);
-        transition: filter 0.3s ease;
+    
+    .scroll-y > .snap-stop {
+        filter: opacity(0.5);
+    
+        &.current {
+            filter: opacity(1);
+            transition: filter 0.3s ease;
+        }
     }
-}
-
-.menu li:has(.bx--link.bx--link--lg) {
-    opacity: 0.5;
-
-    :hover,
-    &:hover,
-    &.current {
-        opacity: 1;
+    
+    .menu li:has(.bx--link.bx--link--lg) {
+        opacity: 0.5;
+    
+        :hover,
+        &:hover,
+        &.current {
+            opacity: 1;
+        }
     }
 }

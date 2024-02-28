@@ -7,6 +7,7 @@
     import { auth, type AuthStorage } from "../../stores/auth";
     import { api } from "../../stores/api";
     import { goto } from "$app/navigation";
+    import { fxs } from "../../stores/fxs";
 
     onMount(async () => {
         const localAuth: AuthStorage = await JSON.parse(
@@ -22,6 +23,10 @@
             method: "GET",
             url: localAuth.session.user ?? "",
         });
+
+        if ($auth.user) {
+            fxs.init($auth.user);
+        }
     });
 </script>
 

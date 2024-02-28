@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import ScrollX from "../Screen/ScrollX.svelte";
     import SnapStop from "../Screen/SnapStop.svelte";
+    import { afterNavigate } from "$app/navigation";
 
     export let id: string;
 
@@ -54,6 +55,10 @@
     onMount(() => {
         track();
     });
+
+    afterNavigate(() => {
+        track();
+    })
 </script>
 
 <SnapStop id={`reelsnap_${id}`}>

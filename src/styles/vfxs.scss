@@ -15,3 +15,13 @@
         transition: filter 0.3s ease;
     }
 }
+
+.menu li:has(.bx--link.bx--link--lg) {
+    opacity: 0.5;
+
+    :hover,
+    &:hover,
+    &.current {
+        opacity: 1;
+    }
+}

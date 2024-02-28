@@ -2,10 +2,17 @@
     import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
+    import { onMount } from "svelte";
+
+    let mainSlide: Slide;
+
+    onMount(() => {
+        mainSlide.focus();
+    })
 </script>
 
-<Reel id="hola">
-    <Slide id="🙋">
+<Reel id="bienvenido">
+    <Slide id="🙋" bind:this={mainSlide}>
         <Text>
             <h1>Hola.</h1>
             <h2>🙋</h2>

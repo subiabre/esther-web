@@ -18,6 +18,8 @@
 
         overflow: scroll;
 
+        position: relative;
+
         background-color: black;
     }
 </style>

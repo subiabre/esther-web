@@ -13,6 +13,7 @@
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"carbon-components-svelte": "^0.82.11",
 		"openapi-typescript-codegen": "^0.27.0",
 		"sass": "^1.71.1",
 		"svelte": "^4.2.7",

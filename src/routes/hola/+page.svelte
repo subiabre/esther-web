@@ -2,57 +2,84 @@
     import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
+    import {
+        Button,
+        ButtonSet,
+        Form,
+        FormGroup,
+        Modal,
+        PasswordInput,
+        TextInput,
+    } from "carbon-components-svelte";
+    import { api } from "../../stores/api";
+    import { auth } from "../../stores/auth";
+    import { goto } from "$app/navigation";
+
+    let email: string = "";
+    let password: string = "";
+
+    let invalid: boolean = false;
+
+    let openPasswordForgot = false;
+
+    function handleSubmit() {
+        $api.session
+            .apiSessionsPost({ email, password })
+            .then(async (session) => {
+                $auth.session = session;
+                $auth.user = await $api.request.request({
+                    method: "GET",
+                    url: session.user ?? "",
+                });
+
+                goto("/fotos");
+            })
+            .catch(() => (invalid = true));
+    }
 </script>
 
-<Reel id="hola">
-    <Slide id="🙋">
+<Reel id="puerta">
+    <Slide id="login">
         <Text>
-            <h1>Hola.</h1>
-            <h2>🙋</h2>
-            <p>Me llamo <strong>Esther</strong>. Encantada de conocerte.</p>
+            <h1>Hola, <br />{email ? email.split("@")[0] : "desconocido"}.</h1>
         </Text>
-    </Slide>
-    <Slide id="📸">
         <Text>
-            <h1>Me gustan las fotos.</h1>
-            <h2>📸</h2>
-            <p>
-                Me gusta observarlas, analizarlas y conservarlas. Soy muy buena
-                haciendo esto.
-            </p>
-            <p>
-                Pero sobretodo me gusta <strong>saber</strong> sobre ellas. Cúando
-                y dónde fueron tomadas. Quiénes salen en ellas. Qué es lo que se
-                muestra en ellas.
-            </p>
+            <Form on:submit={handleSubmit}>
+                <FormGroup>
+                    <TextInput
+                        labelText="Correo electrónico"
+                        required
+                        {invalid}
+                        bind:value={email}
+                    />
+                    <PasswordInput
+                        type="password"
+                        tooltipPosition="left"
+                        labelText="Contraseña"
+                        showPasswordLabel="Mostrar constraseña"
+                        hidePasswordLabel="Ocultar constraseña"
+                        required
+                        {invalid}
+                        bind:value={password}
+                    />
+                </FormGroup>
+                <ButtonSet stacked>
+                    <Button type="submit">Entrar</Button>
+                    <Button
+                        kind="ghost"
+                        on:click={() => (openPasswordForgot = true)}
+                    >
+                        He olvidado mi contraseña
+                    </Button>
+                </ButtonSet>
+            </Form>
         </Text>
-    </Slide>
-    <Slide id="🙇">
-        <Text>
-            <h1>Por eso necesito tu ayuda.</h1>
-            <h2>🙇</h2>
+        <Modal passiveModal modalHeading="¿Has olvidado tu contraseña?" bind:open={openPasswordForgot}>
+            <p>Pues muy mal.</p>
             <p>
-                Resulta que en saber sobre una foto no soy tan buena como
-                analizándola. Y es que... ¡Facu me ha dado muchas fotos que no
-                tienen metadatos!
+                En fín, ponte en contacto conmigo para que actualice tu
+                contraseña.
             </p>
-            <p>
-                Son fotos de las de verdad, fotos analógicas cuyos metadatos
-                están en la memoria de personas como tú.
-            </p>
-        </Text>
-    </Slide>
-    <Slide id="💪">
-        <Text>
-            <h1>Gracias.</h1>
-            <h2>💪</h2>
-            <p>
-                Tus colaboraciones harán que pueda organizar mejor todas las
-                fotos que tengo. Así podré devolverte el favor y ayudarte a ti y
-                a más gente como tú a encontrar más fácil los recuerdos que
-                buscas.
-            </p>
-            <p>Prometo no olvidar lo que me cuentes.</p>
-        </Text>
+        </Modal>
     </Slide>
 </Reel>

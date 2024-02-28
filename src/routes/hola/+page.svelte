@@ -14,6 +14,7 @@
     import { api } from "../../stores/api";
     import { auth } from "../../stores/auth";
     import { goto } from "$app/navigation";
+    import Screen from "$lib/ui/Screen/Screen.svelte";
 
     let email: string = "";
     let password: string = "";
@@ -40,48 +41,56 @@
     }
 </script>
 
-<Reel id="puerta">
-    <Slide id="login">
-        <Text>
-            <h1>Hola, <br />{email ? email.split("@")[0] : "desconocido"}.</h1>
-        </Text>
-        <Text>
-            <Form on:submit={handleSubmit}>
-                <FormGroup>
-                    <TextInput
-                        labelText="Correo electrónico"
-                        required
-                        {invalid}
-                        bind:value={email}
-                    />
-                    <PasswordInput
-                        type="password"
-                        tooltipPosition="left"
-                        labelText="Contraseña"
-                        showPasswordLabel="Mostrar constraseña"
-                        hidePasswordLabel="Ocultar constraseña"
-                        required
-                        {invalid}
-                        bind:value={password}
-                    />
-                </FormGroup>
-                <ButtonSet stacked>
-                    <Button type="submit">Entrar</Button>
-                    <Button
-                        kind="ghost"
-                        on:click={() => (openPasswordForgot = true)}
-                    >
-                        He olvidado mi contraseña
-                    </Button>
-                </ButtonSet>
-            </Form>
-        </Text>
-        <Modal passiveModal modalHeading="¿Has olvidado tu contraseña?" bind:open={openPasswordForgot}>
-            <p>Pues muy mal.</p>
-            <p>
-                En fín, ponte en contacto conmigo para que actualice tu
-                contraseña.
-            </p>
-        </Modal>
-    </Slide>
-</Reel>
+<Screen>
+    <Reel id="puerta">
+        <Slide id="login">
+            <Text>
+                <h1>
+                    Hola, <br />{email ? email.split("@")[0] : "desconocido"}.
+                </h1>
+            </Text>
+            <Text>
+                <Form on:submit={handleSubmit}>
+                    <FormGroup>
+                        <TextInput
+                            labelText="Correo electrónico"
+                            required
+                            {invalid}
+                            bind:value={email}
+                        />
+                        <PasswordInput
+                            type="password"
+                            tooltipPosition="left"
+                            labelText="Contraseña"
+                            showPasswordLabel="Mostrar constraseña"
+                            hidePasswordLabel="Ocultar constraseña"
+                            required
+                            {invalid}
+                            bind:value={password}
+                        />
+                    </FormGroup>
+                    <ButtonSet stacked>
+                        <Button type="submit">Entrar</Button>
+                        <Button
+                            kind="ghost"
+                            on:click={() => (openPasswordForgot = true)}
+                        >
+                            He olvidado mi contraseña
+                        </Button>
+                    </ButtonSet>
+                </Form>
+            </Text>
+            <Modal
+                passiveModal
+                modalHeading="¿Has olvidado tu contraseña?"
+                bind:open={openPasswordForgot}
+            >
+                <p>Pues muy mal.</p>
+                <p>
+                    En fín, ponte en contacto conmigo para que actualice tu
+                    contraseña.
+                </p>
+            </Modal>
+        </Slide>
+    </Reel>
+</Screen>

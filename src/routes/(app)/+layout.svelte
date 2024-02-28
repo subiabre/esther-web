@@ -1,6 +1,7 @@
 <script lang="ts">
     import MainNav from "$lib/ui/Content/Nav/MainNav.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
+    import Screen from "$lib/ui/Screen/Screen.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
     import { onMount } from "svelte";
@@ -9,13 +10,15 @@
     import { goto } from "$app/navigation";
     import { fxs } from "../../stores/fxs";
 
+    let isReady = false;
+
     onMount(async () => {
         const localAuth: AuthStorage = await JSON.parse(
             localStorage.getItem("auth") ?? JSON.stringify({ session: null }),
         );
 
         if (!localAuth.session) {
-            return goto('/hola');
+            return goto("/hola");
         }
 
         $auth.session = localAuth.session;
@@ -26,15 +29,20 @@
 
         if ($auth.user) {
             fxs.init($auth.user);
+            isReady = true;
         }
     });
 </script>
 
-<Reel id="nav">
-    <Slide id="nav">
-        <Text>
-            <MainNav />
-        </Text>
-    </Slide>
-</Reel>
-<slot />
+{#if isReady}
+    <Screen>
+        <Reel id="nav">
+            <Slide id="nav">
+                <Text>
+                    <MainNav />
+                </Text>
+            </Slide>
+        </Reel>
+        <slot />
+    </Screen>
+{/if}

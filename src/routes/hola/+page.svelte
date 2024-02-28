@@ -32,6 +32,8 @@
                     url: session.user ?? "",
                 });
 
+                localStorage.setItem("auth", JSON.stringify({ session }));
+
                 goto("/fotos");
             })
             .catch(() => (invalid = true));

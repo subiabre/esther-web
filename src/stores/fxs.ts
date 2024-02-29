@@ -32,13 +32,13 @@ export const fxs: FxsSettingsStore = (() => {
             setFxs(value);
         },
         init: (user: User) => {
-            const init = localStorage.getItem(`${user.id}:fxs`);
+            const init = localStorage.getItem(`fxs:${user.id}`);
             const state: FxsSettingsState = init ? JSON.parse(init) : { visual: true, sound: true };
 
             setFxs(state);
         },
         save: (user:User, state: FxsSettingsState) => {
-            localStorage.setItem(`${user.id}:fxs`, JSON.stringify(state));
+            localStorage.setItem(`fxs:${user.id}`, JSON.stringify(state));
 
             setFxs(state);
         }

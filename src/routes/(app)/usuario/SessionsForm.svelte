@@ -26,7 +26,7 @@
 
 <Form on:submit={handleSubmit}>
     <FormGroup>
-        <ButtonSet>
+        <ButtonSet stacked>
             <Button type="submit" kind="danger" disabled={selectedSessions.length < 1}>
                 Borrar {selectedSessions.length > 1 ? 'sesiones' : 'sesión'}
             </Button>

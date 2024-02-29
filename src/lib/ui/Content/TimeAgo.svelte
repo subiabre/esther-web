@@ -24,6 +24,6 @@
     }
 </script>
 
-<span>
+<span title={(new Date(timestamp)).toLocaleString()}>
     {timeAgo}
 </span>

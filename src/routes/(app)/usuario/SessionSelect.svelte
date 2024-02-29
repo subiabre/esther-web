@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Session } from "$lib/api";
     import Grid from "$lib/ui/Content/Grid/Grid.svelte";
+    import { SkeletonText, Tile } from "carbon-components-svelte";
     import SessionOption from "./SessionOption.svelte";
 
     export let sessions: string[] = [];
@@ -11,14 +12,14 @@
     }
 
     function handleDeselect(event: CustomEvent) {
-        selectedSessions = selectedSessions.filter((session) => session.id !== event.detail.id);
+        selectedSessions = selectedSessions.filter(
+            (session) => session.id !== event.detail.id,
+        );
     }
-
-    $: console.log(sessions);
 </script>
 
 <Grid>
-    {#each sessions as session (session)} 
+    {#each sessions as session (session)}
         <SessionOption
             url={session}
             on:select={handleSelect}

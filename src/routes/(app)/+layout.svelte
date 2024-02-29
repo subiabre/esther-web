@@ -22,10 +22,18 @@
         }
 
         $auth.session = localAuth.session;
-        $auth.user = await $api.request.request({
-            method: "GET",
-            url: localAuth.session.user ?? "",
-        });
+
+        await $api.session
+            .apiSessionsIdGet(localAuth.session.id?.toString() || "")
+            .then(async (session) => {
+                $auth.user = await $api.request.request({
+                    method: "GET",
+                    url: session.user ?? "",
+                });
+            })
+            .catch((err) => {
+                goto("/hola");
+            });
 
         if ($auth.user) {
             fxs.init($auth.user);

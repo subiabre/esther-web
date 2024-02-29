@@ -1,4 +1,4 @@
-<div class="text-container">
+<div class="content-text">
     <slot />
 </div>
 

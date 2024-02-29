@@ -1,4 +1,4 @@
-<div class="pad-container">
+<div class="content-pad">
     <slot />
 </div>
 

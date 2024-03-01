@@ -5,6 +5,8 @@
 
     function getUnitAndValueDate(timestamp: string | number | Date) {
         const date = new Date(timestamp);
+        console.log(timestamp);
+
         const rtf = new Intl.RelativeTimeFormat();
 
         const secondsElapsed = (Date.now() - date.getTime()) / 1000;

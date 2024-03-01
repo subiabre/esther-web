@@ -53,6 +53,7 @@
                 <Form on:submit={handleSubmit}>
                     <FormGroup>
                         <TextInput
+                            type="email"
                             labelText="Correo electrónico"
                             required
                             {invalid}

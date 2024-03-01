@@ -14,12 +14,15 @@
 
 <Labeled label="👉 Identificador">
     {session.id}
-    {#if session.id == ($auth.session?.id ?? "")}
+    {#if session.id == ($auth.session?.id || "")}
         (actual)
     {/if}
 </Labeled>
 <Labeled label="🕑 Creada">
-    <TimeAgo timestamp={session.dateCreated ?? ""} />
+    <TimeAgo timestamp={session.dateCreated || 0} />
+</Labeled>
+<Labeled label="🕑 Último uso">
+    <TimeAgo timestamp={session.dateUpdated || 0} />
 </Labeled>
 <Labeled label="🌐 Navegador">
     {userAgent.browser.name ?? "Desconocido"}

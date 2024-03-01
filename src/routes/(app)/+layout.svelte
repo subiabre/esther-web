@@ -17,7 +17,7 @@
             localStorage.getItem("auth") ?? JSON.stringify({ session: null }),
         );
 
-        if (!localAuth.session) {
+        if (!localStorage || !localAuth.session) {
             return goto("/hola");
         }
 
@@ -32,12 +32,14 @@
                 });
             })
             .catch((err) => {
-                goto("/hola");
+                localStorage.removeItem("auth");
             });
 
         if ($auth.user) {
             fxs.init($auth.user);
             isReady = true;
+        } else {
+            return goto("/hola");
         }
     });
 </script>

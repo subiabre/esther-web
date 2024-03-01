@@ -8,14 +8,18 @@
     import { auth } from "../../../stores/auth";
     import EmailForm from "./EmailForm.svelte";
     import PasswordForm from "./PasswordForm.svelte";
-    import SessionSelect from "./SessionSelect.svelte";
     import Pad from "$lib/ui/Content/Pad.svelte";
     import SessionsForm from "./SessionsForm.svelte";
+    import { afterNavigate } from "$app/navigation";
 
     let mainSlide: Slide;
     onMount(() => {
         mainSlide.focus();
     });
+
+    afterNavigate(() => {
+        mainSlide.focus();
+    })
 
     $: if ($auth.user) {
         fxs.save($auth.user, $fxs);

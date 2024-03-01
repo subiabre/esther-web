@@ -9,7 +9,8 @@
     import { api } from "../../../stores/api";
 
     let warnText = "Correo electrónico actualizado.";
-    let helperText = "Esther nunca te enviará correo. Sólo se usa para identificarte.";
+    let helperText =
+        "Esther nunca te enviará correo. Sólo se usa para identificarte.";
 
     // @ts-ignore
     let email: string = $auth.user.email;
@@ -37,14 +38,15 @@
 <Form on:submit={handleSubmit}>
     <FormGroup>
         <TextInput
+            type="email"
             labelText="Correo electrónico"
             placeholder="ejemplo@correo.com"
             {warnText}
             {invalidText}
-            bind:helperText={helperText}
+            bind:helperText
             bind:value={email}
-            bind:warn={warn}
-            bind:invalid={invalid}
+            bind:warn
+            bind:invalid
         />
     </FormGroup>
     <Button type="submit">Actualizar correo electrónico</Button>

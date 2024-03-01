@@ -21,7 +21,7 @@
     .slide {
         @include slide-sizes;
 
-        overflow: scroll;
+        overflow-y: auto;
 
         position: relative;
 

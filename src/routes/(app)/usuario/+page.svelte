@@ -19,7 +19,7 @@
 
     afterNavigate(() => {
         mainSlide.focus();
-    })
+    });
 
     $: if ($auth.user) {
         fxs.save($auth.user, $fxs);
@@ -53,6 +53,10 @@
                         labelText="Efectos de sonido"
                         bind:toggled={$fxs.sound}
                     />
+                    <p>
+                        A veces, es posible que no oigas los efectos de sonido
+                        hasta que no hagas click dentro de la ventana de la app.
+                    </p>
                 </FormGroup>
             </Form>
         </Text>

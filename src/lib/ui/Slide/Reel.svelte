@@ -3,6 +3,7 @@
     import ScrollX from "../Screen/ScrollX.svelte";
     import SnapStop from "../Screen/SnapStop.svelte";
     import { afterNavigate } from "$app/navigation";
+    import { soundFxs } from "../../../stores/fxs";
 
     export let id: string;
 
@@ -28,6 +29,7 @@
                         element?.classList.remove("current");
 
                         currentSlideId = undefined;
+                        soundFxs.playSlide();
                     }
 
                     if (

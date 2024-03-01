@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import ScrollY from "../Screen/ScrollY.svelte";
     import { afterNavigate } from "$app/navigation";
+    import { soundFxs } from "../../../stores/fxs";
 
     let trayScroll: HTMLDivElement;
 
@@ -25,6 +26,7 @@
                         element?.classList.remove("current");
 
                         currentReelId = undefined;
+                        soundFxs.playSlide();
                     }
 
 

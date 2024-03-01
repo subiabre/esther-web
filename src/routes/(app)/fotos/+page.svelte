@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { afterNavigate } from "$app/navigation";
     import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
@@ -6,6 +7,10 @@
 
     let mainSlide: Slide;
     onMount(() => {
+        mainSlide.focus();
+    });
+
+    afterNavigate(() => {
         mainSlide.focus();
     });
 </script>

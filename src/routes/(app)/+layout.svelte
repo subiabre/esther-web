@@ -9,6 +9,7 @@
     import { api } from "../../stores/api";
     import { goto } from "$app/navigation";
     import { fxs } from "../../stores/fxs";
+    import SoundFxsPlayer from "$lib/fxs/SoundFxsPlayer.svelte";
 
     let isReady = false;
 
@@ -46,6 +47,7 @@
 
 {#if isReady}
     <Screen>
+        <SoundFxsPlayer />
         <Reel id="nav">
             <Slide id="nav">
                 <Text>

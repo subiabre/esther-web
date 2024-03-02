@@ -1,8 +1,7 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { afterUpdate } from "svelte";
     import ScrollX from "../Screen/ScrollX.svelte";
     import SnapStop from "../Screen/SnapStop.svelte";
-    import { afterNavigate } from "$app/navigation";
     import { soundFxs } from "../../../stores/fxs";
 
     export let id: string;
@@ -10,7 +9,7 @@
     let reelScroll: HTMLDivElement;
 
     let currentSlideId: string | undefined;
-    function track() {
+    export function track() {
         const observer = new IntersectionObserver(
             (entries) => {
                 for (let index = 0; index < entries.length; index++) {
@@ -54,13 +53,9 @@
             .forEach((slide) => observer.observe(slide));
     }
 
-    onMount(() => {
+    afterUpdate(() => {
         track();
     });
-
-    afterNavigate(() => {
-        track();
-    })
 </script>
 
 <SnapStop id={`reelsnap_${id}`}>

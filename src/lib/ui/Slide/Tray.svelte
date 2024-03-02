@@ -1,7 +1,6 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { afterUpdate } from "svelte";
     import ScrollY from "../Screen/ScrollY.svelte";
-    import { afterNavigate } from "$app/navigation";
     import { soundFxs } from "../../../stores/fxs";
 
     let trayScroll: HTMLDivElement;
@@ -59,13 +58,9 @@
             .forEach((reel) => observer.observe(reel));
     }
 
-    onMount(() => {
+    afterUpdate(() => {
         track();
     });
-
-    afterNavigate(() => {
-        track();
-    })
 </script>
 
 <ScrollY bind:div={trayScroll}>

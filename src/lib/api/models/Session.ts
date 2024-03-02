@@ -9,5 +9,6 @@ export type Session = {
     token?: string;
     request?: SessionRequest;
     readonly dateCreated?: string;
+    readonly dateUpdated?: string;
 };
 

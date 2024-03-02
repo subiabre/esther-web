@@ -5,7 +5,7 @@
 export type User = {
     readonly id?: number;
     email: string;
-    password: string;
+    password?: string;
     /**
      * The user roles
      */

@@ -10,7 +10,7 @@ import { PhotoService } from './services/PhotoService';
 import { SessionService } from './services/SessionService';
 import { UserService } from './services/UserService';
 type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
-export class EstherAPIClient {
+export class ApiClient {
     public readonly image: ImageService;
     public readonly photo: PhotoService;
     public readonly session: SessionService;

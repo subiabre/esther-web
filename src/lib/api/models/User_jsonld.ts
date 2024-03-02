@@ -8,7 +8,7 @@ export type User_jsonld = {
     readonly '@type'?: string;
     readonly id?: number;
     email: string;
-    password: string;
+    password?: string;
     /**
      * The user roles
      */

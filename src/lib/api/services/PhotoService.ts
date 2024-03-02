@@ -13,6 +13,7 @@ export class PhotoService {
      * @param page The collection page number
      * @param dateRangeMin Only display items after this date
      * @param dateRangeMax Only display items before this date
+     * @param dateOrder
      * @returns Photo Photo collection
      * @throws ApiError
      */
@@ -20,6 +21,7 @@ export class PhotoService {
         page: number = 1,
         dateRangeMin?: string,
         dateRangeMax?: string,
+        dateOrder?: 'asc' | 'desc',
     ): CancelablePromise<Array<Photo>> {
         return this.httpRequest.request({
             method: 'GET',
@@ -28,6 +30,7 @@ export class PhotoService {
                 'page': page,
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
+                'date[order]': dateOrder,
             },
         });
     }

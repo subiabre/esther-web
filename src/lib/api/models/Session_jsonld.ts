@@ -12,5 +12,6 @@ export type Session_jsonld = {
     token?: string;
     request?: SessionRequest_jsonld;
     readonly dateCreated?: string;
+    readonly dateUpdated?: string;
 };
 

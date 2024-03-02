@@ -4,12 +4,13 @@
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
     import { onMount } from "svelte";
-    import PhotoDateRangeFilter from "./PhotoDateRangeFilter.svelte";
+    import FilterDateRange from "./FilterDateRange.svelte";
     import Pad from "$lib/ui/Content/Pad.svelte";
     import Grid from "$lib/ui/Content/Grid/Grid.svelte";
     import { api } from "../../../stores/api";
     import { SkeletonPlaceholder, Tile } from "carbon-components-svelte";
     import PhotoSlide from "./PhotoSlide.svelte";
+    import PhotoCover from "./PhotoCover.svelte";
 
     let slideShow: Reel;
     let mainSlide: Slide;
@@ -22,13 +23,19 @@
         mainSlide.focus();
     });
 
-    let photos = $api.photo.apiPhotosGetCollection(1);
+    let photos = $api.photo.apiPhotosGetCollection(
+        1,
+        undefined,
+        undefined,
+        "asc",
+    );
 
     function updateDateRange(e: CustomEvent) {
         photos = $api.photo.apiPhotosGetCollection(
             1,
             new Date(e.detail.min, 0, 2).toISOString().split("T")[0],
             new Date(e.detail.max, 11, 32).toISOString().split("T")[0],
+            "asc",
         );
     }
 </script>
@@ -42,7 +49,7 @@
             <h2>Cuándo.</h2>
         </Text>
         <Pad>
-            <PhotoDateRangeFilter on:change={updateDateRange} />
+            <FilterDateRange on:change={updateDateRange} />
         </Pad>
         <Text>
             <h2>Dónde.</h2>
@@ -57,12 +64,12 @@
         <Pad>
             <Grid>
                 {#await photos}
-                    <SkeletonPlaceholder />
+                    <SkeletonPlaceholder style="width: 100%;" />
+                    <SkeletonPlaceholder style="width: 100%;" />
+                    <SkeletonPlaceholder style="width: 100%;" />
                 {:then photos}
                     {#each photos as photo}
-                        <Tile>
-                            <pre>{JSON.stringify(photo, null, 2)}</pre>
-                        </Tile>
+                        <PhotoCover {photo} />
                     {/each}
                 {/await}
             </Grid>
@@ -75,5 +82,4 @@
             <PhotoSlide {photo} {slideShow} />
         {/each}
     {/await}
-    <Slide id="end" />
 </Reel>

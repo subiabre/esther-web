@@ -1,6 +1,6 @@
 body.has-visualFxs {
     .scroll-x > .snap-stop {
-        filter: opacity(0.5);
+        filter: opacity(0.4);
     
         &.current {
             filter: opacity(1);
@@ -9,7 +9,7 @@ body.has-visualFxs {
     }
     
     .scroll-y > .snap-stop {
-        filter: opacity(0.5);
+        filter: opacity(0.4);
     
         &.current {
             filter: opacity(1);

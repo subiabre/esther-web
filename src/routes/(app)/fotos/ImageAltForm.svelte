@@ -7,7 +7,7 @@
 
     export let image: Image;
 
-    let label: string = "Añade una descripción de lo que se ve en esta foto.";
+    let label: string = "Describe qué es lo que se ve.";
 
     let inputTimeout: number;
     function handleKeyUp() {

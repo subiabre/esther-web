@@ -42,7 +42,7 @@
             float
             pushy
             step={1}
-            pipstep={10}
+            pipstep={window.innerWidth > 855 ? 10 : 15}
             all="label"
             bind:values
             on:stop={handleStop}

@@ -28,7 +28,7 @@
         height: 100%;
 
         display: flex;
-        align-items: end;
+        align-items: start;
 
         opacity: 0;
         transition: opacity 0.2s ease;

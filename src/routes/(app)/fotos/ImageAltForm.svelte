@@ -2,6 +2,7 @@
     import type { Image } from "$lib/api";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
+    import { onMount } from "svelte";
     import { api } from "../../../stores/api";
 
     export let image: Image;
@@ -9,13 +10,16 @@
     let label: string = "Añade una descripción de lo que se ve en esta foto.";
 
     let inputTimeout: number;
-    function startTimeout() {
+    function handleKeyUp() {
         clearTimeout(inputTimeout);
         inputTimeout = setTimeout(() => updateAlt(), 1500);
     }
 
-    function resetTimeout() {
+    let textarea: HTMLTextAreaElement;
+    function handleKeyDown() {
         clearTimeout(inputTimeout);
+
+        textarea.style.height = `${textarea.scrollHeight}px`;
     }
 
     function updateAlt() {
@@ -24,14 +28,13 @@
                 alt: image.alt,
             })
             .then(() => {
-                let originalLabel = label;
-
-                label = "Descripción actualizada.";
-                setTimeout(() => {
-                    label = originalLabel;
-                }, 3000);
+                label = "Descripción actualizada. Gracias por tu ayuda.";
             });
     }
+
+    onMount(() => {
+        textarea.style.height = `${textarea.scrollHeight}px`;
+    });
 </script>
 
 <Text>
@@ -40,9 +43,10 @@
         <textarea
             spellcheck="true"
             placeholder="¿Qué hay en esta imagen?"
+            bind:this={textarea}
             bind:value={image.alt}
-            on:keyup={startTimeout}
-            on:keydown={resetTimeout}
+            on:keyup={handleKeyUp}
+            on:keydown={handleKeyDown}
         />
     </Labeled>
 </Text>
@@ -50,24 +54,16 @@
 <style>
     textarea {
         width: 100%;
-        max-height: 7.5lh;
-        min-height: 1.5lh;
+        height: fit-content;
+
         padding: 0;
-        resize: vertical;
+        resize: none;
 
         color: white;
         font-size: 1rem;
 
         border: none;
         outline: none;
-        background: linear-gradient(
-                to top left,
-                grey 0.65rem,
-                transparent 0.65rem
-            )
-            100% 100%;
-        background-repeat: no-repeat;
-        background-size: 1rem 1rem;
-        background-blend-mode: difference;
+        background: transparent;
     }
 </style>

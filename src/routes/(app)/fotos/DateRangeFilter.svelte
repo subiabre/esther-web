@@ -1,7 +1,7 @@
 <script lang="ts">
     import RangeSlider from "svelte-range-slider-pips";
     import { api } from "../../../stores/api";
-    import { SkeletonText } from "carbon-components-svelte";
+    import { SkeletonPlaceholder } from "carbon-components-svelte";
     import { createEventDispatcher } from "svelte";
 
     let values: number[] = [1960, 2024];
@@ -22,17 +22,17 @@
 
     function handleStop() {
         dispatch("change", {
-            min: values[0],
-            max: values[1],
+            min: new Date(values[0], 0, 2).toISOString().split('T')[0],
+            max: new Date(values[1], 11, 32).toISOString().split('T')[0],
         });
     }
 </script>
 
 {#await min}
-    <SkeletonText paragraph lines={1} />
+    <SkeletonPlaceholder style="width: 100%; height: 3rem;" />
 {:then min}
     {#await max}
-        <SkeletonText paragraph lines={1} />
+        <SkeletonPlaceholder style="width: 100%; height: 3rem;" />
     {:then max}
         <RangeSlider
             {min}

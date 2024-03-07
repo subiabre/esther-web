@@ -1,19 +1,35 @@
 <script lang="ts">
-    import type { Image } from "$lib/api";
-    import { SkeletonPlaceholder } from "carbon-components-svelte";
+    import type { CancelablePromise, Image } from "$lib/api";
     import { api } from "../../../stores/api";
-    import ImageDisplay from "./ImageDisplay.svelte";
 
-    export let url: string;
+    export let source: string;
 
-    let image: Promise<Image> = $api.request.request({
-        method: 'GET',
-        url
+    let image: CancelablePromise<Image> = $api.request.request({
+        method: "GET",
+        url: source,
     });
 </script>
 
-{#await image}
-    <SkeletonPlaceholder />
-{:then image} 
-    <ImageDisplay {image} />
-{/await}
+<figure>
+    {#await image then image}
+        <img src={image.src} alt={image.alt} />
+    {/await}
+</figure>
+
+<style>
+    figure {
+        width: 100%;
+        height: 100%;
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>

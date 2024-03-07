@@ -1,85 +1,66 @@
 <script lang="ts">
-    import { afterNavigate } from "$app/navigation";
+    import Pad from "$lib/ui/Content/Pad.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
-    import { onMount } from "svelte";
-    import FilterDateRange from "./FilterDateRange.svelte";
-    import Pad from "$lib/ui/Content/Pad.svelte";
-    import Grid from "$lib/ui/Content/Grid/Grid.svelte";
+    import { afterUpdate } from "svelte";
     import { api } from "../../../stores/api";
-    import { SkeletonPlaceholder, Tile } from "carbon-components-svelte";
+    import DateRangeFilter from "./DateRangeFilter.svelte";
+    import PhotoGallery from "./PhotoGallery.svelte";
     import PhotoSlide from "./PhotoSlide.svelte";
-    import PhotoCover from "./PhotoCover.svelte";
 
-    let slideShow: Reel;
     let mainSlide: Slide;
+    let slideShow: Reel;
 
-    onMount(() => {
+    afterUpdate(() => {
         mainSlide.focus();
     });
 
-    afterNavigate(() => {
-        mainSlide.focus();
-    });
+    let page: number = 1;
 
-    let photos = $api.photo.apiPhotosGetCollection(
-        1,
-        undefined,
-        undefined,
+    let dateRangeMin: string | undefined;
+    let dateRangeMax: string | undefined;
+
+    $: photos = $api.photo.apiPhotosGetCollection(
+        page,
+        dateRangeMin,
+        dateRangeMax,
         "asc",
-    );
+    ).then((photos) => {
+        setTimeout(() => slideShow.track(), 500);
 
-    function updateDateRange(e: CustomEvent) {
-        photos = $api.photo.apiPhotosGetCollection(
-            1,
-            new Date(e.detail.min, 0, 2).toISOString().split("T")[0],
-            new Date(e.detail.max, 11, 32).toISOString().split("T")[0],
-            "asc",
-        );
-    }
+        return photos;
+    });
 </script>
 
-<Reel id="filtros">
-    <Slide id="filtros" bind:this={mainSlide}>
-        <Text>
-            <h1>Filtros.</h1>
-        </Text>
-        <Text>
+<Reel id="filters">
+    <Slide id="filters" bind:this={mainSlide}>
+        <Text><h1>Filtros.</h1></Text>
+        <Pad>
             <h2>Cuándo.</h2>
-        </Text>
-        <Pad>
-            <FilterDateRange on:change={updateDateRange} />
+            <DateRangeFilter
+                on:change={(e) => {
+                    dateRangeMin = e.detail.min;
+                    dateRangeMax = e.detail.max;
+                }}
+            />
         </Pad>
-        <Text>
-            <h2>Dónde.</h2>
-            <h2>Quiénes.</h2>
-            <h2>Qué.</h2>
-        </Text>
     </Slide>
-    <Slide id="galeria">
-        <Text>
-            <h1>Galería.</h1>
-        </Text>
+    <Slide id="results">
+        <Text><h1>Resultados.</h1></Text>
         <Pad>
-            <Grid>
-                {#await photos}
-                    <SkeletonPlaceholder style="width: 100%;" />
-                    <SkeletonPlaceholder style="width: 100%;" />
-                    <SkeletonPlaceholder style="width: 100%;" />
-                {:then photos}
-                    {#each photos as photo}
-                        <PhotoCover {photo} />
-                    {/each}
-                {/await}
-            </Grid>
+            {#await photos then photos}
+                <PhotoGallery {photos} />
+            {/await}
         </Pad>
     </Slide>
 </Reel>
 <Reel id="slideshow" bind:this={slideShow}>
     {#await photos then photos}
         {#each photos as photo}
-            <PhotoSlide {photo} {slideShow} />
+            <Slide id={`photo_${photo.id}`}>
+                <PhotoSlide {photo} />
+            </Slide>
         {/each}
     {/await}
 </Reel>

@@ -29,6 +29,7 @@
 
         display: flex;
         align-items: start;
+        flex-direction: column;
 
         opacity: 0;
         transition: opacity 0.2s ease;
@@ -41,10 +42,6 @@
 
     .overlaid-content:hover {
         cursor: pointer;
-    }
-
-    :global(.overlaid-content *) {
-        text-shadow: 1px 1px black;
     }
 
     input:checked + .overlaid-content {

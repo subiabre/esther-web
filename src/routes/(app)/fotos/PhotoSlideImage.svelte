@@ -3,6 +3,7 @@
     import Overlaid from "$lib/ui/Content/Overlaid.svelte";
     import { api } from "../../../stores/api";
     import ImageAltForm from "./ImageAltForm.svelte";
+    import ImageActions from "./ImageActions.svelte";
 
     export let source: string;
 
@@ -16,6 +17,7 @@
     {#await image then image}
         <img src={image.src} alt={image.alt} />
         <Overlaid id={image.id || ""}>
+            <ImageActions {image} />
             <ImageAltForm {image} />
         </Overlaid>
     {/await}

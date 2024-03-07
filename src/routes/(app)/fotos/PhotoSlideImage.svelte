@@ -1,6 +1,8 @@
 <script lang="ts">
     import type { CancelablePromise, Image } from "$lib/api";
+    import Overlaid from "$lib/ui/Content/Overlaid.svelte";
     import { api } from "../../../stores/api";
+    import ImageAltForm from "./ImageAltForm.svelte";
 
     export let source: string;
 
@@ -13,6 +15,9 @@
 <figure>
     {#await image then image}
         <img src={image.src} alt={image.alt} />
+        <Overlaid id={image.id || ""}>
+            <ImageAltForm {image} />
+        </Overlaid>
     {/await}
 </figure>
 

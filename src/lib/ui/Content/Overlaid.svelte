@@ -43,6 +43,10 @@
         cursor: pointer;
     }
 
+    :global(.overlaid-content *) {
+        text-shadow: 1px 1px black;
+    }
+
     input:checked + .overlaid-content {
         opacity: 1;
         transition: opacity 0.2s ease;

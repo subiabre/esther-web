@@ -4,6 +4,7 @@
 
 <style>
     div {
+        width: 100%;
         max-width: 69ch;
 
         padding: 1rem 1.375rem;

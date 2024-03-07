@@ -1,7 +1,6 @@
 <script lang="ts">
     import type { Session } from "$lib/api";
-    import Grid from "$lib/ui/Content/Grid/Grid.svelte";
-    import { SkeletonText, Tile } from "carbon-components-svelte";
+    import Grid from "$lib/ui/Content/Grid.svelte";
     import SessionOption from "./SessionOption.svelte";
 
     export let sessions: string[] = [];

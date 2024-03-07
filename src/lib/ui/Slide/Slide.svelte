@@ -25,6 +25,6 @@
 
         position: relative;
 
-        background-color: black;
+        background-color: rgba(100, 100, 100, 0.1);
     }
 </style>

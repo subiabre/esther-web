@@ -11,6 +11,7 @@ export class PhotoService {
      * Retrieves the collection of Photo resources.
      * Retrieves the collection of Photo resources.
      * @param page The collection page number
+     * @param imagesAlt
      * @param dateRangeMin Only display items after this date
      * @param dateRangeMax Only display items before this date
      * @param dateOrder
@@ -19,6 +20,7 @@ export class PhotoService {
      */
     public apiPhotosGetCollection(
         page: number = 1,
+        imagesAlt?: string,
         dateRangeMin?: string,
         dateRangeMax?: string,
         dateOrder?: 'asc' | 'desc',
@@ -28,6 +30,7 @@ export class PhotoService {
             url: '/v1/photos',
             query: {
                 'page': page,
+                'images.alt': imagesAlt,
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
                 'date[order]': dateOrder,

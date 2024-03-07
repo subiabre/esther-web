@@ -7,13 +7,13 @@
     let values: number[] = [1960, 2024];
 
     let min = $api.photo
-        .apiPhotosGetCollection(1, undefined, undefined, "asc")
+        .apiPhotosGetCollection(1, undefined, undefined, undefined, "asc")
         .then((photos) => {
             return new Date(photos[0].date.min).getFullYear();
         });
 
     let max = $api.photo
-        .apiPhotosGetCollection(1, undefined, undefined, "desc")
+        .apiPhotosGetCollection(1, undefined, undefined, undefined, "desc")
         .then((photos) => {
             return new Date(photos[0].date.max || "now").getFullYear();
         });

@@ -8,6 +8,7 @@
     import DateRangeFilter from "./DateRangeFilter.svelte";
     import PhotoGallery from "./PhotoGallery.svelte";
     import PhotoSlide from "./PhotoSlide.svelte";
+    import AltFilter from "./AltFilter.svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -18,19 +19,23 @@
 
     let page: number = 1;
 
+    let imagesAlt: string | undefined;
     let dateRangeMin: string | undefined;
     let dateRangeMax: string | undefined;
 
-    $: photos = $api.photo.apiPhotosGetCollection(
-        page,
-        dateRangeMin,
-        dateRangeMax,
-        "asc",
-    ).then((photos) => {
-        setTimeout(() => slideShow.track(), 500);
+    $: photos = $api.photo
+        .apiPhotosGetCollection(
+            page,
+            imagesAlt,
+            dateRangeMin,
+            dateRangeMax,
+            "asc",
+        )
+        .then((photos) => {
+            setTimeout(() => slideShow.track(), 500);
 
-        return photos;
-    });
+            return photos;
+        });
 </script>
 
 <Reel id="filters">
@@ -42,6 +47,14 @@
                 on:change={(e) => {
                     dateRangeMin = e.detail.min;
                     dateRangeMax = e.detail.max;
+                }}
+            />
+            <br />
+            <h2>Qué.</h2>
+            <AltFilter
+                on:clear={() => (imagesAlt = undefined)}
+                on:change={(e) => {
+                    imagesAlt = e.detail.value;
                 }}
             />
         </Pad>

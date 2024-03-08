@@ -40,7 +40,7 @@
         transition: opacity 0.2s ease;
         background: linear-gradient(
             90deg,
-            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.85) 0%,
             rgba(255, 255, 255, 0) 100%
         );
     }

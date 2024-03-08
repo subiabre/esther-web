@@ -18,3 +18,8 @@ p {
     letter-spacing: 0px;
     line-height: 1.375;
 }
+
+*::selection {
+    color: black;
+    background-color: white;
+}

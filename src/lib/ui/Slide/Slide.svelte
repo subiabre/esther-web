@@ -25,6 +25,6 @@
 
         position: relative;
 
-        background-color: rgba(100, 100, 100, 0.1);
+        background-color: rgb(38, 38, 38);
     }
 </style>

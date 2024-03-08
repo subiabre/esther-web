@@ -20,6 +20,10 @@
         position: absolute;
     }
 
+    label:hover {
+        cursor: pointer;
+    }
+
     input {
         display: none;
     }
@@ -31,6 +35,7 @@
         align-items: start;
         flex-direction: column;
 
+        pointer-events: none;
         opacity: 0;
         transition: opacity 0.2s ease;
         background: linear-gradient(
@@ -40,11 +45,8 @@
         );
     }
 
-    .overlaid-content:hover {
-        cursor: pointer;
-    }
-
     input:checked + .overlaid-content {
+        pointer-events: all;
         opacity: 1;
         transition: opacity 0.2s ease;
     }

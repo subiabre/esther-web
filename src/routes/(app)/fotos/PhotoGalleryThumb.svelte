@@ -82,14 +82,13 @@
         background-size: cover;
         background-position: center;
         background-image: var(--bg-img);
-
-        filter: blur(1em);
-        opacity: 0.5;
     }
 
     img {
         max-width: 100%;
         max-height: 100%;
+
+        opacity: 0;
 
         z-index: 1;
     }

@@ -53,10 +53,10 @@
 <style lang="scss">
     // @see https://simeydotme.github.io/svelte-range-slider-pips/#styling
     :global(.rangeSlider) {
-        --range-slider: #{darken($color: #f2f2f2, $amount: 75)};
-        --range-handle-inactive: #{#f2f2f2};
-        --range-handle: #25a650;
-        --range-handle-focus: #25a650;
+        --range-slider: #{darken($color: #fff, $amount: 75)};
+        --range-handle-inactive: #{#fff};
+        --range-handle: white;
+        --range-handle-focus: white;
         --range-handle-border: var(--range-handle);
         --range-range-inactive: var(--range-handle-inactive);
         --range-range: var(--range-handle-focus);
@@ -64,9 +64,9 @@
         --range-float: var(--range-handle-focus);
         --range-float-text: #{black};
 
-        --range-pip: #{darken($color: #f2f2f2, $amount: 75)};
-        --range-pip-active: #{#f2f2f2};
-        --range-pip-hover-text: #25a650;
-        --range-pip-in-range-text: #{#f2f2f2};
+        --range-pip: #{darken($color: #fff, $amount: 75)};
+        --range-pip-active: #{#fff};
+        --range-pip-hover-text: white;
+        --range-pip-in-range-text: #{#fff};
     }
 </style>

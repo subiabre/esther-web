@@ -16,7 +16,6 @@
 </script>
 
 <Search
-    light
     placeholder="Buscar en la descripción de imágenes..."
     on:change={handleChange}
     on:clear

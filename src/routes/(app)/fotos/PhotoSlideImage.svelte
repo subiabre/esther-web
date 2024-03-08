@@ -4,6 +4,7 @@
     import { api } from "../../../stores/api";
     import ImageAltForm from "./ImageAltForm.svelte";
     import ImageActions from "./ImageActions.svelte";
+    import ImageDateRangeForm from "./ImageDateRangeForm.svelte";
 
     export let source: string;
 
@@ -18,6 +19,7 @@
         <img src={image.src} alt={image.alt} />
         <Overlaid id={image.id || ""}>
             <ImageActions {image} />
+            <ImageDateRangeForm {image} />
             <ImageAltForm {image} />
         </Overlaid>
     {/await}

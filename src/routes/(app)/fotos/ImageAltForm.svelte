@@ -7,7 +7,7 @@
 
     export let image: Image;
 
-    let label: string = "Describe qué es lo que se ve.";
+    let label: string = "Describe qué es lo que se ve";
 
     let inputTimeout: number;
     function handleKeyUp() {
@@ -28,7 +28,7 @@
                 alt: image.alt,
             })
             .then(() => {
-                label = "Descripción actualizada. Gracias por tu ayuda.";
+                label = "Descripción actualizada. Gracias por tu ayuda";
             });
     }
 

@@ -2,30 +2,30 @@
     import RangeSlider from "svelte-range-slider-pips";
     import { api } from "../../../stores/api";
     import { SkeletonPlaceholder } from "carbon-components-svelte";
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
 
-    let values: number[] = [1960, 2024];
+    let values: number[] = [0, 1];
 
-    let min = $api.photo
-        .apiPhotosGetCollection(1, undefined, undefined, undefined, "asc")
-        .then((photos) => {
-            return new Date(photos[0].date.min).getFullYear();
-        });
+    let min = $api.photo.apiPhotosGetCollection(1, "asc").then((photos) => {
+        return new Date(photos[0].date.min).getFullYear();
+    });
 
-    let max = $api.photo
-        .apiPhotosGetCollection(1, undefined, undefined, undefined, "desc")
-        .then((photos) => {
-            return new Date(photos[0].date.max || "now").getFullYear();
-        });
+    let max = $api.photo.apiPhotosGetCollection(1, "desc").then((photos) => {
+        return new Date(photos[0].date.max || "now").getFullYear();
+    });
 
     const dispatch = createEventDispatcher();
 
     function handleStop() {
         dispatch("change", {
-            min: new Date(values[0], 0, 2).toISOString().split('T')[0],
-            max: new Date(values[1], 11, 32).toISOString().split('T')[0],
+            min: new Date(values[0], 0, 2).toISOString().split("T")[0],
+            max: new Date(values[1], 11, 32).toISOString().split("T")[0],
         });
     }
+
+    onMount(async() => {
+        values = [await min, await max];
+    })
 </script>
 
 {#await min}

@@ -11,29 +11,32 @@ export class PhotoService {
      * Retrieves the collection of Photo resources.
      * Retrieves the collection of Photo resources.
      * @param page The collection page number
-     * @param imagesAlt
+     * @param dateOrder
      * @param dateRangeMin Only display items after this date
      * @param dateRangeMax Only display items before this date
-     * @param dateOrder
+     * @param addressComponents Filter collection by address components key-value pairs.
+     * @param imagesAlt
      * @returns Photo Photo collection
      * @throws ApiError
      */
     public apiPhotosGetCollection(
         page: number = 1,
-        imagesAlt?: string,
+        dateOrder?: 'asc' | 'desc',
         dateRangeMin?: string,
         dateRangeMax?: string,
-        dateOrder?: 'asc' | 'desc',
+        addressComponents?: string,
+        imagesAlt?: string,
     ): CancelablePromise<Array<Photo>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/photos',
             query: {
                 'page': page,
-                'images.alt': imagesAlt,
+                'date[order]': dateOrder,
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
-                'date[order]': dateOrder,
+                'address[components]': addressComponents,
+                'images.alt': imagesAlt,
             },
         });
     }

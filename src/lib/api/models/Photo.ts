@@ -2,12 +2,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { PhotoAddress } from './PhotoAddress';
 import type { PhotoDateRange } from './PhotoDateRange';
 import type { PhotoScope } from './PhotoScope';
 export type Photo = {
     readonly id?: number;
-    images: Array<string>;
     date: PhotoDateRange;
+    address?: PhotoAddress;
+    images: Array<string>;
     scopes?: Array<PhotoScope>;
     readonly dateCreated?: string;
     readonly dateUpdated?: string;

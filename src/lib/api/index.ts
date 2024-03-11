@@ -18,6 +18,8 @@ export type { ImageThumb } from './models/ImageThumb';
 export type { ImageThumb_jsonld } from './models/ImageThumb_jsonld';
 export type { Photo } from './models/Photo';
 export type { Photo_jsonld } from './models/Photo_jsonld';
+export type { PhotoAddress } from './models/PhotoAddress';
+export type { PhotoAddress_jsonld } from './models/PhotoAddress_jsonld';
 export type { PhotoDateRange } from './models/PhotoDateRange';
 export type { PhotoDateRange_jsonld } from './models/PhotoDateRange_jsonld';
 export type { PhotoScope } from './models/PhotoScope';

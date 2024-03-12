@@ -41,8 +41,8 @@
             .apiPhotosIdPatch({
                 id: data.id?.toString() || "",
                 requestBody: {
+                    // @ts-ignore
                     date: {
-                        min: data.date.min,
                         // @ts-ignore
                         max: e.target?.value || data.date.max,
                     },

@@ -6,5 +6,5 @@
 </script>
 
 {#each photo.images as image}
-    <ResultImage source={image} />
+    <ResultImage {photo} source={image} />
 {/each}

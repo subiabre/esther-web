@@ -22,15 +22,17 @@
     let imagesAlt: string | undefined;
     let dateRangeMin: string | undefined;
     let dateRangeMax: string | undefined;
+    let addressComponents: string | undefined;
 
     $: photos = $api.photo
-        .apiPhotosGetCollection(
+        .apiPhotosGetCollection({
             page,
-            imagesAlt,
+            dateOrder: "asc",
             dateRangeMin,
             dateRangeMax,
-            "asc",
-        )
+            addressComponents,
+            imagesAlt,
+        })
         .then((photos) => {
             setTimeout(() => slideShow.track(), 500);
 

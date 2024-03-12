@@ -25,7 +25,7 @@
         $auth.session = localAuth.session;
 
         await $api.session
-            .apiSessionsIdGet(localAuth.session.id?.toString() || "")
+            .apiSessionsIdGet({ id: localAuth.session.id?.toString() || "" })
             .then(async (session) => {
                 $auth.user = await $api.request.request({
                     method: "GET",

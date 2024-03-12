@@ -15,14 +15,15 @@
     let password: string = "";
     let warn: boolean = false;
     let invalid: boolean = false;
-    let invalidText: string = "Tu contraseña debe tener al menos 12 caracteres de largo.";
+    let invalidText: string =
+        "Tu contraseña debe tener al menos 12 caracteres de largo.";
 
     function handleSubmit(e: SubmitEvent) {
         e.preventDefault();
 
         $api.user
             // @ts-ignore
-            .apiUsersIdPatch($auth.user.id, { password })
+            .apiUsersIdPatch({ id: $auth.user.id, requestBody: { password } })
             .then((user) => {
                 $auth.user = user;
                 invalid = false;
@@ -49,10 +50,10 @@
             on:input={validateLength}
             {warnText}
             {invalidText}
-            bind:helperText={helperText}
+            bind:helperText
             bind:value={password}
-            bind:warn={warn}
-            bind:invalid={invalid}
+            bind:warn
+            bind:invalid
         />
     </FormGroup>
     <Button type="submit">Actualizar contraseña</Button>

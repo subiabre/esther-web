@@ -18,10 +18,14 @@
 
         $api.photo
             // @ts-ignore
-            .apiPhotosIdPatch(data.id?.toString() || "", {
-                date: {
-                    // @ts-ignore
-                    min: e.target?.value || data.date.min,
+            .apiPhotosIdPatch({
+                id: data.id?.toString() || "",
+                requestBody: {
+                    date: {
+                        // @ts-ignore
+                        min: e.target?.value || data.date.min,
+                    },
+                    images: data.images,
                 },
             })
             .then(() => {
@@ -34,10 +38,15 @@
 
         $api.photo
             // @ts-ignore
-            .apiPhotosIdPatch(data.id?.toString() || "", {
-                date: {
-                    // @ts-ignore
-                    min: e.target?.value || data.date.max,
+            .apiPhotosIdPatch({
+                id: data.id?.toString() || "",
+                requestBody: {
+                    date: {
+                        min: data.date.min,
+                        // @ts-ignore
+                        max: e.target?.value || data.date.max,
+                    },
+                    images: data.images,
                 },
             })
             .then(() => {

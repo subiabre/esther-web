@@ -3,7 +3,6 @@
     import { SkeletonPlaceholder } from "carbon-components-svelte";
     import { api } from "../../../stores/api";
     import { onMount } from "svelte";
-    import Pad from "$lib/ui/Content/Pad.svelte";
     import { soundFxs } from "../../../stores/fxs";
 
     export let photo: Photo;
@@ -38,7 +37,11 @@
     });
 </script>
 
-<figure class="gallery-thumb {mode}" style={background} on:mouseenter={(e) => soundFxs.playClack()}>
+<figure
+    class="gallery-thumb {mode}"
+    style={background}
+    on:mouseenter={(e) => soundFxs.playClack()}
+>
     {#await cover}
         <SkeletonPlaceholder style="width: 100%;" />
     {:then cover}

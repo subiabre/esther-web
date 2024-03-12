@@ -6,11 +6,11 @@
 
     let values: number[] = [0, 1];
 
-    let min = $api.photo.apiPhotosGetCollection(1, "asc").then((photos) => {
+    let min = $api.photo.apiPhotosGetCollection({ dateOrder: "asc"}).then((photos) => {
         return new Date(photos[0].date.min).getFullYear();
     });
 
-    let max = $api.photo.apiPhotosGetCollection(1, "desc").then((photos) => {
+    let max = $api.photo.apiPhotosGetCollection({ dateOrder: "desc" }).then((photos) => {
         return new Date(photos[0].date.max || "now").getFullYear();
     });
 

@@ -25,7 +25,7 @@
 
     function handleSubmit() {
         $api.session
-            .apiSessionsPost({ email, password })
+            .apiSessionsPost({ requestBody: { email, password } })
             .then(async (session) => {
                 $auth.session = session;
                 $auth.user = await $api.request.request({

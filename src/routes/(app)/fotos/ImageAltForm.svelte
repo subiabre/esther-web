@@ -24,8 +24,11 @@
 
     function updateAlt() {
         $api.image
-            .apiImagesIdPatch(image.id?.toString() || "", {
-                alt: image.alt,
+            .apiImagesIdPatch({
+                id: image.id?.toString() || "",
+                requestBody: {
+                    alt: image.alt,
+                },
             })
             .then(() => {
                 label = "Descripción actualizada. Gracias por tu ayuda";

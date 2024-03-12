@@ -16,14 +16,14 @@
     let email: string = $auth.user.email;
     let warn: boolean = false;
     let invalid: boolean = false;
-    let invalidText: string = "Este valor no es válido.";
+    let invalidText: string = "Este correo no es válido.";
 
     function handleSubmit(e: SubmitEvent) {
         e.preventDefault();
 
         $api.user
             // @ts-ignore
-            .apiUsersIdPatch($auth.user.id, { email })
+            .apiUsersIdPatch({ id: $auth.user.id, requestBody: { email } })
             .then((user) => {
                 $auth.user = user;
                 invalid = false;

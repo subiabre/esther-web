@@ -10,13 +10,17 @@ export class UserService {
     /**
      * Retrieves the collection of User resources.
      * Retrieves the collection of User resources.
-     * @param page The collection page number
      * @returns User User collection
      * @throws ApiError
      */
-    public apiUsersGetCollection(
-        page: number = 1,
-    ): CancelablePromise<Array<User>> {
+    public apiUsersGetCollection({
+        page = 1,
+    }: {
+        /**
+         * The collection page number
+         */
+        page?: number,
+    }): CancelablePromise<Array<User>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/users',
@@ -28,13 +32,17 @@ export class UserService {
     /**
      * Creates a User resource.
      * Creates a User resource.
-     * @param requestBody The new User resource
      * @returns User User resource created
      * @throws ApiError
      */
-    public apiUsersPost(
+    public apiUsersPost({
+        requestBody,
+    }: {
+        /**
+         * The new User resource
+         */
         requestBody: User,
-    ): CancelablePromise<User> {
+    }): CancelablePromise<User> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/v1/users',
@@ -49,13 +57,17 @@ export class UserService {
     /**
      * Retrieves a User resource.
      * Retrieves a User resource.
-     * @param id User identifier
      * @returns User User resource
      * @throws ApiError
      */
-    public apiUsersIdGet(
+    public apiUsersIdGet({
+        id,
+    }: {
+        /**
+         * User identifier
+         */
         id: string,
-    ): CancelablePromise<User> {
+    }): CancelablePromise<User> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/users/{id}',
@@ -70,15 +82,22 @@ export class UserService {
     /**
      * Replaces the User resource.
      * Replaces the User resource.
-     * @param id User identifier
-     * @param requestBody The updated User resource
      * @returns User User resource updated
      * @throws ApiError
      */
-    public apiUsersIdPut(
+    public apiUsersIdPut({
+        id,
+        requestBody,
+    }: {
+        /**
+         * User identifier
+         */
         id: string,
+        /**
+         * The updated User resource
+         */
         requestBody: User,
-    ): CancelablePromise<User> {
+    }): CancelablePromise<User> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/v1/users/{id}',
@@ -97,13 +116,17 @@ export class UserService {
     /**
      * Removes the User resource.
      * Removes the User resource.
-     * @param id User identifier
      * @returns void
      * @throws ApiError
      */
-    public apiUsersIdDelete(
+    public apiUsersIdDelete({
+        id,
+    }: {
+        /**
+         * User identifier
+         */
         id: string,
-    ): CancelablePromise<void> {
+    }): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/v1/users/{id}',
@@ -118,15 +141,22 @@ export class UserService {
     /**
      * Updates the User resource.
      * Updates the User resource.
-     * @param id User identifier
-     * @param requestBody The updated User resource
      * @returns User User resource updated
      * @throws ApiError
      */
-    public apiUsersIdPatch(
+    public apiUsersIdPatch({
+        id,
+        requestBody,
+    }: {
+        /**
+         * User identifier
+         */
         id: string,
+        /**
+         * The updated User resource
+         */
         requestBody: User,
-    ): CancelablePromise<User> {
+    }): CancelablePromise<User> {
         return this.httpRequest.request({
             method: 'PATCH',
             url: '/v1/users/{id}',

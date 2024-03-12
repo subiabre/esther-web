@@ -10,13 +10,17 @@ export class ImageService {
     /**
      * Retrieves the collection of Image resources.
      * Retrieves the collection of Image resources.
-     * @param page The collection page number
      * @returns Image Image collection
      * @throws ApiError
      */
-    public apiImagesGetCollection(
-        page: number = 1,
-    ): CancelablePromise<Array<Image>> {
+    public apiImagesGetCollection({
+        page = 1,
+    }: {
+        /**
+         * The collection page number
+         */
+        page?: number,
+    }): CancelablePromise<Array<Image>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/images',
@@ -28,13 +32,17 @@ export class ImageService {
     /**
      * Creates a Image resource.
      * Creates a Image resource.
-     * @param requestBody The new Image resource
      * @returns Image Image resource created
      * @throws ApiError
      */
-    public apiImagesPost(
+    public apiImagesPost({
+        requestBody,
+    }: {
+        /**
+         * The new Image resource
+         */
         requestBody: Image,
-    ): CancelablePromise<Image> {
+    }): CancelablePromise<Image> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/v1/images',
@@ -49,13 +57,17 @@ export class ImageService {
     /**
      * Retrieves a Image resource.
      * Retrieves a Image resource.
-     * @param id Image identifier
      * @returns Image Image resource
      * @throws ApiError
      */
-    public apiImagesIdGet(
+    public apiImagesIdGet({
+        id,
+    }: {
+        /**
+         * Image identifier
+         */
         id: string,
-    ): CancelablePromise<Image> {
+    }): CancelablePromise<Image> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/images/{id}',
@@ -70,15 +82,22 @@ export class ImageService {
     /**
      * Replaces the Image resource.
      * Replaces the Image resource.
-     * @param id Image identifier
-     * @param requestBody The updated Image resource
      * @returns Image Image resource updated
      * @throws ApiError
      */
-    public apiImagesIdPut(
+    public apiImagesIdPut({
+        id,
+        requestBody,
+    }: {
+        /**
+         * Image identifier
+         */
         id: string,
+        /**
+         * The updated Image resource
+         */
         requestBody: Image,
-    ): CancelablePromise<Image> {
+    }): CancelablePromise<Image> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/v1/images/{id}',
@@ -97,13 +116,17 @@ export class ImageService {
     /**
      * Removes the Image resource.
      * Removes the Image resource.
-     * @param id Image identifier
      * @returns void
      * @throws ApiError
      */
-    public apiImagesIdDelete(
+    public apiImagesIdDelete({
+        id,
+    }: {
+        /**
+         * Image identifier
+         */
         id: string,
-    ): CancelablePromise<void> {
+    }): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/v1/images/{id}',
@@ -118,15 +141,22 @@ export class ImageService {
     /**
      * Updates the Image resource.
      * Updates the Image resource.
-     * @param id Image identifier
-     * @param requestBody The updated Image resource
      * @returns Image Image resource updated
      * @throws ApiError
      */
-    public apiImagesIdPatch(
+    public apiImagesIdPatch({
+        id,
+        requestBody,
+    }: {
+        /**
+         * Image identifier
+         */
         id: string,
+        /**
+         * The updated Image resource
+         */
         requestBody: Image,
-    ): CancelablePromise<Image> {
+    }): CancelablePromise<Image> {
         return this.httpRequest.request({
             method: 'PATCH',
             url: '/v1/images/{id}',

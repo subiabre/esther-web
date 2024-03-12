@@ -11,13 +11,17 @@ export class SessionService {
     /**
      * Creates a Session resource.
      * Creates a Session resource.
-     * @param requestBody The new Session resource
      * @returns Session Session resource created
      * @throws ApiError
      */
-    public apiSessionsPost(
+    public apiSessionsPost({
+        requestBody,
+    }: {
+        /**
+         * The new Session resource
+         */
         requestBody: Session_SessionAuthenticationDto,
-    ): CancelablePromise<Session> {
+    }): CancelablePromise<Session> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/v1/sessions',
@@ -32,13 +36,17 @@ export class SessionService {
     /**
      * Retrieves a Session resource.
      * Retrieves a Session resource.
-     * @param id Session identifier
      * @returns Session Session resource
      * @throws ApiError
      */
-    public apiSessionsIdGet(
+    public apiSessionsIdGet({
+        id,
+    }: {
+        /**
+         * Session identifier
+         */
         id: string,
-    ): CancelablePromise<Session> {
+    }): CancelablePromise<Session> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/v1/sessions/{id}',
@@ -53,13 +61,17 @@ export class SessionService {
     /**
      * Removes the Session resource.
      * Removes the Session resource.
-     * @param id Session identifier
      * @returns void
      * @throws ApiError
      */
-    public apiSessionsIdDelete(
+    public apiSessionsIdDelete({
+        id,
+    }: {
+        /**
+         * Session identifier
+         */
         id: string,
-    ): CancelablePromise<void> {
+    }): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/v1/sessions/{id}',

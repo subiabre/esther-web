@@ -37,20 +37,22 @@
     });
 </script>
 
-<figure
-    class="gallery-thumb {mode}"
-    style={bgImg}
-    on:mouseenter={(e) => soundFxs.playClack()}
->
-    {#await cover}
-        <SkeletonPlaceholder style="width: 100%;" />
-    {:then cover}
-        <div class="cover-fill" />
-        <img src={cover.thumb?.src} alt={cover.alt} />
-    {/await}
-</figure>
+<a href="#photo{photo.id}" class="gallery-thumb {mode}">
+    <figure style={bgImg} on:mouseenter={(e) => soundFxs.playClack()}>
+        {#await cover}
+            <SkeletonPlaceholder style="width: 100%;" />
+        {:then cover}
+            <div class="cover-fill" />
+            <img src={cover.thumb?.src} alt={cover.alt} />
+        {/await}
+    </figure>
+</a>
 
 <style>
+    a.portrait {
+        grid-row: span 2;
+    }
+
     figure {
         width: 100%;
         height: 100%;
@@ -69,10 +71,6 @@
         opacity: 1;
 
         cursor: pointer;
-    }
-
-    figure.portrait {
-        grid-row: span 2;
     }
 
     .cover-fill {

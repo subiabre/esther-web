@@ -74,7 +74,7 @@
 <Reel id="slideshow" bind:this={slideShow}>
     {#await photos then photos}
         {#each photos as photo}
-            <Slide id={`photo_${photo.id}`}>
+            <Slide id={`photo${photo.id}`}>
                 <Result {photo} />
             </Slide>
         {/each}

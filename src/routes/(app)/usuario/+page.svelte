@@ -1,23 +1,18 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import Text from "$lib/ui/Content/Text.svelte";
-    import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
-    import { Form, FormGroup, Toggle } from "carbon-components-svelte";
-    import { fxs } from "../../../stores/fxs";
+    import { onMount } from "svelte";
     import { auth } from "../../../stores/auth";
-    import EmailForm from "./EmailForm.svelte";
-    import PasswordForm from "./PasswordForm.svelte";
+    import { fxs } from "../../../stores/fxs";
+    import Reel from "$lib/ui/Slide/Reel.svelte";
+    import Text from "$lib/ui/Content/Text.svelte";
     import Pad from "$lib/ui/Content/Pad.svelte";
+    import { Form, FormGroup, Toggle } from "carbon-components-svelte";
+    import UserEmailForm from "./UserEmailForm.svelte";
+    import UserPasswordForm from "./UserPasswordForm.svelte";
     import SessionsForm from "./SessionsForm.svelte";
-    import { afterNavigate } from "$app/navigation";
 
     let mainSlide: Slide;
     onMount(() => {
-        mainSlide.focus();
-    });
-
-    afterNavigate(() => {
         mainSlide.focus();
     });
 
@@ -55,7 +50,8 @@
                     />
                     <p>
                         A veces es posible que no oigas los efectos de sonido
-                        hasta que no hayas interactuado con la ventana de la app.
+                        hasta que no hayas interactuado con la ventana de la
+                        app.
                     </p>
                 </FormGroup>
             </Form>
@@ -66,10 +62,10 @@
                     tu cuenta son tan solo tu email y contraseña.
                 </p>
                 <FormGroup>
-                    <EmailForm />
+                    <UserEmailForm />
                 </FormGroup>
                 <FormGroup>
-                    <PasswordForm />
+                    <UserPasswordForm />
                 </FormGroup>
             </Form>
         </Text>

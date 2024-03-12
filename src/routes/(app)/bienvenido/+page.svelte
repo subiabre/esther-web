@@ -1,9 +1,9 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { afterNavigate } from "$app/navigation";
     import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
-    import { onMount } from "svelte";
 
     let mainSlide: Slide;
     onMount(() => {

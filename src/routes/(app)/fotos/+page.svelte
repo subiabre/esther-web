@@ -1,14 +1,15 @@
 <script lang="ts">
-    import Pad from "$lib/ui/Content/Pad.svelte";
-    import Text from "$lib/ui/Content/Text.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
     import { afterUpdate } from "svelte";
     import { api } from "../../../stores/api";
-    import DateRangeFilter from "./DateRangeFilter.svelte";
-    import PhotoGallery from "./PhotoGallery.svelte";
-    import PhotoSlide from "./PhotoSlide.svelte";
-    import AltFilter from "./AltFilter.svelte";
+    import Text from "$lib/ui/Content/Text.svelte";
+    import Pad from "$lib/ui/Content/Pad.svelte";
+    import FilterPhotoDateRange from "./FilterPhotoDateRange.svelte";
+    import FilterPhotoImagesAlt from "./FilterPhotoImagesAlt.svelte";
+    import Gallery from "./Gallery.svelte";
+    import Result from "./Result.svelte";
+
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -45,7 +46,7 @@
         <Text><h1>Filtros.</h1></Text>
         <Pad>
             <h2>Cuándo.</h2>
-            <DateRangeFilter
+            <FilterPhotoDateRange
                 on:change={(e) => {
                     dateRangeMin = e.detail.min;
                     dateRangeMax = e.detail.max;
@@ -53,7 +54,7 @@
             />
             <br />
             <h2>Qué.</h2>
-            <AltFilter
+            <FilterPhotoImagesAlt
                 on:clear={() => (imagesAlt = undefined)}
                 on:change={(e) => {
                     imagesAlt = e.detail.value;
@@ -65,7 +66,7 @@
         <Text><h1>Resultados.</h1></Text>
         <Pad>
             {#await photos then photos}
-                <PhotoGallery {photos} />
+                <Gallery {photos} />
             {/await}
         </Pad>
     </Slide>
@@ -74,7 +75,7 @@
     {#await photos then photos}
         {#each photos as photo}
             <Slide id={`photo_${photo.id}`}>
-                <PhotoSlide {photo} />
+                <Result {photo} />
             </Slide>
         {/each}
     {/await}

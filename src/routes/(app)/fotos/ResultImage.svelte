@@ -2,9 +2,9 @@
     import type { CancelablePromise, Image } from "$lib/api";
     import Overlaid from "$lib/ui/Content/Overlaid.svelte";
     import { api } from "../../../stores/api";
-    import ImageAltForm from "./ImageAltForm.svelte";
-    import ImageActions from "./ImageActions.svelte";
-    import ImageDateRangeForm from "./ImageDateRangeForm.svelte";
+    import ResultImageActions from "./ResultImageActions.svelte";
+    import ResultImageAltForm from "./ResultImageAltForm.svelte";
+    import ResultImageDateRangeForm from "./ResultImageDateRangeForm.svelte";
 
     export let source: string;
 
@@ -18,9 +18,9 @@
     {#await image then image}
         <img src={image.src} alt={image.alt} />
         <Overlaid id={image.id || ""}>
-            <ImageActions {image} />
-            <ImageDateRangeForm {image} />
-            <ImageAltForm {image} />
+            <ResultImageActions {image} />
+            <ResultImageDateRangeForm {image} />
+            <ResultImageAltForm {image} />
         </Overlaid>
     {/await}
 </figure>

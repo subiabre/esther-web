@@ -8,7 +8,7 @@
     export let photo: Photo;
     export let mode: "auto" | "none" | "portrait" | "landscape" = "auto";
 
-    let background: string = "";
+    let bgImg: string = "";
 
     let cover: CancelablePromise<Image> = $api.request.request({
         method: "GET",
@@ -18,7 +18,7 @@
     onMount(async () => {
         const image = await cover;
 
-        background = `--bg-img: url(${image.thumb?.src})`;
+        bgImg = `--bg-img: url(${image.thumb?.src})`;
 
         if (mode === "auto") {
             mode = "none";
@@ -39,13 +39,13 @@
 
 <figure
     class="gallery-thumb {mode}"
-    style={background}
+    style={bgImg}
     on:mouseenter={(e) => soundFxs.playClack()}
 >
     {#await cover}
         <SkeletonPlaceholder style="width: 100%;" />
     {:then cover}
-        <div class="background-fill" />
+        <div class="cover-fill" />
         <img src={cover.thumb?.src} alt={cover.alt} />
     {/await}
 </figure>
@@ -75,11 +75,10 @@
         grid-row: span 2;
     }
 
-    .background-fill {
-        width: 105%;
-        height: 110%;
+    .cover-fill {
+        width: 100%;
+        height: 100%;
 
-        z-index: 0;
         position: absolute;
 
         background-size: cover;
@@ -90,9 +89,5 @@
     img {
         max-width: 100%;
         max-height: 100%;
-
-        opacity: 0;
-
-        z-index: 1;
     }
 </style>

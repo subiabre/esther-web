@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { Photo } from "$lib/api";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
@@ -14,11 +15,12 @@
     let mainSlide: Slide;
     let slideShow: Reel;
 
-    afterNavigate(() => {
+    onMount(() => {
+        update();
         mainSlide.focus();
     });
 
-    onMount(() => {
+    afterNavigate(() => {
         mainSlide.focus();
     });
 
@@ -29,20 +31,31 @@
     let dateRangeMax: string | undefined;
     let addressComponents: string | undefined;
 
-    $: photos = $api.photo
-        .apiPhotosGetCollection({
-            page,
-            dateOrder: "asc",
-            dateRangeMin,
-            dateRangeMax,
-            addressComponents,
-            imagesAlt,
-        })
-        .then((photos) => {
-            setTimeout(() => slideShow.track(), 500);
+    let photos: Photo[] = [];
 
-            return photos;
-        });
+    async function load(): Promise<Photo[]> {
+        return await $api.photo
+            .apiPhotosGetCollection({
+                page,
+                dateOrder: "asc",
+                dateRangeMin,
+                dateRangeMax,
+                addressComponents,
+                imagesAlt,
+            })
+            .finally(() => setTimeout(() => slideShow.track(), 100));
+    }
+
+    async function update() {
+        photos = await load();
+    }
+
+    async function loadmore() {
+        const curPhotos = photos;
+        const newPhotos = await load();
+
+        photos = [...curPhotos, ...newPhotos];
+    }
 </script>
 
 <Reel id="filters">
@@ -52,8 +65,10 @@
             <h2>Cuándo.</h2>
             <FilterPhotoDateRange
                 on:change={(e) => {
+                    page = 1;
                     dateRangeMin = e.detail.min;
                     dateRangeMax = e.detail.max;
+                    update();
                 }}
             />
             <br />
@@ -61,7 +76,9 @@
             <FilterPhotoImagesAlt
                 on:clear={() => (imagesAlt = undefined)}
                 on:change={(e) => {
+                    page = 1;
                     imagesAlt = e.detail.value;
+                    update();
                 }}
             />
         </Pad>
@@ -69,18 +86,21 @@
     <Slide id="results">
         <Text><h1>Resultados.</h1></Text>
         <Pad>
-            {#await photos then photos}
-                <Gallery {photos} />
-            {/await}
+            <Gallery
+                {page}
+                {photos}
+                on:loadmore={() => {
+                    page = page + 1;
+                    loadmore();
+                }}
+            />
         </Pad>
     </Slide>
 </Reel>
 <Reel id="slideshow" bind:this={slideShow}>
-    {#await photos then photos}
-        {#each photos as photo}
-            <Slide id={`photo${photo.id}`}>
-                <Result {photo} />
-            </Slide>
-        {/each}
-    {/await}
+    {#each photos as photo (photo.id)}
+        <Slide id={`photo${photo.id}`}>
+            <Result {photo} />
+        </Slide>
+    {/each}
 </Reel>

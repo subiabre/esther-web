@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Photo } from "$lib/api";
+    import { api } from "$lib/stores/api";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
@@ -10,7 +11,7 @@
     import FilterPhotoImagesAlt from "./FilterPhotoImagesAlt.svelte";
     import Gallery from "./Gallery.svelte";
     import Result from "./Result.svelte";
-    import { api } from "$lib/stores/api";
+    import { ClickableTile } from "carbon-components-svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -27,17 +28,20 @@
     let page: number = 1;
 
     let imagesAlt: string | undefined;
+    let dateOrder: "asc" | "desc" = "asc";
     let dateRangeMin: string | undefined;
     let dateRangeMax: string | undefined;
     let addressComponents: string | undefined;
 
     let photos: Photo[] = [];
+    let photosTotal: Number = 0;
+    let hasPhotosTotal: boolean = true;
 
     async function load(): Promise<Photo[]> {
         return await $api.photo
             .apiPhotosGetCollection({
                 page,
-                dateOrder: "asc",
+                dateOrder,
                 dateRangeMin,
                 dateRangeMax,
                 addressComponents,
@@ -46,8 +50,29 @@
             .finally(() => setTimeout(() => slideShow.track(), 100));
     }
 
+    async function total(): Promise<Number> {
+        return await $api.request
+            .request({
+                url: "/v1/photos",
+                query: {
+                    "date[range:min]": dateRangeMin,
+                    "date[range:max]": dateRangeMax,
+                    "address[components]": addressComponents,
+                    "images.alt": imagesAlt,
+                },
+                method: "GET",
+                headers: { Accept: "application/ld+json" },
+            })
+            .then((res) => {
+                // @ts-ignore
+                const data = JSON.parse(res);
+                return data["hydra:totalItems"];
+            });
+    }
+
     async function update() {
         photos = await load();
+        photosTotal = await total();
     }
 
     async function loadmore() {
@@ -56,6 +81,8 @@
 
         photos = [...curPhotos, ...newPhotos];
     }
+
+    $: hasPhotosTotal = photos.length === photosTotal;
 </script>
 
 <Reel id="filters">
@@ -74,7 +101,11 @@
             <br />
             <h2>Qué.</h2>
             <FilterPhotoImagesAlt
-                on:clear={() => (imagesAlt = undefined)}
+                on:clear={() => {
+                    page = 1;
+                    imagesAlt = undefined;
+                    update();
+                }}
                 on:change={(e) => {
                     page = 1;
                     imagesAlt = e.detail.value;
@@ -86,14 +117,24 @@
     <Slide id="results">
         <Text><h1>Resultados.</h1></Text>
         <Pad>
-            <Gallery
-                {page}
-                {photos}
-                on:loadmore={() => {
-                    page = page + 1;
-                    loadmore();
-                }}
-            />
+            <Gallery {photos}>
+                <ClickableTile
+                    disabled={hasPhotosTotal}
+                    on:click={() => {
+                        if (hasPhotosTotal) return;
+
+                        page = page + 1;
+                        loadmore();
+                    }}
+                >
+                    <p>{photos.length} elementos.</p>
+                    {#if hasPhotosTotal}
+                        <p>No hay más resultados disponibles.</p>
+                    {:else}
+                        <p>Cargar más.</p>
+                    {/if}
+                </ClickableTile>
+            </Gallery>
         </Pad>
     </Slide>
 </Reel>

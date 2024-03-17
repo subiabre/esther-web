@@ -3,7 +3,7 @@
     import { ClickableTile } from "carbon-components-svelte";
     import GalleryThumb from "./GalleryThumb.svelte";
     import { createEventDispatcher, onMount } from "svelte";
-    import { api } from "../../../stores/api";
+    import { api } from "$lib/stores/api";
 
     export let page: number;
     export let photos: Photo[];

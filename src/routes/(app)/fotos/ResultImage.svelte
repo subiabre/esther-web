@@ -2,12 +2,12 @@
     import type { CancelablePromise, Image, Photo } from "$lib/api";
     import Overlaid from "$lib/ui/Content/Overlaid.svelte";
     import { CodeSnippet, Modal } from "carbon-components-svelte";
-    import { api } from "../../../stores/api";
     import ResultImageActions from "./ResultImageActions.svelte";
     import ResultImageAltForm from "./ResultImageAltForm.svelte";
     import ResultImageDateRangeForm from "./ResultImageDateRangeForm.svelte";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import FileSize from "$lib/ui/Content/FileSize.svelte";
+    import { api } from "$lib/stores/api";
 
     export let photo: Photo;
     export let source: string;

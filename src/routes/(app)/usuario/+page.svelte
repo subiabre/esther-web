@@ -1,8 +1,7 @@
 <script lang="ts">
+    import { auth } from "$lib/stores/auth";
+    import { fxs } from "$lib/stores/fxs";
     import Slide from "$lib/ui/Slide/Slide.svelte";
-    import { onMount } from "svelte";
-    import { auth } from "../../../stores/auth";
-    import { fxs } from "../../../stores/fxs";
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
     import Pad from "$lib/ui/Content/Pad.svelte";
@@ -10,6 +9,7 @@
     import UserEmailForm from "./UserEmailForm.svelte";
     import UserPasswordForm from "./UserPasswordForm.svelte";
     import SessionsForm from "./SessionsForm.svelte";
+    import { onMount } from "svelte";
 
     let mainSlide: Slide;
     onMount(() => {

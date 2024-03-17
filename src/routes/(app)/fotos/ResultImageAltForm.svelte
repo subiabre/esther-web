@@ -1,9 +1,9 @@
 <script lang="ts">
     import type { Image } from "$lib/api";
+    import { api } from "$lib/stores/api";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
     import { onMount } from "svelte";
-    import { api } from "../../../stores/api";
 
     export let image: Image;
 

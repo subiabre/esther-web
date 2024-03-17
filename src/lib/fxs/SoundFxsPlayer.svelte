@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fxs, soundFxs } from "../../stores/fxs";
+    import { fxs, soundFxs } from "$lib/stores/fxs";
 
     let controls = false;
 

@@ -1,9 +1,9 @@
 <script lang="ts">
     import { CancelablePromise, type Image, type Photo } from "$lib/api";
+    import { api } from "$lib/stores/api";
+    import { soundFxs } from "$lib/stores/fxs";
     import { SkeletonPlaceholder } from "carbon-components-svelte";
-    import { api } from "../../../stores/api";
     import { onMount } from "svelte";
-    import { soundFxs } from "../../../stores/fxs";
 
     export let photo: Photo;
     export let mode: "auto" | "none" | "portrait" | "landscape" = "auto";

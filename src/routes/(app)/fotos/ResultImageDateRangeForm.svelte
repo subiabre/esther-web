@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { CancelablePromise, Image, Photo } from "$lib/api";
+    import { api } from "$lib/stores/api";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
-    import { api } from "../../../stores/api";
 
     export let image: Image;
 

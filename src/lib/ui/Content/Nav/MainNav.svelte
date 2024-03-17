@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { auth } from "../../../../stores/auth";
+    import { auth } from "$lib/stores/auth";
     import Nav from "./Nav.svelte";
     import NavItem from "./NavItem.svelte";
 </script>

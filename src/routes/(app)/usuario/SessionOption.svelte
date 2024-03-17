@@ -1,13 +1,9 @@
 <script lang="ts">
-    import {
-        SkeletonText,
-        SelectableTile,
-        Tile,
-    } from "carbon-components-svelte";
-    import { api } from "../../../stores/api";
     import type { Session } from "$lib/api";
-    import { createEventDispatcher } from "svelte";
+    import { api } from "$lib/stores/api";
     import SessionData from "./SessionData.svelte";
+    import { createEventDispatcher } from "svelte";
+    import { Tile, SelectableTile, SkeletonText } from "carbon-components-svelte";
 
     export let url: string;
 

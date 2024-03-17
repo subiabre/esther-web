@@ -6,9 +6,9 @@
         Form,
         FormGroup,
     } from "carbon-components-svelte";
+    import { api } from "$lib/stores/api";
+    import { auth } from "$lib/stores/auth";
     import SessionSelect from "./SessionSelect.svelte";
-    import { api } from "../../../stores/api";
-    import { auth } from "../../../stores/auth";
 
     let sessions: string[] = $auth.user?.sessions ?? [];
     let selectedSessions: Session[] = [];

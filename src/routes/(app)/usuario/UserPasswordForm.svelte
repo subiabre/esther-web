@@ -1,12 +1,12 @@
 <script lang="ts">
+    import { api } from "$lib/stores/api";
+    import { auth } from "$lib/stores/auth";
     import {
         Button,
         Form,
         FormGroup,
         PasswordInput,
     } from "carbon-components-svelte";
-    import { auth } from "../../../stores/auth";
-    import { api } from "../../../stores/api";
 
     let warnText = "Contraseña actualizada.";
     let helperText = "Puedes poner espacios para usar frases como contraseña.";

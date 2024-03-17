@@ -2,7 +2,7 @@
     import { afterUpdate } from "svelte";
     import ScrollX from "../Screen/ScrollX.svelte";
     import SnapStop from "../Screen/SnapStop.svelte";
-    import { soundFxs } from "../../../stores/fxs";
+    import { soundFxs } from "$lib/stores/fxs";
 
     export let id: string;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { afterUpdate } from "svelte";
     import ScrollY from "../Screen/ScrollY.svelte";
-    import { soundFxs } from "../../../stores/fxs";
+    import { soundFxs } from "$lib/stores/fxs";
 
     let trayScroll: HTMLDivElement;
 

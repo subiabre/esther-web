@@ -11,10 +11,10 @@
         PasswordInput,
         TextInput,
     } from "carbon-components-svelte";
-    import { api } from "../../stores/api";
-    import { auth } from "../../stores/auth";
-    import { goto } from "$app/navigation";
     import Screen from "$lib/ui/Screen/Screen.svelte";
+    import { api } from "$lib/stores/api";
+    import { auth } from "$lib/stores/auth";
+    import { goto } from "$app/navigation";
 
     let email: string = "";
     let password: string = "";

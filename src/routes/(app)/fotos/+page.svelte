@@ -10,7 +10,7 @@
     import FilterPhotoImagesAlt from "./FilterPhotoImagesAlt.svelte";
     import Gallery from "./Gallery.svelte";
     import Result from "./Result.svelte";
-    import { api } from "../../../stores/api";
+    import { api } from "$lib/stores/api";
 
     let mainSlide: Slide;
     let slideShow: Reel;

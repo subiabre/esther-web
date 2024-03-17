@@ -1,12 +1,8 @@
 <script lang="ts">
-    import {
-        Button,
-        Form,
-        FormGroup,
-        TextInput,
-    } from "carbon-components-svelte";
-    import { auth } from "../../../stores/auth";
-    import { api } from "../../../stores/api";
+    import { api } from "$lib/stores/api";
+    import { auth } from "$lib/stores/auth";
+    import { Button, Form, FormGroup, TextInput } from "carbon-components-svelte";
+
 
     let warnText = "Correo electrónico actualizado.";
     let helperText =

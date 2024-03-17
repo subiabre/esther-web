@@ -5,11 +5,11 @@
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
     import { onMount } from "svelte";
-    import { auth, type AuthStorage } from "../../stores/auth";
-    import { api } from "../../stores/api";
     import { goto } from "$app/navigation";
-    import { fxs } from "../../stores/fxs";
     import SoundFxsPlayer from "$lib/fxs/SoundFxsPlayer.svelte";
+    import { auth, type AuthStorage } from "$lib/stores/auth";
+    import { api } from "$lib/stores/api";
+    import { fxs } from "$lib/stores/fxs";
 
     let isReady = false;
 

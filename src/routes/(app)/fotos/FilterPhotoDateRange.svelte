@@ -1,8 +1,8 @@
 <script lang="ts">
     import RangeSlider from "svelte-range-slider-pips";
-    import { api } from "../../../stores/api";
     import { SkeletonPlaceholder } from "carbon-components-svelte";
     import { createEventDispatcher, onMount } from "svelte";
+    import { api } from "$lib/stores/api";
 
     let values: number[] = [0, 1];
 

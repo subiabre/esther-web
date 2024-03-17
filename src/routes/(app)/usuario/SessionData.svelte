@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { Session } from "$lib/api";
+    import { auth } from "$lib/stores/auth";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import TimeAgo from "$lib/ui/Content/TimeAgo.svelte";
-    import { auth } from "../../../stores/auth";
     import UAParser from "ua-parser-js";
 
     export let session: Session;

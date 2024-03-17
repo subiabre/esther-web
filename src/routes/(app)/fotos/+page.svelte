@@ -1,20 +1,24 @@
 <script lang="ts">
     import Reel from "$lib/ui/Slide/Reel.svelte";
     import Slide from "$lib/ui/Slide/Slide.svelte";
-    import { afterUpdate } from "svelte";
-    import { api } from "../../../stores/api";
     import Text from "$lib/ui/Content/Text.svelte";
     import Pad from "$lib/ui/Content/Pad.svelte";
+    import { afterNavigate } from "$app/navigation";
+    import { onMount } from "svelte";
     import FilterPhotoDateRange from "./FilterPhotoDateRange.svelte";
     import FilterPhotoImagesAlt from "./FilterPhotoImagesAlt.svelte";
     import Gallery from "./Gallery.svelte";
     import Result from "./Result.svelte";
-
+    import { api } from "../../../stores/api";
 
     let mainSlide: Slide;
     let slideShow: Reel;
 
-    afterUpdate(() => {
+    afterNavigate(() => {
+        mainSlide.focus();
+    });
+
+    onMount(() => {
         mainSlide.focus();
     });
 

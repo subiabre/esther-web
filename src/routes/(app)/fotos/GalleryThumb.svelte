@@ -26,7 +26,7 @@
             const ratio =
                 (image.metadata?.width || 0) / (image.metadata?.height || 0);
 
-            if (ratio < 0.7) {
+            if (ratio < 0.8) {
                 mode = "portrait";
             }
 

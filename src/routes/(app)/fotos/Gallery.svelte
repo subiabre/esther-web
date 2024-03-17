@@ -14,14 +14,16 @@
 <style lang="scss">
     div {
         display: grid;
+
         gap: 1rem;
         grid-auto-flow: dense;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
 
         @media only screen and (min-width: 855px) {
+            gap: 1.375rem;
             grid-template-columns: repeat(
                 auto-fit,
-                minmax(min(100%, 180px), 1fr)
+                minmax(min(100%, 200px), 1fr)
             );
         }
     }

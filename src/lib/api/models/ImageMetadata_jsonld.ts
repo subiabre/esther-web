@@ -8,9 +8,9 @@ export type ImageMetadata_jsonld = {
     readonly '@type'?: string;
     width?: number;
     height?: number;
-    filesize?: number;
     mimeType?: string;
-    lastModified?: string | null;
+    filesize?: number;
+    filedate?: string | null;
     exif?: Array<string>;
 };
 

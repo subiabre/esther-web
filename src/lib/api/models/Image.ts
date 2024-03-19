@@ -8,10 +8,11 @@ export type Image = {
     readonly id?: number;
     src?: string;
     alt?: string | null;
-    readonly photo?: string | null;
     readonly thumb?: ImageThumb;
     readonly metadata?: ImageMetadata;
+    readonly photo?: string | null;
     readonly dateCreated?: string;
     readonly dateUpdated?: string;
+    readonly srcFilename?: string | null;
 };
 

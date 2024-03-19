@@ -8,12 +8,14 @@ import { FetchHttpRequest } from './core/FetchHttpRequest';
 import { ImageService } from './services/ImageService';
 import { PhotoService } from './services/PhotoService';
 import { SessionService } from './services/SessionService';
+import { StorageService } from './services/StorageService';
 import { UserService } from './services/UserService';
 type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 export class ApiClient {
     public readonly image: ImageService;
     public readonly photo: PhotoService;
     public readonly session: SessionService;
+    public readonly storage: StorageService;
     public readonly user: UserService;
     public readonly request: BaseHttpRequest;
     constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
@@ -31,6 +33,7 @@ export class ApiClient {
         this.image = new ImageService(this.request);
         this.photo = new PhotoService(this.request);
         this.session = new SessionService(this.request);
+        this.storage = new StorageService(this.request);
         this.user = new UserService(this.request);
     }
 }

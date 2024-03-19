@@ -11,10 +11,11 @@ export type Image_jsonld = {
     readonly id?: number;
     src?: string;
     alt?: string | null;
-    readonly photo?: string | null;
     readonly thumb?: ImageThumb_jsonld;
     readonly metadata?: ImageMetadata_jsonld;
+    readonly photo?: string | null;
     readonly dateCreated?: string;
     readonly dateUpdated?: string;
+    readonly srcFilename?: string | null;
 };
 

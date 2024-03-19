@@ -2,9 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type PhotoAddress = {
-    fullName?: string | null;
-    shortName?: string | null;
-    components?: Array<string>;
+export type Storage = {
+    name?: string;
+    config?: Array<string>;
 };
 

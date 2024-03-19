@@ -37,7 +37,7 @@ export class PhotoService {
         /**
          * Filter collection by address components key-value pairs.
          */
-        addressComponents?: string,
+        addressComponents?: Array<string>,
         imagesAlt?: string,
     }): CancelablePromise<Array<Photo>> {
         return this.httpRequest.request({
@@ -48,7 +48,7 @@ export class PhotoService {
                 'date[order]': dateOrder,
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
-                'address[components]': addressComponents,
+                'address[components][]': addressComponents,
                 'images.alt': imagesAlt,
             },
         });

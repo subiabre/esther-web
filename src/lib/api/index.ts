@@ -30,10 +30,13 @@ export type { Session_SessionAuthenticationDto } from './models/Session_SessionA
 export type { Session_SessionAuthenticationDto_jsonld } from './models/Session_SessionAuthenticationDto_jsonld';
 export type { SessionRequest } from './models/SessionRequest';
 export type { SessionRequest_jsonld } from './models/SessionRequest_jsonld';
+export type { Storage } from './models/Storage';
+export type { Storage_jsonld } from './models/Storage_jsonld';
 export type { User } from './models/User';
 export type { User_jsonld } from './models/User_jsonld';
 
 export { ImageService } from './services/ImageService';
 export { PhotoService } from './services/PhotoService';
 export { SessionService } from './services/SessionService';
+export { StorageService } from './services/StorageService';
 export { UserService } from './services/UserService';

@@ -12,6 +12,7 @@
     import Gallery from "./Gallery.svelte";
     import Result from "./Result.svelte";
     import { ClickableTile } from "carbon-components-svelte";
+    import FilterPhotoAddress from "./FilterPhotoAddress.svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -31,7 +32,7 @@
     let dateOrder: "asc" | "desc" = "asc";
     let dateRangeMin: string | undefined;
     let dateRangeMax: string | undefined;
-    let addressComponents: string | undefined;
+    let addressComponents: string[] | undefined;
 
     let photos: Photo[] = [];
     let photosTotal: Number = 0;
@@ -57,7 +58,7 @@
                 query: {
                     "date[range:min]": dateRangeMin,
                     "date[range:max]": dateRangeMax,
-                    "address[components]": addressComponents,
+                    "address[components][]": addressComponents,
                     "images.alt": imagesAlt,
                 },
                 method: "GET",
@@ -95,6 +96,15 @@
                     page = 1;
                     dateRangeMin = e.detail.min;
                     dateRangeMax = e.detail.max;
+                    update();
+                }}
+            />
+            <br />
+            <h2>Dónde.</h2>
+            <FilterPhotoAddress
+                on:change={(e) => {
+                    page = 1;
+                    addressComponents = e.detail.value;
                     update();
                 }}
             />

@@ -9,6 +9,8 @@
 
         const secondsElapsed = (Date.now() - date.getTime()) / 1000;
         for (const [unit, secondsInUnit] of Object.entries({
+            year: 31536000,
+            week: 604800,
             day: 86400,
             hour: 3600,
             minute: 60,

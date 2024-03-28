@@ -1,26 +1,19 @@
 <script lang="ts">
-    import Grid from "$lib/ui/Content/Grid.svelte";
-    import Labeled from "$lib/ui/Content/Labeled.svelte";
-    import Map from "$lib/ui/Content/Map.svelte";
     import NominatimSearch from "$lib/ui/Content/NominatimSearch.svelte";
-    import {
-        SelectableTile,
-        SkeletonPlaceholder,
-    } from "carbon-components-svelte";
+    import NominatimMultiselect from "$lib/ui/Content/NominatimMultiselect.svelte";
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
 
     let searchedPlaces: any[] = [];
-    let selectedPlaces: any[] = [];
 
-    function getSelectedValues(): string[] {
+    function getSelectedValues(places: any[]): string[] {
         let selectedValues: string[] = [];
 
-        for (let index = 0; index < selectedPlaces.length; index++) {
+        for (let index = 0; index < places.length; index++) {
             let selectedValue = "";
 
-            const selected = selectedPlaces[index];
+            const selected = places[index];
             const components = Object.entries(selected.address);
 
             for (let index = 0; index < components.length; index++) {
@@ -36,65 +29,15 @@
         return selectedValues;
     }
 
-    async function handleSelect(selected: any) {
-        searchedPlaces = searchedPlaces.filter(
-            (place) => place.place_id !== selected.place_id,
-        );
-
-        selectedPlaces = [...selectedPlaces, selected];
-
-        dispatch("change", { value: getSelectedValues() });
-    }
-
-    async function handleDeselect(deselected: any) {
-        searchedPlaces = searchedPlaces.filter((place: any) => {
-            return !selectedPlaces
-                .map((selected) => selected.place_id)
-                .includes(place.place_id);
-        });
-
-        selectedPlaces = selectedPlaces.filter(
-            (place) => place.place_id !== deselected.place_id,
-        );
-
-        dispatch("change", { value: getSelectedValues() });
+    function handleChange(e: CustomEvent) {
+        dispatch("change", { value: getSelectedValues(e.detail.places) });
     }
 </script>
 
 <NominatimSearch
     placeholder="Buscar fotos por lugar"
-    on:clear={(e) => (searchedPlaces = [])}
+    on:clear={() => (searchedPlaces = [])}
     on:change={(e) => (searchedPlaces = e.detail.places)}
 />
-<br />
-<Grid>
-    {#each selectedPlaces as place (place.place_id)}
-        <SelectableTile
-            selected={true}
-            style="padding: 0 1rem 0 1rem;"
-            on:select={() => handleSelect(place)}
-            on:deselect={() => handleDeselect(place)}
-        >
-            <Labeled bottom label={place.display_name}>
-                <p>{place.name}</p>
-                <Map {place} />
-            </Labeled>
-        </SelectableTile>
-    {/each}
-    {#await searchedPlaces}
-        <SkeletonPlaceholder style="width: 100%" />
-    {:then searchedPlaces}
-        {#each searchedPlaces as place (place.place_id)}
-            <SelectableTile
-                style="padding: 0 1rem 0 1rem;"
-                on:select={() => handleSelect(place)}
-                on:deselect={handleDeselect}
-            >
-                <Labeled bottom label={place.display_name}>
-                    <p>{place.name}</p>
-                    <Map {place} />
-                </Labeled>
-            </SelectableTile>
-        {/each}
-    {/await}
-</Grid>
+<br/>
+<NominatimMultiselect places={searchedPlaces} on:change={handleChange} />

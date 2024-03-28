@@ -4,7 +4,7 @@
     import { Modal } from "carbon-components-svelte";
     import ResultImageActions from "./ResultImageActions.svelte";
     import ResultImageAltForm from "./ResultImageAltForm.svelte";
-    import ResultImageDateRangeForm from "./ResultImageDateRangeForm.svelte";
+    import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import { api } from "$lib/stores/api";
     import ResultImageMetadata from "./ResultImageMetadata.svelte";
 
@@ -27,7 +27,7 @@
         </Modal>
         <Overlaid id={image.id || ""}>
             <ResultImageActions {photo} {image} on:metadata={() => open = !open} />
-            <ResultImageDateRangeForm {image} />
+            <ResultPhotoDateForm {photo} />
             <ResultImageAltForm {image} />
         </Overlaid>
     {/await}

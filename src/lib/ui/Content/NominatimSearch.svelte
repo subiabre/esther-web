@@ -21,6 +21,12 @@
 
         dispatch("change", { places });
     }
+
+    function clearPlaces() {
+        value = "";
+
+        dispatch("clear", { places: [] });
+    }
 </script>
 
-<Search on:change={searchPlaces} on:clear bind:placeholder bind:value />
+<Search on:change={searchPlaces} on:clear={clearPlaces} bind:placeholder bind:value />

@@ -2,8 +2,8 @@
     import Grid from "$lib/ui/Content/Grid.svelte";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Map from "$lib/ui/Content/Map.svelte";
+    import NominatimSearch from "$lib/ui/Content/NominatimSearch.svelte";
     import {
-        Search,
         SelectableTile,
         SkeletonPlaceholder,
     } from "carbon-components-svelte";
@@ -11,36 +11,8 @@
 
     const dispatch = createEventDispatcher();
 
-    let value: any;
-
-    let searchedPlaces: Promise<any[]> = emptyPlaces();
+    let searchedPlaces: any[] = [];
     let selectedPlaces: any[] = [];
-
-    function emptyPlaces(): Promise<any[]> {
-        return new Promise((res) => res([]));
-    }
-
-    function fetchNominatim() {
-        return fetch(
-            "https://nominatim.openstreetmap.org/search?" +
-                new URLSearchParams({
-                    q: value,
-                    limit: "6",
-                    format: "json",
-                    addressdetails: "1",
-                    polygon_geojson: "1",
-                }),
-        );
-    }
-
-    function searchPlaces() {
-        searchedPlaces = fetchNominatim().then((res) => res.json());
-    }
-
-    function clearPlaces() {
-        value = "";
-        searchedPlaces = emptyPlaces();
-    }
 
     function getSelectedValues(): string[] {
         let selectedValues: string[] = [];
@@ -65,10 +37,8 @@
     }
 
     async function handleSelect(selected: any) {
-        searchedPlaces = searchedPlaces.then((searchedPlaces) =>
-            searchedPlaces.filter(
-                (place) => place.place_id !== selected.place_id,
-            ),
+        searchedPlaces = searchedPlaces.filter(
+            (place) => place.place_id !== selected.place_id,
         );
 
         selectedPlaces = [...selectedPlaces, selected];
@@ -77,14 +47,10 @@
     }
 
     async function handleDeselect(deselected: any) {
-        searchedPlaces = fetchNominatim().then(async (res) => {
-            const data = await res.json();
-
-            return data.filter((place: any) => {
-                return !selectedPlaces
-                    .map((selected) => selected.place_id)
-                    .includes(place.place_id);
-            });
+        searchedPlaces = searchedPlaces.filter((place: any) => {
+            return !selectedPlaces
+                .map((selected) => selected.place_id)
+                .includes(place.place_id);
         });
 
         selectedPlaces = selectedPlaces.filter(
@@ -95,11 +61,10 @@
     }
 </script>
 
-<Search
-    placeholder="Buscar fotos por lugar..."
-    on:change={searchPlaces}
-    on:clear={clearPlaces}
-    bind:value
+<NominatimSearch
+    placeholder="Buscar fotos por lugar"
+    on:clear={(e) => (searchedPlaces = [])}
+    on:change={(e) => (searchedPlaces = e.detail.places)}
 />
 <br />
 <Grid>

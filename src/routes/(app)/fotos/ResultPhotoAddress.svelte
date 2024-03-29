@@ -2,7 +2,7 @@
     import type { Photo } from "$lib/api";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
-    import { afterUpdate, createEventDispatcher } from "svelte";
+    import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -14,7 +14,7 @@
 <Text>
     <h3>Dónde.</h3>
     <Labeled {label}>
-        <form on:submit|preventDefault={() => dispatch("submit")}>
+        <form on:submit|preventDefault={() => dispatch("openAddressForm")}>
             <button type="submit">
                 {#if photo.address?.shortName}
                     {photo.address.shortName}

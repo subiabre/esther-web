@@ -8,7 +8,6 @@
     import { api } from "$lib/stores/api";
     import ResultImageMetadata from "./ResultImageMetadata.svelte";
     import ResultPhotoAddress from "./ResultPhotoAddress.svelte";
-    import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
 
     export let photo: Photo;
     export let source: string;
@@ -19,7 +18,6 @@
     });
 
     let openMetadata: boolean = false;
-    let openAddressForm: boolean = false;
 </script>
 
 <figure>
@@ -32,19 +30,6 @@
         >
             <ResultImageMetadata {image} />
         </Modal>
-        <Modal
-            passiveModal
-            modalHeading="Dirección de la fotografía"
-            bind:open={openAddressForm}
-        >
-            <ResultPhotoAddressForm
-                {photo}
-                on:update={(e) => {
-                    photo = e.detail.photo;
-                    openAddressForm = false;
-                }}
-            />
-        </Modal>
         <Overlaid id={image.id || ""}>
             <ResultImageActions
                 {photo}
@@ -52,10 +37,7 @@
                 on:metadata={() => (openMetadata = !openMetadata)}
             />
             <ResultPhotoDateForm {photo} />
-            <ResultPhotoAddress
-                {photo}
-                on:submit={() => (openAddressForm = true)}
-            />
+            <ResultPhotoAddress {photo} on:openAddressForm />
             <ResultImageAltForm {image} />
         </Overlaid>
     {/await}

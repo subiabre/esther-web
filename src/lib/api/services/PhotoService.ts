@@ -18,6 +18,7 @@ export class PhotoService {
         dateOrder,
         dateRangeMin,
         dateRangeMax,
+        addressKnown,
         addressComponents,
         imagesAlt,
     }: {
@@ -35,6 +36,10 @@ export class PhotoService {
          */
         dateRangeMax?: string,
         /**
+         * Filter collection by known/unknown addresses.
+         */
+        addressKnown?: boolean,
+        /**
          * Filter collection by address components key-value pairs.
          */
         addressComponents?: Array<string>,
@@ -48,6 +53,7 @@ export class PhotoService {
                 'date[order]': dateOrder,
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
+                'address[known]': addressKnown,
                 'address[components][]': addressComponents,
                 'images.alt': imagesAlt,
             },

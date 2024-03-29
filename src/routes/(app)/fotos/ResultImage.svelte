@@ -7,6 +7,7 @@
     import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import { api } from "$lib/stores/api";
     import ResultImageMetadata from "./ResultImageMetadata.svelte";
+    import ResultPhotoAddress from "./ResultPhotoAddress.svelte";
     import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
 
     export let photo: Photo;
@@ -17,19 +18,44 @@
         url: source,
     });
 
-    let open: boolean = false;
+    let openMetadata: boolean = false;
+    let openAddressForm: boolean = false;
 </script>
 
 <figure>
     {#await image then image}
         <img src={image.src} alt={image.alt} />
-        <Modal passiveModal modalHeading="Metadatos de la imagen" bind:open>
+        <Modal
+            passiveModal
+            modalHeading="Metadatos de la imagen"
+            bind:open={openMetadata}
+        >
             <ResultImageMetadata {image} />
         </Modal>
+        <Modal
+            passiveModal
+            modalHeading="Dirección de la fotografía"
+            bind:open={openAddressForm}
+        >
+            <ResultPhotoAddressForm
+                {photo}
+                on:update={(e) => {
+                    photo = e.detail.photo;
+                    openAddressForm = false;
+                }}
+            />
+        </Modal>
         <Overlaid id={image.id || ""}>
-            <ResultImageActions {photo} {image} on:metadata={() => open = !open} />
+            <ResultImageActions
+                {photo}
+                {image}
+                on:metadata={() => (openMetadata = !openMetadata)}
+            />
             <ResultPhotoDateForm {photo} />
-            <ResultPhotoAddressForm {photo} />
+            <ResultPhotoAddress
+                {photo}
+                on:submit={() => (openAddressForm = true)}
+            />
             <ResultImageAltForm {image} />
         </Overlaid>
     {/await}

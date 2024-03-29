@@ -1,17 +1,13 @@
 <script lang="ts">
     import type { Photo } from "$lib/api";
     import { api } from "$lib/stores/api";
-    import Labeled from "$lib/ui/Content/Labeled.svelte";
     import NominatimSearch from "$lib/ui/Content/NominatimSearch.svelte";
     import NominatimSelect from "$lib/ui/Content/NominatimSelect.svelte";
-    import Text from "$lib/ui/Content/Text.svelte";
-    import { Modal } from "carbon-components-svelte";
-    import { onMount } from "svelte";
+    import { createEventDispatcher, onMount } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let photo: Photo;
-
-    let open: boolean = false;
-    let label: string = "Lugar donde se tomó esta fotografía";
 
     let place: any;
     let searchedPlaces: any[] = [];
@@ -48,8 +44,7 @@
             },
         });
 
-        open = false;
-        label = "Dirección actualizada. Gracias por tu ayuda.";
+        dispatch("update", { photo });
     }
 
     onMount(async () => {
@@ -71,50 +66,17 @@
     });
 </script>
 
-<Modal passiveModal hasScrollingContent modalHeading="Dirección de la fotografía" bind:open>
-    <NominatimSearch
-        value={photo.address?.fullName || ""}
-        on:change={(e) => (searchedPlaces = e.detail.places)}
-        on:clear={() => (searchedPlaces = [])}
+<NominatimSearch
+    value={photo.address?.fullName || ""}
+    on:change={(e) => (searchedPlaces = e.detail.places)}
+    on:clear={() => (searchedPlaces = [])}
+/>
+{#if photo.address?.reference}
+    <NominatimSelect
+        places={searchedPlaces}
+        selected={place}
+        on:select={updateAddress}
     />
-    {#if photo.address?.reference}
-        <NominatimSelect
-            places={searchedPlaces}
-            selected={place}
-            on:select={updateAddress}
-        />
-    {:else}
-        <NominatimSelect places={searchedPlaces} on:select={updateAddress} />
-    {/if}
-</Modal>
-<Text>
-    <h3>Dónde.</h3>
-    <Labeled {label}>
-        <form on:submit|preventDefault={() => (open = true)}>
-            <button type="submit">
-                {#if photo.address?.shortName}
-                    {photo.address.shortName}
-                {:else}
-                    Desconocido
-                {/if}
-            </button>
-        </form>
-    </Labeled>
-</Text>
-
-<style>
-    button {
-        padding: 0;
-
-        text-align: inherit;
-        font-size: inherit;
-        font-family: inherit;
-
-        border: none;
-        background-color: transparent;
-    }
-
-    button:hover {
-        cursor: text;
-    }
-</style>
+{:else}
+    <NominatimSelect places={searchedPlaces} on:select={updateAddress} />
+{/if}

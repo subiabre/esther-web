@@ -1,31 +1,14 @@
 <script lang="ts">
     import type { Photo } from "$lib/api";
+    import Grid from "$lib/ui/Content/Grid.svelte";
     import GalleryThumb from "./GalleryThumb.svelte";
 
     export let photos: Photo[];
 </script>
 
-<div>
+<Grid columns={3}>
     {#each photos as photo (photo.id)}
         <GalleryThumb {photo} />
     {/each}
     <slot />
-</div>
-
-<style lang="scss">
-    div {
-        display: grid;
-
-        gap: 1rem;
-        grid-auto-flow: dense;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
-
-        @media only screen and (min-width: 855px) {
-            gap: 1.375rem;
-            grid-template-columns: repeat(
-                auto-fit,
-                minmax(min(100%, 200px), 1fr)
-            );
-        }
-    }
-</style>
+</Grid>

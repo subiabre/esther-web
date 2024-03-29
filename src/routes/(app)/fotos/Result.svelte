@@ -2,13 +2,28 @@
     import type { Photo } from "$lib/api";
     import { Modal } from "carbon-components-svelte";
     import ResultImage from "./ResultImage.svelte";
+    import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
 
     export let photo: Photo;
 
+    let openDateForm: boolean = false;
     let openAddressForm: boolean = false;
 </script>
 
+<Modal
+    passiveModal
+    modalHeading="Fecha de la fotografía"
+    bind:open={openDateForm}
+>
+    <ResultPhotoDateForm
+        {photo}
+        on:update={(e) => {
+            photo = e.detail.photo;
+            openDateForm = false;
+        }}
+    />
+</Modal>
 <Modal
     passiveModal
     modalHeading="Dirección de la fotografía"
@@ -26,6 +41,7 @@
     <ResultImage
         {photo}
         source={image}
+        on:openDateForm={() => (openDateForm = true)}
         on:openAddressForm={() => (openAddressForm = true)}
     />
 {/each}

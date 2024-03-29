@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
 
+@import "./sizes.scss";
+
+html {
+    @include screen-size-lg(font-size, 162.5%);
+}
+
 * {
     color-scheme: dark;
 }

@@ -1,8 +1,6 @@
 import type { Photo } from "$lib/api";
 
 export class Nominatim {
-    protected cache = sessionStorage;
-
     public async search(value: string) {
         return await fetch(
             "https://nominatim.openstreetmap.org/search?" +
@@ -32,36 +30,27 @@ export class Nominatim {
         return reference.concat(place.osm_id);
     }
 
-    protected normalizeCacheId(reference: string) {
-        return `osmcache:${reference}`;
-    }
-
-    public async getPhotoPlace(photo: Photo) {
+    public async getPhotoPlace(photo: Photo): Promise<any> {
         if (!photo.address || !photo.address.reference) {
             return;
         }
 
-        const cacheId = this.normalizeCacheId(photo.address.reference);
-        const cachedPlace = this.cache.getItem(cacheId);
-
-        if (cachedPlace) {
-            return JSON.parse(cachedPlace);
-        }
-
-        const place = await fetch(
-            "https://nominatim.openstreetmap.org/lookup?" +
+        const cache = await caches.open('nominatim');
+        const url = "https://nominatim.openstreetmap.org/lookup?" +
             new URLSearchParams({
                 osm_ids: photo.address.reference,
                 format: "json",
                 addressdetails: "1",
                 polygon_geojson: "1",
-            })
-        )
-            .then((res) => res.json())
-            .then((data) => data[0]);
+            });
 
-        this.cache.setItem(cacheId, JSON.stringify(place));
+        const cached = await cache.match(url);
 
-        return place;
+        if (cached) {
+            return await cached.json().then(data => data[0]);
+        }
+
+        await cache.add(url);
+        return this.getPhotoPlace(photo);
     }
 }

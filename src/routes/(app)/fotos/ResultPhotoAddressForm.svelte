@@ -1,9 +1,10 @@
 <script lang="ts">
     import type { Photo } from "$lib/api";
+    import { nominatim } from "$lib/nominatim";
     import { api } from "$lib/stores/api";
     import NominatimSearch from "$lib/ui/Content/NominatimSearch.svelte";
     import NominatimSelect from "$lib/ui/Content/NominatimSelect.svelte";
-    import { createEventDispatcher, afterUpdate } from "svelte";
+    import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -11,22 +12,6 @@
     export let place: any;
 
     let searchedPlaces: any[] = [];
-
-    function getNominatimReference(place: any): string {
-        let reference = "";
-        switch (place.osm_type) {
-            case "way":
-                reference = `W`;
-                break;
-            case "node":
-                reference = "N";
-                break;
-            default:
-                reference = "R";
-        }
-
-        return reference.concat(place.osm_id);
-    }
 
     async function updateAddress(e: CustomEvent) {
         place = e.detail.place;
@@ -36,7 +21,7 @@
             // @ts-ignore
             requestBody: {
                 address: {
-                    reference: getNominatimReference(place),
+                    reference: nominatim.normalizeOsmId(place),
                     fullName: place.display_name,
                     shortName: place.name,
                     components: place.address,

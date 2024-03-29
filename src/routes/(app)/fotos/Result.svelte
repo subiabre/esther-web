@@ -4,25 +4,12 @@
     import ResultImage from "./ResultImage.svelte";
     import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
+    import { nominatim } from "$lib/nominatim";
 
     export let photo: Photo;
 
     let openDateForm: boolean = false;
     let openAddressForm: boolean = false;
-
-    async function fetchPlace(photo: Photo) {
-        return await fetch(
-            "https://nominatim.openstreetmap.org/lookup?" +
-                new URLSearchParams({
-                    osm_ids: photo.address?.reference || "",
-                    format: "json",
-                    addressdetails: "1",
-                    polygon_geojson: "1",
-                }),
-        )
-            .then((res) => res.json())
-            .then((data) => data[0]);
-    }
 </script>
 
 <Modal
@@ -44,7 +31,7 @@
     bind:open={openAddressForm}
 >
     {#if openAddressForm}
-        {#await fetchPlace(photo) then place}
+        {#await nominatim.getPhotoPlace(photo) then place}
             <ResultPhotoAddressForm
                 {photo}
                 {place}

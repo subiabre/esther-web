@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { nominatim } from "$lib/nominatim";
     import { Search } from "carbon-components-svelte";
     import { createEventDispatcher } from "svelte";
 
@@ -8,16 +9,7 @@
     export let placeholder: string = "Buscar lugares";
 
     async function searchPlaces() {
-        const places = await fetch(
-            "https://nominatim.openstreetmap.org/search?" +
-                new URLSearchParams({
-                    q: value,
-                    limit: "6",
-                    format: "json",
-                    addressdetails: "1",
-                    polygon_geojson: "1",
-                }),
-        ).then((res) => res.json());
+        const places = await nominatim.search(value);
 
         dispatch("change", { places });
     }

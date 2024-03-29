@@ -30,6 +30,7 @@
 
     .overlaid-content {
         height: 100%;
+        overflow-y: auto;
 
         display: flex;
         align-items: start;

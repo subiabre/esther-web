@@ -7,7 +7,7 @@
 </div>
 
 <style lang="scss">
-    @import "/src/app.scss";
+    @import "/src/styles/scroll.scss";
 
     .scroll-x {
         width: 100vw;

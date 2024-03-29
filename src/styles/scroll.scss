@@ -1,3 +1,52 @@
+@import "./vars.scss";
+@import "./sizes.scss";
+
+@mixin scroll-x-gap($slide-width) {
+    $gap: calc((100vw - $slide-width) / 4);
+
+    column-gap: $gap;
+    @include screen-size-sm(column-gap, calc((100vw - $slide-width-sm) / 4));
+    @include screen-size-md(column-gap, calc((100vw - $slide-width-md) / 4));
+    @include screen-size-lg(column-gap, calc((100vw - $slide-width-lg) / 4));
+
+    :global(>:first-child) {
+        margin-left: calc($gap * 2);
+        @include screen-size-sm(margin-left, calc((100vw - $slide-width-sm) / 2));
+        @include screen-size-md(margin-left, calc((100vw - $slide-width-md) / 2));
+        @include screen-size-lg(margin-left, calc((100vw - $slide-width-lg) / 2));
+    }
+
+    :global(>:last-child) {
+        margin-right: calc($gap * 2);
+        @include screen-size-sm(margin-right, calc((100vw - $slide-width-sm) / 2));
+        @include screen-size-md(margin-right, calc((100vw - $slide-width-md) / 2));
+        @include screen-size-lg(margin-right, calc((100vw - $slide-width-lg) / 2));
+    }
+}
+
+@mixin scroll-y-gap($slide-height) {
+    $gap: calc((100svh - $slide-height) / 4);
+
+    row-gap: $gap;
+    @include screen-size-sm(row-gap, calc((100svh - $slide-height-sm) / 4));
+    @include screen-size-md(row-gap, calc((100svh - $slide-height-md) / 4));
+    @include screen-size-lg(row-gap, calc((100svh - $slide-height-lg) / 4));
+
+    :global(>:first-child) {
+        margin-top: calc($gap * 2);
+        @include screen-size-sm(margin-top, calc((100svh - $slide-height-sm) / 2));
+        @include screen-size-md(margin-top, calc((100svh - $slide-height-md) / 2));
+        @include screen-size-lg(margin-top, calc((100svh - $slide-height-lg) / 2));
+    }
+
+    :global(>:last-child) {
+        margin-bottom: calc($gap * 2);
+        @include screen-size-sm(margin-bottom, calc((100svh - $slide-height-sm) / 2));
+        @include screen-size-md(margin-bottom, calc((100svh - $slide-height-md) / 2));
+        @include screen-size-lg(margin-bottom, calc((100svh - $slide-height-lg) / 2));
+    }
+}
+
 .scroll-x,
 .scroll-y {
     scrollbar-width: none;

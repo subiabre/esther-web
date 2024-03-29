@@ -1,0 +1,31 @@
+@import "./vars.scss";
+
+@mixin screen-size-sm($property, $value) {
+    @media only screen and (min-width: $breakpoint-sm) {
+        #{$property}: $value;
+    }
+}
+
+@mixin screen-size-md($property, $value) {
+    @media only screen and (min-width: $breakpoint-md) {
+        #{$property}: $value;
+    }
+}
+
+@mixin screen-size-lg($property, $value) {
+    @media only screen and (min-width: $breakpoint-lg) {
+        #{$property}: $value;
+    }
+}
+
+@mixin slide-sizes {
+    width: $slide-width;
+    @include screen-size-sm(width, $slide-width-sm);
+    @include screen-size-md(width, $slide-width-md);
+    @include screen-size-lg(width, $slide-width-lg);
+
+    height: $slide-height;
+    @include screen-size-sm(height, $slide-height-sm);
+    @include screen-size-md(height, $slide-height-md);
+    @include screen-size-lg(height, $slide-height-lg);
+}

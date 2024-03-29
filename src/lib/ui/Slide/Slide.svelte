@@ -16,7 +16,7 @@
 </SnapStop>
 
 <style lang="scss">
-    @import "/src/app.scss";
+    @import "/src/styles/sizes.scss";
 
     .slide {
         @include slide-sizes;

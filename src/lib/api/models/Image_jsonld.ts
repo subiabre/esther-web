@@ -4,15 +4,34 @@
 /* eslint-disable */
 import type { ImageMetadata_jsonld } from './ImageMetadata_jsonld';
 import type { ImageThumb_jsonld } from './ImageThumb_jsonld';
+/**
+ * Images exist in a 1:1 relation with an image file stored somewhere.
+ */
 export type Image_jsonld = {
     readonly '@context'?: (string | Record<string, any>);
     readonly '@id'?: string;
     readonly '@type'?: string;
     readonly id?: number;
-    src?: string;
+    /**
+     * Fully qualified path to the file.
+     */
+    src: string;
+    /**
+     * A descriptive text of the image,
+     * also used as the alternative text for the (non) displayed image.
+     */
     alt?: string | null;
+    /**
+     * A downscaled version of the Image's file, stored elsewhere.
+     */
     readonly thumb?: ImageThumb_jsonld;
+    /**
+     * ImageMetadata holds a mix of information sourced from an Image's file.
+     */
     readonly metadata?: ImageMetadata_jsonld;
+    /**
+     * The Photo to which this Image belongs.
+     */
     readonly photo?: string | null;
     readonly dateCreated?: string;
     readonly dateUpdated?: string;

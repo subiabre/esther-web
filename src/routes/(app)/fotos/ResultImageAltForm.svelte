@@ -7,7 +7,7 @@
 
     export let image: Image;
 
-    let label: string = "Describe qué es lo que se ve";
+    let label: string = "Descripción de lo que se ve en esta imagen.";
 
     let inputTimeout: number;
     function handleKeyUp() {
@@ -26,6 +26,7 @@
         $api.image
             .apiImagesIdPatch({
                 id: image.id?.toString() || "",
+                // @ts-ignore
                 requestBody: {
                     alt: image.alt,
                 },

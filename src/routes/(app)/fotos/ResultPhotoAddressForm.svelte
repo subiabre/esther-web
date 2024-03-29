@@ -3,13 +3,13 @@
     import { api } from "$lib/stores/api";
     import NominatimSearch from "$lib/ui/Content/NominatimSearch.svelte";
     import NominatimSelect from "$lib/ui/Content/NominatimSelect.svelte";
-    import { createEventDispatcher, onMount } from "svelte";
+    import { createEventDispatcher, afterUpdate } from "svelte";
 
     const dispatch = createEventDispatcher();
 
     export let photo: Photo;
+    export let place: any;
 
-    let place: any;
     let searchedPlaces: any[] = [];
 
     function getNominatimReference(place: any): string {
@@ -46,24 +46,6 @@
 
         dispatch("update", { photo });
     }
-
-    onMount(async () => {
-        if (!photo.address?.reference) {
-            return;
-        }
-
-        place = await fetch(
-            "https://nominatim.openstreetmap.org/lookup?" +
-                new URLSearchParams({
-                    osm_ids: photo.address.reference,
-                    format: "json",
-                    addressdetails: "1",
-                    polygon_geojson: "1",
-                }),
-        )
-            .then((res) => res.json())
-            .then((data) => data[0]);
-    });
 </script>
 
 <NominatimSearch

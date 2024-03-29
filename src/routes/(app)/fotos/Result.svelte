@@ -9,6 +9,20 @@
 
     let openDateForm: boolean = false;
     let openAddressForm: boolean = false;
+
+    async function fetchPlace(photo: Photo) {
+        return await fetch(
+            "https://nominatim.openstreetmap.org/lookup?" +
+                new URLSearchParams({
+                    osm_ids: photo.address?.reference || "",
+                    format: "json",
+                    addressdetails: "1",
+                    polygon_geojson: "1",
+                }),
+        )
+            .then((res) => res.json())
+            .then((data) => data[0]);
+    }
 </script>
 
 <Modal
@@ -29,13 +43,18 @@
     modalHeading="Dirección de la fotografía"
     bind:open={openAddressForm}
 >
-    <ResultPhotoAddressForm
-        {photo}
-        on:update={(e) => {
-            photo = e.detail.photo;
-            openAddressForm = false;
-        }}
-    />
+    {#if openAddressForm}
+        {#await fetchPlace(photo) then place}
+            <ResultPhotoAddressForm
+                {photo}
+                {place}
+                on:update={(e) => {
+                    photo = e.detail.photo;
+                    openAddressForm = false;
+                }}
+            />
+        {/await}
+    {/if}
 </Modal>
 {#each photo.images as image}
     <ResultImage

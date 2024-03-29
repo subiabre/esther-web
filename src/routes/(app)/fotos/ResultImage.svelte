@@ -7,7 +7,7 @@
     import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import { api } from "$lib/stores/api";
     import ResultImageMetadata from "./ResultImageMetadata.svelte";
-    import ResultPhotoAddressForm from "./ResultPhotoAddressForm .svelte";
+    import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
 
     export let photo: Photo;
     export let source: string;

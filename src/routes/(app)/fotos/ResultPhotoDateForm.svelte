@@ -8,6 +8,8 @@
 
     export let photo: Photo;
 
+    let updateTimeout: number;
+
     async function updateDateMin(e: Event) {
         photo = await $api.photo.apiPhotosIdPatch({
             id: photo.id?.toString() || "",
@@ -20,7 +22,8 @@
             },
         });
 
-        dispatch("update", { photo });
+        clearTimeout(updateTimeout);
+        updateTimeout = setTimeout(() => dispatch("update", { photo }), 2500);
     }
 
     async function updateDateMax(e: Event) {
@@ -35,7 +38,8 @@
             },
         });
 
-        dispatch("update", { photo });
+        clearTimeout(updateTimeout);
+        updateTimeout = setTimeout(() => dispatch("update", { photo }), 2500);
     }
 </script>
 

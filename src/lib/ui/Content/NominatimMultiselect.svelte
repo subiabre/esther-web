@@ -9,7 +9,7 @@
 
     export let places: any[] = [];
 
-    let selection: any[] = [];
+    export let selection: any[] = [];
     let available: any[] = [];
 
     function handleSelect(place: any) {

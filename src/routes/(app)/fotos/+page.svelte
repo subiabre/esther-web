@@ -13,6 +13,8 @@
     import Result from "./Result.svelte";
     import { ClickableTile } from "carbon-components-svelte";
     import FilterPhotoAddress from "./FilterPhotoAddress.svelte";
+    import FilterPhotoAddressUnknown from "./FilterPhotoAddressUnknown.svelte";
+    import Row from "$lib/ui/Content/Row.svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -93,7 +95,9 @@
     <Slide id="filters" bind:this={mainSlide}>
         <Text><h1>Filtros.</h1></Text>
         <Pad>
-            <h2>Cuándo.</h2>
+            <Row>
+                <h2>Cuándo.</h2>
+            </Row>
             <FilterPhotoDateRange
                 on:change={(e) => {
                     page = 1;
@@ -102,17 +106,27 @@
                     update();
                 }}
             />
-            <br />
+            <Row>
+                <h2>Dónde.</h2>
+                <FilterPhotoAddressUnknown
+                    on:toggle={(e) => {
+                        addressKnown = !e.detail.toggled;
+                        addressComponents = undefined;
+                        update();
+                    }}
+                />
+            </Row>
             <FilterPhotoAddress
+                disabled={typeof addressKnown === "undefined" ? false : !addressKnown}
                 on:change={(e) => {
                     page = 1;
-                    addressKnown = e.detail.known;
                     addressComponents = e.detail.places;
                     update();
                 }}
             />
-            <br />
-            <h2>Qué.</h2>
+            <Row>
+                <h2>Qué.</h2>
+            </Row>
             <FilterPhotoImagesAlt
                 on:clear={() => {
                     page = 1;

@@ -109,8 +109,8 @@
             <Row>
                 <h2>Dónde.</h2>
                 <FilterPhotoAddressUnknown
-                    on:toggle={(e) => {
-                        addressKnown = !e.detail.toggled;
+                    on:change={(e) => {
+                        addressKnown = e.detail.known;
                         addressComponents = undefined;
                         update();
                     }}

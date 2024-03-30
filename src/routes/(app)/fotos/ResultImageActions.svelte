@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Image, Photo } from "$lib/api";
+    import { auth } from "$lib/stores/auth";
     import Pad from "$lib/ui/Content/Pad.svelte";
     import { Button } from "carbon-components-svelte";
     import { createEventDispatcher } from "svelte";
@@ -17,6 +18,9 @@
     <span class="image-count">
         <Pad>{imageIndex} / {photo.images.length}</Pad>
     </span>
+    {#if $auth.user?.roles?.includes('ROLE_ADMIN')}
+        <Button title="Admin" kind="ghost" on:click={() => dispatch("openAdmin")}>😎</Button>
+    {/if}
     <Button title="Metadata" kind="ghost" on:click={() => dispatch("metadata")}>
         🤖
     </Button>

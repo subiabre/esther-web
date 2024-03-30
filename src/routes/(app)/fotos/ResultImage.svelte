@@ -34,6 +34,7 @@
             <ResultImageActions
                 {photo}
                 {image}
+                on:openAdmin
                 on:metadata={() => (openMetadata = !openMetadata)}
             />
             <ResultPhotoDate {photo} on:openDateForm />

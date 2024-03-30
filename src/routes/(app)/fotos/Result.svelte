@@ -5,13 +5,18 @@
     import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
     import { nominatim } from "$lib/nominatim";
+    import ResultPhotoAdmin from "./ResultPhotoAdmin.svelte";
 
     export let photo: Photo;
 
+    let openAdmin: boolean = false;
     let openDateForm: boolean = false;
     let openAddressForm: boolean = false;
 </script>
 
+<Modal passiveModal modalHeading="Administrar fotografía" bind:open={openAdmin}>
+    <ResultPhotoAdmin {photo} />
+</Modal>
 <Modal
     passiveModal
     modalHeading="Fecha de la fotografía"
@@ -47,6 +52,7 @@
     <ResultImage
         {photo}
         source={image}
+        on:openAdmin={() => (openAdmin = true)}
         on:openDateForm={() => (openDateForm = true)}
         on:openAddressForm={() => (openAddressForm = true)}
     />

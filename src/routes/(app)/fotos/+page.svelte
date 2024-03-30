@@ -32,6 +32,7 @@
     let dateOrder: "asc" | "desc" = "asc";
     let dateRangeMin: string | undefined;
     let dateRangeMax: string | undefined;
+    let addressKnown: boolean | undefined;
     let addressComponents: string[] | undefined;
 
     let photos: Photo[] = [];
@@ -45,6 +46,7 @@
                 dateOrder,
                 dateRangeMin,
                 dateRangeMax,
+                addressKnown,
                 addressComponents,
                 imagesAlt,
             })
@@ -58,6 +60,7 @@
                 query: {
                     "date[range:min]": dateRangeMin,
                     "date[range:max]": dateRangeMax,
+                    "address[known]": addressKnown,
                     "address[components][]": addressComponents,
                     "images.alt": imagesAlt,
                 },
@@ -100,11 +103,11 @@
                 }}
             />
             <br />
-            <h2>Dónde.</h2>
             <FilterPhotoAddress
                 on:change={(e) => {
                     page = 1;
-                    addressComponents = e.detail.value;
+                    addressKnown = e.detail.known;
+                    addressComponents = e.detail.places;
                     update();
                 }}
             />

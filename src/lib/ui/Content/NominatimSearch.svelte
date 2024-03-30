@@ -8,6 +8,8 @@
     export let value: string = "";
     export let placeholder: string = "Buscar lugares";
 
+    export let disabled: boolean = false;
+
     async function searchPlaces() {
         const places = await nominatim.search(value);
 
@@ -21,4 +23,10 @@
     }
 </script>
 
-<Search on:change={searchPlaces} on:clear={clearPlaces} bind:placeholder bind:value />
+<Search
+    on:change={searchPlaces}
+    on:clear={clearPlaces}
+    bind:value
+    bind:placeholder
+    bind:disabled
+/>

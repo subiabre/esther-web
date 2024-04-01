@@ -8,7 +8,7 @@
 
     export let photo: Photo;
 
-    let label: string = "Lugar donde se tomó esta fotografía";
+    let label: string = "Lugar donde se tomó esta fotografía.";
 </script>
 
 <Text>

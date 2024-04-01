@@ -8,7 +8,7 @@
 
     export let photo: Photo;
 
-    let label: string = "Después de | Antes de";
+    let label: string = "Fotografía tomada entre las dos fechas.";
 </script>
 
 <Text>

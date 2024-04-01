@@ -1,5 +1,4 @@
 <script lang="ts">
-    import MainNav from "$lib/ui/Content/Nav/MainNav.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
     import Screen from "$lib/ui/Screen/Screen.svelte";
     import Reel from "$lib/ui/Slide/Reel.svelte";
@@ -10,6 +9,10 @@
     import { auth, type AuthStorage } from "$lib/stores/auth";
     import { api } from "$lib/stores/api";
     import { fxs } from "$lib/stores/fxs";
+    import { page } from "$app/stores";
+    import Pad from "$lib/ui/Content/Pad.svelte";
+    import Nav from "$lib/ui/Content/Nav.svelte";
+    import NavItem from "$lib/ui/Content/NavItem.svelte";
 
     let isReady = false;
 
@@ -51,8 +54,20 @@
         <Reel id="nav">
             <Slide id="nav">
                 <Text>
-                    <MainNav />
+                    <h1>Hola, <br /> {$auth.user?.email.split("@")[0]}.</h1>
                 </Text>
+                <Pad>
+                    <Nav>
+                        {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
+                            <NavItem href="/admin">Admin.</NavItem>
+                        {/if}
+                        <NavItem href="/fotos">Galería.</NavItem>
+                        <NavItem href="/usuario">Cuenta.</NavItem>
+                        <NavItem href="/bienvenido">Acerca de.</NavItem>
+                        <NavItem size="small" href="/thanksto">Agradecimientos.</NavItem>
+                        <NavItem size="small" href={$api.request.config.BASE}>API.</NavItem>
+                    </Nav>
+                </Pad>
             </Slide>
         </Reel>
         <slot />

@@ -38,12 +38,8 @@
     on:change={(e) => (searchedPlaces = e.detail.places)}
     on:clear={() => (searchedPlaces = [])}
 />
-{#if photo.address?.reference}
-    <NominatimSelect
-        places={searchedPlaces}
-        selected={place}
-        on:select={updateAddress}
-    />
-{:else}
-    <NominatimSelect places={searchedPlaces} on:select={updateAddress} />
-{/if}
+<NominatimSelect
+    places={searchedPlaces}
+    selected={place}
+    on:select={updateAddress}
+/>

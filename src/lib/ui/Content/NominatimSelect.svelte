@@ -8,7 +8,7 @@
     const dispatch = createEventDispatcher();
 
     export let places: any[] = [];
-    export let selected: any = {};
+    export let selected: any | undefined = undefined;
 
     function handleSelect(place: any) {
         selected = place;
@@ -21,19 +21,19 @@
         dispatch("deselect");
     }
 
-    $: if (typeof selected.geojson !== "undefined") {
+    $: if (selected && typeof selected.geojson !== "undefined") {
         places = [
-            selected,
             ...places.filter((p) => p.osm_id !== selected.osm_id),
+            selected,
         ];
     }
 </script>
 
-<Grid>
+<Grid columns={2}>
     {#each places as place (place.osm_id)}
         <SelectableTile
             style="padding: 0 1rem 0 1rem;"
-            selected={selected?.osm_id === place.osm_id}
+            selected={selected ? selected.osm_id === place.osm_id : false}
             on:select={() => handleSelect(place)}
             on:deselect={handleDeselect}
         >

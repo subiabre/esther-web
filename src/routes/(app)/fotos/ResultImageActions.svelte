@@ -15,11 +15,18 @@
 </script>
 
 <div>
-    <span class="image-count">
+    <strong
+        title="Imagen {imageIndex} de {photo.images.length} en esta foto."
+        class="image-count"
+    >
         <Pad>{imageIndex} / {photo.images.length}</Pad>
-    </span>
-    {#if $auth.user?.roles?.includes('ROLE_ADMIN')}
-        <Button title="Admin" kind="ghost" on:click={() => dispatch("openAdmin")}>😎</Button>
+    </strong>
+    {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
+        <Button
+            title="Admin"
+            kind="ghost"
+            on:click={() => dispatch("openAdmin")}>😎</Button
+        >
     {/if}
     <Button title="Metadata" kind="ghost" on:click={() => dispatch("metadata")}>
         🤖
@@ -41,5 +48,7 @@
 
     .image-count {
         margin-right: auto;
+
+        font-size: 115%;
     }
 </style>

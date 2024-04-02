@@ -64,4 +64,8 @@
         outline: none;
         background-color: transparent;
     }
+
+    input:hover {
+        cursor: text;
+    }
 </style>

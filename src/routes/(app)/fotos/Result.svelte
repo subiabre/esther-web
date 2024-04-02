@@ -57,3 +57,10 @@
         on:openAddressForm={() => (openAddressForm = true)}
     />
 {/each}
+
+<style>
+    :global(.bx--modal-content) {
+        margin-bottom: 0;
+        padding-bottom: 3rem;
+    }
+</style>

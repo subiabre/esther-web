@@ -34,6 +34,7 @@
 </script>
 
 <NominatimSearch
+    size = "sm"
     value={photo.address?.fullName || ""}
     on:change={(e) => (searchedPlaces = e.detail.places)}
     on:clear={() => (searchedPlaces = [])}

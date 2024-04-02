@@ -6,8 +6,9 @@
     const dispatch = createEventDispatcher();
 
     export let value: string = "";
-    export let placeholder: string = "Buscar lugares";
+    export let placeholder: string = "Buscar lugares...";
 
+    export let size: "lg" | "sm" | "xl" = "xl";
     export let disabled: boolean = false;
 
     async function searchPlaces() {
@@ -26,6 +27,7 @@
 <Search
     on:change={searchPlaces}
     on:clear={clearPlaces}
+    bind:size
     bind:value
     bind:placeholder
     bind:disabled

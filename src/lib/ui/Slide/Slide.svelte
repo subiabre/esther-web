@@ -10,7 +10,9 @@
 </script>
 
 <SnapStop id={`slidesnap_${id}`}>
-    <div {id} class="slide" bind:this={div}>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div {id} class="slide" on:click={focus} bind:this={div}>
         <slot />
     </div>
 </SnapStop>

@@ -20,6 +20,14 @@
         position: absolute;
     }
 
+    label:hover {
+        cursor: pointer;
+    }
+
+    label:hover:has(> input:checked) {
+        cursor: default;
+    }
+
     input {
         display: none;
     }

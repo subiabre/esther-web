@@ -43,19 +43,38 @@
 
 <Text>
     <h3>Qué.</h3>
-    <Labeled {label}>
-        <textarea
-            spellcheck="true"
-            placeholder="¿Qué hay en esta imagen?"
-            bind:this={textarea}
-            bind:value={image.alt}
-            on:keyup={handleKeyUp}
-            on:keydown={handleKeyDown}
-        />
-    </Labeled>
+    <form on:submit|preventDefault={() => textarea.focus()}>
+        <button type="submit">
+            <Labeled {label}>
+                <textarea
+                    spellcheck="true"
+                    placeholder="¿Qué hay en esta imagen?"
+                    bind:this={textarea}
+                    bind:value={image.alt}
+                    on:keyup={handleKeyUp}
+                    on:keydown={handleKeyDown}
+                />
+            </Labeled>
+        </button>
+    </form>
 </Text>
 
 <style>
+    button {
+        padding: 0;
+
+        text-align: inherit;
+        font-size: inherit;
+        font-family: inherit;
+
+        border: none;
+        background-color: transparent;
+    }
+
+    button:hover {
+        cursor: pointer;
+    }
+
     textarea {
         width: 100%;
         height: fit-content;

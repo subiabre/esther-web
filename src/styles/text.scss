@@ -3,6 +3,8 @@
 @import "./sizes.scss";
 
 html {
+    @include screen-size-sm(font-size, 90%);
+    @include screen-size-md(font-size, 100%);
     @include screen-size-lg(font-size, 162.5%);
 }
 

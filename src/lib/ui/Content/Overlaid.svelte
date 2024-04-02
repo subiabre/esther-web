@@ -20,10 +20,6 @@
         position: absolute;
     }
 
-    label:hover {
-        cursor: pointer;
-    }
-
     input {
         display: none;
     }

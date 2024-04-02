@@ -13,23 +13,21 @@
 
 <Text>
     <h3>Dónde.</h3>
-    <Labeled {label}>
-        <form on:submit|preventDefault={() => dispatch("openAddressForm")}>
-            <button type="submit">
+    <form on:submit|preventDefault={() => dispatch("openAddressForm")}>
+        <button type="submit">
+            <Labeled {label}>
                 {#if photo.address?.shortName}
                     {photo.address.shortName}
                 {:else}
                     Desconocido
                 {/if}
-            </button>
-        </form>
-    </Labeled>
+            </Labeled>
+        </button>
+    </form>
 </Text>
 
 <style>
     button {
-        width: 100%;
-
         padding: 0;
 
         text-align: inherit;

@@ -13,23 +13,21 @@
 
 <Text>
     <h3>Cuándo.</h3>
-    <Labeled {label}>
-        <form on:submit|preventDefault={() => dispatch("openDateForm")}>
-            <button type="submit">
+    <form on:submit|preventDefault={() => dispatch("openDateForm")}>
+        <button type="submit">
+            <Labeled {label}>
                 {new Date(photo.date.min).toLocaleDateString()}
                 |
                 {new Date(
                     photo.date.max || photo.dateCreated || "",
                 ).toLocaleDateString()}
-            </button>
-        </form>
-    </Labeled>
+            </Labeled>
+        </button>
+    </form>
 </Text>
 
 <style>
     button {
-        width: 100%;
-
         padding: 0;
 
         text-align: inherit;

@@ -9,7 +9,10 @@
 
     export let photo: Photo;
 
+    let inputMin: HTMLInputElement;
     let dateMin = photo.date.min?.split("T")[0];
+
+    let inputMax: HTMLInputElement;
     let dateMax = photo.date.max?.split("T")[0];
 
     async function updateDate() {
@@ -18,8 +21,8 @@
             // @ts-ignore
             requestBody: {
                 date: {
-                    min: dateMin,
-                    max: dateMax,
+                    min: inputMin.value,
+                    max: inputMax.value,
                 },
             },
         });
@@ -33,7 +36,8 @@
         <input
             type="date"
             max={dateMax}
-            bind:value={dateMin}
+            value={dateMin}
+            bind:this={inputMin}
         />
     </Labeled>
     <Labeled label="Antes de">
@@ -41,7 +45,8 @@
             type="date"
             max={photo.dateCreated?.split("T")[0]}
             min={dateMin}
-            bind:value={dateMax}
+            value={dateMax}
+            bind:this={inputMax}
         />
     </Labeled>
     <Button type="submit">Actualizar</Button>

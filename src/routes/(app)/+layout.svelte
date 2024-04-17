@@ -63,9 +63,15 @@
                         {/if}
                         <NavItem href="/fotos">Galería.</NavItem>
                         <NavItem href="/usuario">Cuenta.</NavItem>
-                        <NavItem href="/bienvenido">Acerca de.</NavItem>
-                        <NavItem size="small" href="/thanksto">Agradecimientos.</NavItem>
-                        <NavItem size="small" href={$api.request.config.BASE}>API.</NavItem>
+                        <NavItem size="small" href="/bienvenido">
+                            Acerca de.
+                        </NavItem>
+                        <NavItem size="small" href="/gracias">
+                            Agradecimientos.
+                        </NavItem>
+                        <NavItem size="small" href={$api.request.config.BASE}>
+                            API.
+                        </NavItem>
                     </Nav>
                 </Pad>
             </Slide>

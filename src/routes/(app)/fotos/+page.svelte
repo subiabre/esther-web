@@ -117,7 +117,9 @@
                 />
             </Row>
             <FilterPhotoAddress
-                disabled={typeof addressKnown === "undefined" ? false : !addressKnown}
+                disabled={typeof addressKnown === "undefined"
+                    ? false
+                    : !addressKnown}
                 on:change={(e) => {
                     page = 1;
                     addressComponents = e.detail.places;

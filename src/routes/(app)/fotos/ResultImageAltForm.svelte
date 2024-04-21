@@ -11,10 +11,12 @@
     });
 
     export let image: Image;
+    let imageAlt: string | null | undefined = image.alt;
 
     let label: string = "Descripción de lo que se ve en esta imagen.";
 
     let textarea: HTMLTextAreaElement;
+    let textareaValue: string = imageAlt || "";
 
     function resizeTextarea() {
         textarea.style.height = `0px`;
@@ -35,15 +37,20 @@
     }
 
     function updateAlt() {
+        if (textareaValue === imageAlt) {
+            return;
+        }
+
         $api.image
             .apiImagesIdPatch({
                 id: image.id?.toString() || "",
                 // @ts-ignore
                 requestBody: {
-                    alt: image.alt,
+                    alt: textareaValue,
                 },
             })
-            .then(() => {
+            .then((image: Image) => {
+                imageAlt = image.alt;
                 label = "Descripción actualizada. Gracias por tu ayuda";
             });
     }
@@ -58,7 +65,7 @@
         spellcheck="true"
         placeholder="¿Qué hay en esta imagen?"
         bind:this={textarea}
-        bind:value={image.alt}
+        bind:value={textareaValue}
         on:keyup={handleKeyUp}
         on:keydown={handleKeyDown}
     />

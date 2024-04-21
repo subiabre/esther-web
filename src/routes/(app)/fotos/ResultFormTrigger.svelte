@@ -12,7 +12,7 @@
 
 <style>
     button {
-        width: auto;
+        max-width: 100%;
         padding: 0;
 
         text-align: inherit;

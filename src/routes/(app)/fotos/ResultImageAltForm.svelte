@@ -4,6 +4,7 @@
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
     import { onMount } from "svelte";
+    import ResultFormTrigger from "./ResultFormTrigger.svelte";
 
     onMount(() => {
         resizeTextarea();
@@ -14,13 +15,13 @@
     let label: string = "Descripción de lo que se ve en esta imagen.";
 
     let textarea: HTMLTextAreaElement;
-    
+
     function resizeTextarea() {
         textarea.style.height = `${textarea.scrollHeight}px`;
     }
 
     let inputTimeout: number;
-    
+
     function handleKeyUp() {
         clearTimeout(inputTimeout);
         inputTimeout = setTimeout(() => updateAlt(), 1500);
@@ -28,7 +29,7 @@
 
     function handleKeyDown() {
         clearTimeout(inputTimeout);
-        resizeTextarea();        
+        resizeTextarea();
     }
 
     function updateAlt() {
@@ -48,43 +49,26 @@
 
 <Text>
     <h3>Qué.</h3>
-    <form on:submit|preventDefault={() => textarea.focus()}>
-        <button type="submit">
-            <Labeled {label}>
-                <textarea
-                    spellcheck="true"
-                    placeholder="¿Qué hay en esta imagen?"
-                    bind:this={textarea}
-                    bind:value={image.alt}
-                    on:keyup={handleKeyUp}
-                    on:keydown={handleKeyDown}
-                />
-            </Labeled>
-        </button>
-    </form>
+    <ResultFormTrigger on:trigger={() => textarea.focus()}>
+        <Labeled {label} />
+    </ResultFormTrigger>
+    <textarea
+        spellcheck="true"
+        placeholder="¿Qué hay en esta imagen?"
+        bind:this={textarea}
+        bind:value={image.alt}
+        on:keyup={handleKeyUp}
+        on:keydown={handleKeyDown}
+    />
 </Text>
 
 <style>
-    button {
-        padding: 0;
-
-        text-align: inherit;
-        font-size: inherit;
-        font-family: inherit;
-
-        border: none;
-        background-color: transparent;
-    }
-
-    button:hover {
-        cursor: pointer;
-    }
-
     textarea {
-        width: 100%;
+        min-width: 100%;
         height: fit-content;
 
         padding: 0;
+        margin-top: -1rem;
         resize: none;
 
         color: white;

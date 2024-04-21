@@ -3,6 +3,7 @@
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import Text from "$lib/ui/Content/Text.svelte";
     import { createEventDispatcher } from "svelte";
+    import ResultFormTrigger from "./ResultFormTrigger.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -13,32 +14,13 @@
 
 <Text>
     <h3>Dónde.</h3>
-    <form on:submit|preventDefault={() => dispatch("openAddressForm")}>
-        <button type="submit">
-            <Labeled {label}>
-                {#if photo.address?.shortName}
-                    {photo.address.shortName}
-                {:else}
-                    Desconocido
-                {/if}
-            </Labeled>
-        </button>
-    </form>
+    <ResultFormTrigger on:trigger={() => dispatch("openAddressForm")}>
+        <Labeled {label}>
+            {#if photo.address?.shortName}
+                {photo.address.shortName}
+            {:else}
+                Desconocido
+            {/if}
+        </Labeled>
+    </ResultFormTrigger>
 </Text>
-
-<style>
-    button {
-        padding: 0;
-
-        text-align: inherit;
-        font-size: inherit;
-        font-family: inherit;
-
-        border: none;
-        background-color: transparent;
-    }
-
-    button:hover {
-        cursor: pointer;
-    }
-</style>

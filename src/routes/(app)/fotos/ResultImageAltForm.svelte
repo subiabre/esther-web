@@ -19,7 +19,7 @@
     let textareaValue: string = imageAlt || "";
 
     function resizeTextarea() {
-        textarea.style.height = `0px`;
+        textarea.style.height = `1ex`;
         textarea.style.height = `${textarea.scrollHeight}px`;
     }
 
@@ -59,26 +59,25 @@
 <Text>
     <h3>Qué.</h3>
     <ResultFormTrigger on:trigger={() => textarea.focus()}>
-        <Labeled {label} />
+        <Labeled {label}>
+            <textarea
+                spellcheck="true"
+                placeholder="¿Qué hay en esta imagen?"
+                bind:this={textarea}
+                bind:value={textareaValue}
+                on:keyup={handleKeyUp}
+                on:keydown={handleKeyDown}
+            />
+        </Labeled>
     </ResultFormTrigger>
-    <textarea
-        spellcheck="true"
-        placeholder="¿Qué hay en esta imagen?"
-        bind:this={textarea}
-        bind:value={textareaValue}
-        on:keyup={handleKeyUp}
-        on:keydown={handleKeyDown}
-    />
 </Text>
 
 <style>
     textarea {
         min-height: 1ex;
-        min-width: 100%;
-        height: fit-content;
+        min-width: 60ch;
 
         padding: 0;
-        margin-top: -1rem;
         resize: none;
 
         color: white;

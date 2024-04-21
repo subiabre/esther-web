@@ -9,7 +9,7 @@
 
     export let photo: Photo;
 
-    let label: string = "Fotografía tomada entre las dos fechas.";
+    let label: string = "Fechas mínima y máxima de la fotografía.";
 </script>
 
 <Text>

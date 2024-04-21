@@ -5,21 +5,30 @@
     import Text from "$lib/ui/Content/Text.svelte";
     import { onMount } from "svelte";
 
+    onMount(() => {
+        resizeTextarea();
+    });
+
     export let image: Image;
 
     let label: string = "Descripción de lo que se ve en esta imagen.";
 
+    let textarea: HTMLTextAreaElement;
+    
+    function resizeTextarea() {
+        textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+
     let inputTimeout: number;
+    
     function handleKeyUp() {
         clearTimeout(inputTimeout);
         inputTimeout = setTimeout(() => updateAlt(), 1500);
     }
 
-    let textarea: HTMLTextAreaElement;
     function handleKeyDown() {
         clearTimeout(inputTimeout);
-
-        textarea.style.height = `${textarea.scrollHeight}px`;
+        resizeTextarea();        
     }
 
     function updateAlt() {
@@ -35,10 +44,6 @@
                 label = "Descripción actualizada. Gracias por tu ayuda";
             });
     }
-
-    onMount(() => {
-        textarea.style.height = `${textarea.scrollHeight}px`;
-    });
 </script>
 
 <Text>

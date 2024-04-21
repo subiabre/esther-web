@@ -17,19 +17,21 @@
     let textarea: HTMLTextAreaElement;
 
     function resizeTextarea() {
+        textarea.style.height = `0px`;
         textarea.style.height = `${textarea.scrollHeight}px`;
     }
 
     let inputTimeout: number;
 
     function handleKeyUp() {
+        resizeTextarea();
+
         clearTimeout(inputTimeout);
         inputTimeout = setTimeout(() => updateAlt(), 1500);
     }
 
     function handleKeyDown() {
         clearTimeout(inputTimeout);
-        resizeTextarea();
     }
 
     function updateAlt() {
@@ -64,6 +66,7 @@
 
 <style>
     textarea {
+        min-height: 1ex;
         min-width: 100%;
         height: fit-content;
 

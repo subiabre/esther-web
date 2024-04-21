@@ -15,10 +15,7 @@
 </script>
 
 <div>
-    <strong
-        title="Imagen {imageIndex} de {photo.images.length} en esta foto."
-        class="image-count"
-    >
+    <strong title="Imagen {imageIndex} de {photo.images.length} en esta foto.">
         <Pad>{imageIndex} / {photo.images.length}</Pad>
     </strong>
     {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
@@ -38,17 +35,15 @@
 
 <style>
     div {
-        width: 100%;
         margin-bottom: auto;
+
+        position: absolute;
+        right: 0;
 
         display: flex;
         flex-direction: row;
         justify-content: end;
-    }
 
-    .image-count {
-        margin-right: auto;
-
-        font-size: 115%;
+        text-shadow: 1px 1px 1px black;
     }
 </style>

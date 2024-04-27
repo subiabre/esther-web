@@ -3,9 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 export type PhotoAddress = {
-    reference?: string | null;
     fullName?: string | null;
     shortName?: string | null;
-    components?: Array<string>;
+    components?: any[] | null;
+    reference?: string | null;
 };
 

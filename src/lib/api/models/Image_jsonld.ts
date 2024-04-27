@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { ImageMetadata_jsonld } from './ImageMetadata_jsonld';
 import type { ImageThumb_jsonld } from './ImageThumb_jsonld';
+import type { Portrait_jsonld } from './Portrait_jsonld';
 /**
  * Images exist in a 1:1 relation with an image file stored somewhere.
  */
@@ -25,6 +26,7 @@ export type Image_jsonld = {
      * A downscaled version of the Image's file, stored elsewhere.
      */
     readonly thumb?: ImageThumb_jsonld;
+    portraits?: Array<Portrait_jsonld>;
     /**
      * ImageMetadata holds a mix of information sourced from an Image's file.
      */

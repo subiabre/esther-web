@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { ImageMetadata } from './ImageMetadata';
 import type { ImageThumb } from './ImageThumb';
+import type { Portrait } from './Portrait';
 /**
  * Images exist in a 1:1 relation with an image file stored somewhere.
  */
@@ -22,6 +23,7 @@ export type Image = {
      * A downscaled version of the Image's file, stored elsewhere.
      */
     readonly thumb?: ImageThumb;
+    portraits?: Array<Portrait>;
     /**
      * ImageMetadata holds a mix of information sourced from an Image's file.
      */

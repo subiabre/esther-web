@@ -10,6 +10,8 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
+export type { Configurable } from './models/Configurable';
+export type { Configurable_jsonld } from './models/Configurable_jsonld';
 export type { Image } from './models/Image';
 export type { Image_jsonld } from './models/Image_jsonld';
 export type { ImageMetadata } from './models/ImageMetadata';
@@ -24,6 +26,8 @@ export type { PhotoDateRange } from './models/PhotoDateRange';
 export type { PhotoDateRange_jsonld } from './models/PhotoDateRange_jsonld';
 export type { PhotoScope } from './models/PhotoScope';
 export type { PhotoScope_jsonld } from './models/PhotoScope_jsonld';
+export type { Portrait } from './models/Portrait';
+export type { Portrait_jsonld } from './models/Portrait_jsonld';
 export type { Session } from './models/Session';
 export type { Session_jsonld } from './models/Session_jsonld';
 export type { Session_SessionAuthenticationDto } from './models/Session_SessionAuthenticationDto';
@@ -35,8 +39,10 @@ export type { Storage_jsonld } from './models/Storage_jsonld';
 export type { User } from './models/User';
 export type { User_jsonld } from './models/User_jsonld';
 
+export { ConfigurableService } from './services/ConfigurableService';
 export { ImageService } from './services/ImageService';
 export { PhotoService } from './services/PhotoService';
+export { PortraitService } from './services/PortraitService';
 export { SessionService } from './services/SessionService';
 export { StorageService } from './services/StorageService';
 export { UserService } from './services/UserService';

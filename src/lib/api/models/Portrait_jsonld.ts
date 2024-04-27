@@ -2,13 +2,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type PhotoAddress_jsonld = {
+export type Portrait_jsonld = {
     readonly '@context'?: (string | Record<string, any>);
     readonly '@id'?: string;
     readonly '@type'?: string;
-    fullName?: string | null;
-    shortName?: string | null;
-    components?: any[] | null;
-    reference?: string | null;
+    readonly id?: number;
+    src?: string;
+    width?: number;
+    height?: number;
+    offsetX?: number;
+    offsetY?: number;
+    readonly image?: string;
 };
 

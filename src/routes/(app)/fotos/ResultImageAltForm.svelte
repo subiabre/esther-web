@@ -75,7 +75,7 @@
 <style>
     textarea {
         min-height: 1ex;
-        min-width: 60ch;
+        max-width: 60ch;
 
         padding: 0;
         resize: none;

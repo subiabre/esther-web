@@ -54,7 +54,7 @@ export class PhotoService {
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
                 'address[known]': addressKnown,
-                'address[components]': addressComponents,
+                'address[components][]': addressComponents,
                 'images.alt': imagesAlt,
             },
         });

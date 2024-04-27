@@ -8,7 +8,7 @@
 
 <div class="overlaid">
     <label for="overlaid-status_{id}">
-        <input id="overlaid-status_{id}" type="checkbox" bind:checked={show} />
+        <input id="overlaid-status_{id}" type="checkbox" bind:checked={show} on:change />
         <div class="overlaid-content {background}">
             <slot />
         </div>

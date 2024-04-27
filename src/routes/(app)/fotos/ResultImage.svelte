@@ -1,28 +1,34 @@
 <script lang="ts">
+    import { Modal } from "carbon-components-svelte";
     import type { CancelablePromise, Image, Photo } from "$lib/api";
     import Overlaid from "$lib/ui/Content/Overlaid.svelte";
-    import { Modal } from "carbon-components-svelte";
+    import { api } from "$lib/stores/api";
     import ResultImageActions from "./ResultImageActions.svelte";
     import ResultImageAltForm from "./ResultImageAltForm.svelte";
     import ResultPhotoDate from "./ResultPhotoDate.svelte";
-    import { api } from "$lib/stores/api";
     import ResultImageMetadata from "./ResultImageMetadata.svelte";
     import ResultPhotoAddress from "./ResultPhotoAddress.svelte";
+    import ResultImagePortraits from "./ResultImagePortraits.svelte";
+    import ResultImagePortraitsForm from "./ResultImagePortraitsForm.svelte";
 
     export let photo: Photo;
     export let source: string;
 
+    let img: HTMLImageElement;
     let image: CancelablePromise<Image> = $api.request.request({
         method: "GET",
         url: source,
     });
 
     let openMetadata: boolean = false;
+
+    let showKnowledge: boolean = false;
+    let showPortraits: boolean = false;
 </script>
 
 <figure>
     {#await image then image}
-        <img src={image.src} alt={image.alt} />
+        <img bind:this={img} src={image.src} alt={image.alt} />
         <Modal
             passiveModal
             modalHeading="Metadatos de la imagen"
@@ -30,7 +36,20 @@
         >
             <ResultImageMetadata {image} />
         </Modal>
-        <Overlaid id={image.id || ""}>
+        <Overlaid
+            id={image.id + "portraits"}
+            background="solid"
+            bind:show={showPortraits}
+        >
+            <ResultImagePortraitsForm {img} {image} />
+        </Overlaid>
+        <Overlaid
+            id={image.id + "knowledge"}
+            bind:show={showKnowledge}
+            on:change={() => {
+                if (showPortraits) showPortraits = false;
+            }}
+        >
             <ResultImageActions
                 {photo}
                 {image}
@@ -39,6 +58,13 @@
             />
             <ResultPhotoDate {photo} on:openDateForm />
             <ResultPhotoAddress {photo} on:openAddressForm />
+            <ResultImagePortraits
+                {image}
+                on:showPortraits={() => {
+                    showPortraits = !showPortraits;
+                    showKnowledge = !showKnowledge;
+                }}
+            />
             <ResultImageAltForm {image} />
         </Overlaid>
     {/await}

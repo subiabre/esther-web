@@ -23,7 +23,10 @@
     let openMetadata: boolean = false;
 
     let showKnowledge: boolean = false;
+    let zKnowledge: number = 100;
+
     let showPortraits: boolean = false;
+    let zPortraits: number = 99;
 </script>
 
 <figure>
@@ -40,12 +43,18 @@
             id={image.id + "portraits"}
             background="solid"
             bind:show={showPortraits}
+            bind:zIndex={zPortraits}
+            on:change={() => {
+                zKnowledge = 99;
+                zPortraits = 98;
+            }}
         >
             <ResultImagePortraitsForm {img} {image} />
         </Overlaid>
         <Overlaid
             id={image.id + "knowledge"}
             bind:show={showKnowledge}
+            bind:zIndex={zKnowledge}
             on:change={() => {
                 if (showPortraits) showPortraits = false;
             }}
@@ -61,8 +70,11 @@
             <ResultImagePortraits
                 {image}
                 on:showPortraits={() => {
-                    showPortraits = !showPortraits;
                     showKnowledge = !showKnowledge;
+                    showPortraits = !showPortraits;
+
+                    zKnowledge = 98;
+                    zPortraits = 99;
                 }}
             />
             <ResultImageAltForm {image} />

@@ -2,13 +2,19 @@
     export let id: string | number;
 
     export let show: boolean = false;
+    export let zIndex: number = 100;
 
     export let background: "gradient" | "solid" = "gradient";
 </script>
 
-<div class="overlaid">
+<div class="overlaid" style="z-index: {zIndex}">
     <label for="overlaid-status_{id}">
-        <input id="overlaid-status_{id}" type="checkbox" bind:checked={show} on:change />
+        <input
+            id="overlaid-status_{id}"
+            type="checkbox"
+            bind:checked={show}
+            on:change
+        />
         <div class="overlaid-content {background}">
             <slot />
         </div>

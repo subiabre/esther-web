@@ -1,6 +1,11 @@
 <script lang="ts">
     import type { Image } from "$lib/api";
+    import { onMount } from "svelte";
     import ResultImagePortrait from "./ResultImagePortrait.svelte";
+
+    onMount(() => {
+        window.addEventListener("resize", scalePortraitsSize);
+    });
 
     export let img: HTMLImageElement;
     export let image: Image;
@@ -10,11 +15,18 @@
     let style = "";
 
     let imgIsLoaded: boolean = false;
+
+    function scalePortraitsSize() {
+        style = `width: ${img.width}px; height: ${img.height}px`;
+    }
+
+    function handleImgLoad() {
+        scalePortraitsSize();
+        imgIsLoaded = true;
+    }
+
     $: if (typeof img !== "undefined") {
-        img.onload = () => {
-            style = `width: ${img.width}px; height: ${img.height}px`;
-            imgIsLoaded = true;
-        };
+        img.addEventListener("load", handleImgLoad);
     }
 </script>
 

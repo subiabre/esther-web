@@ -1,5 +1,18 @@
 <script lang="ts">
     import type { Image, Portrait } from "$lib/api";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        window.addEventListener("resize", () => {
+            const sizes = scalePortraitSizes();
+            const offsets = scalePortraitOffsets();
+
+            width = sizes.width;
+            height = sizes.height;
+            offsetX = offsets.offsetX;
+            offsetY = offsets.offsetY;
+        });
+    });
 
     export let img: HTMLImageElement;
 
@@ -8,6 +21,14 @@
 
     let { width, height } = scalePortraitSizes();
     let { offsetX, offsetY } = scalePortraitOffsets();
+
+    $: style = `
+        --src: url(${portrait.src});
+        width: ${width}px;
+        height: ${height}px;
+        left: ${offsetX}px;
+        top: ${offsetY}px
+        `;
 
     function scalePortraitSizes() {
         const widthRatio = (image.metadata?.width ?? 0) / img.width;
@@ -30,9 +51,7 @@
     }
 </script>
 
-<div
-    style="--src: url({portrait.src});width: {width}px; height: {height}px; left: {offsetX}px; top: {offsetY}px"
-/>
+<div {style} />
 
 <style>
     div {

@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Image, Portrait } from "$lib/api";
+    import { Popover, Search, SelectableTile } from "carbon-components-svelte";
     import { onMount } from "svelte";
 
     onMount(() => {
@@ -22,12 +23,15 @@
     let { width, height } = scalePortraitSizes();
     let { offsetX, offsetY } = scalePortraitOffsets();
 
+    let zIndex: number = 10;
+
     $: style = `
         --src: url(${portrait.src});
         width: ${width}px;
         height: ${height}px;
         left: ${offsetX}px;
-        top: ${offsetY}px
+        top: ${offsetY}px;
+        z-index: ${zIndex}
         `;
 
     function scalePortraitSizes() {
@@ -49,9 +53,44 @@
 
         return { offsetX, offsetY };
     }
+
+    let showPopover: boolean = false;
+
+    function handleMouseEnter() {
+        showPopover = true;
+        zIndex = 90;
+    }
+
+    function handleMouseLeave() {
+        showPopover = false;
+        zIndex = 10;
+    }
+
+    function handleAction(e: Event) {
+        e.preventDefault();
+    }
 </script>
 
-<div {style} />
+<div
+    {style}
+    role="searchbox"
+    tabindex={20 + (portrait.id ?? 0)}
+    on:click={handleAction}
+    on:keyup={handleAction}
+    on:mouseenter={handleMouseEnter}
+    on:mouseleave={handleMouseLeave}
+>
+    <Popover caret align="bottom" bind:open={showPopover}>
+        <Search
+            size="sm"
+            on:keydown={(e) => {
+                e.stopPropagation();
+                console.log("input");
+            }}
+        />
+        <SelectableTile>Desconocido</SelectableTile>
+    </Popover>
+</div>
 
 <style>
     div {

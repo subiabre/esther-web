@@ -57,12 +57,10 @@
     }
 
     function alignPortraitPopover() {
-        const equator = (image.metadata?.height ?? 0) / 2;
-        const portraitCenter = (portrait.offsetY ?? 0) - ((portrait.height ?? 0) / 2);
+        const imageEquator = (image.metadata?.height ?? 0) / 2;
+        const portraitEquator = (portrait.offsetY ?? 0) + ((portrait.height ?? 0) / 2);
 
-        console.log({ image, portrait, equator, portraitCenter });
-
-        if (portraitCenter > equator) {
+        if (portraitEquator > imageEquator) {
            return "top";
         }
 

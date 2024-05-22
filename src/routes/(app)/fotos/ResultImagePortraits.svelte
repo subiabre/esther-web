@@ -8,14 +8,16 @@
     const dispatch = createEventDispatcher();
 
     export let image: Image;
+
+    $: hasPortraits = image.portraits && image.portraits?.length > 0;
 </script>
 
 <Text>
     <h3>Quién.</h3>
-    <ResultFormTrigger on:trigger={() => dispatch("showPortraits")}>
+    <ResultFormTrigger disabled={!hasPortraits} on:trigger={() => dispatch("showPortraits")}>
         <Labeled label="Personas que aparecen en esta imagen.">
-            {#if image.portraits && image.portraits?.length > 0}
-                Personas
+            {#if hasPortraits}
+                { image.portraits?.length } retratos
             {:else}
                 Nadie
             {/if}

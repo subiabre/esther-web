@@ -2,10 +2,12 @@
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
+
+    export let disabled: boolean = false;
 </script>
 
 <form on:submit|preventDefault={() => dispatch("trigger")}>
-    <button type="submit">
+    <button {disabled} type="submit">
         <slot />
     </button>
 </form>

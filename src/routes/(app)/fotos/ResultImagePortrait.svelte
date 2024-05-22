@@ -23,6 +23,8 @@
     let { width, height } = scalePortraitSizes();
     let { offsetX, offsetY } = scalePortraitOffsets();
 
+    let alignment: "top" | "bottom" = alignPortraitPopover();
+
     let zIndex: number = 10;
 
     $: style = `
@@ -54,6 +56,19 @@
         return { offsetX, offsetY };
     }
 
+    function alignPortraitPopover() {
+        const equator = (image.metadata?.height ?? 0) / 2;
+        const portraitCenter = (portrait.offsetY ?? 0) - ((portrait.height ?? 0) / 2);
+
+        console.log({ image, portrait, equator, portraitCenter });
+
+        if (portraitCenter > equator) {
+           return "top";
+        }
+
+        return "bottom";
+    }
+
     let showPopover: boolean = false;
 
     function handleMouseEnter() {
@@ -80,7 +95,7 @@
     on:mouseenter={handleMouseEnter}
     on:mouseleave={handleMouseLeave}
 >
-    <Popover caret align="bottom" bind:open={showPopover}>
+    <Popover caret align={alignment} bind:open={showPopover}>
         <Search
             size="sm"
             on:keydown={(e) => {

@@ -2,17 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Portrait_jsonld = {
+export type Person_jsonld = {
     readonly '@context'?: (string | Record<string, any>);
     readonly '@id'?: string;
     readonly '@type'?: string;
     readonly id?: number;
-    src?: string;
-    width?: number;
-    height?: number;
-    offsetX?: number;
-    offsetY?: number;
-    readonly image?: string;
-    person?: string | null;
+    name?: string;
+    readonly portraits?: Array<string>;
 };
 

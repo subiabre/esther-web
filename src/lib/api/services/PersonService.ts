@@ -2,50 +2,53 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Portrait } from '../models/Portrait';
+import type { Person } from '../models/Person';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-export class PortraitService {
+export class PersonService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * Retrieves the collection of Portrait resources.
-     * Retrieves the collection of Portrait resources.
-     * @returns Portrait Portrait collection
+     * Retrieves the collection of Person resources.
+     * Retrieves the collection of Person resources.
+     * @returns Person Person collection
      * @throws ApiError
      */
-    public apiPortraitsGetCollection({
+    public apiPeopleGetCollection({
         page = 1,
+        name,
     }: {
         /**
          * The collection page number
          */
         page?: number,
-    }): CancelablePromise<Array<Portrait>> {
+        name?: string,
+    }): CancelablePromise<Array<Person>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/portraits',
+            url: '/v1/people',
             query: {
                 'page': page,
+                'name': name,
             },
         });
     }
     /**
-     * Creates a Portrait resource.
-     * Creates a Portrait resource.
-     * @returns Portrait Portrait resource created
+     * Creates a Person resource.
+     * Creates a Person resource.
+     * @returns Person Person resource created
      * @throws ApiError
      */
-    public apiPortraitsPost({
+    public apiPeoplePost({
         requestBody,
     }: {
         /**
-         * The new Portrait resource
+         * The new Person resource
          */
-        requestBody: Portrait,
-    }): CancelablePromise<Portrait> {
+        requestBody: Person,
+    }): CancelablePromise<Person> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/v1/portraits',
+            url: '/v1/people',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -55,22 +58,22 @@ export class PortraitService {
         });
     }
     /**
-     * Retrieves a Portrait resource.
-     * Retrieves a Portrait resource.
-     * @returns Portrait Portrait resource
+     * Retrieves a Person resource.
+     * Retrieves a Person resource.
+     * @returns Person Person resource
      * @throws ApiError
      */
-    public apiPortraitsIdGet({
+    public apiPeopleIdGet({
         id,
     }: {
         /**
-         * Portrait identifier
+         * Person identifier
          */
         id: string,
-    }): CancelablePromise<Portrait> {
+    }): CancelablePromise<Person> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/portraits/{id}',
+            url: '/v1/people/{id}',
             path: {
                 'id': id,
             },
@@ -80,27 +83,27 @@ export class PortraitService {
         });
     }
     /**
-     * Replaces the Portrait resource.
-     * Replaces the Portrait resource.
-     * @returns Portrait Portrait resource updated
+     * Replaces the Person resource.
+     * Replaces the Person resource.
+     * @returns Person Person resource updated
      * @throws ApiError
      */
-    public apiPortraitsIdPut({
+    public apiPeopleIdPut({
         id,
         requestBody,
     }: {
         /**
-         * Portrait identifier
+         * Person identifier
          */
         id: string,
         /**
-         * The updated Portrait resource
+         * The updated Person resource
          */
-        requestBody: Portrait,
-    }): CancelablePromise<Portrait> {
+        requestBody: Person,
+    }): CancelablePromise<Person> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/v1/portraits/{id}',
+            url: '/v1/people/{id}',
             path: {
                 'id': id,
             },
@@ -114,22 +117,22 @@ export class PortraitService {
         });
     }
     /**
-     * Removes the Portrait resource.
-     * Removes the Portrait resource.
+     * Removes the Person resource.
+     * Removes the Person resource.
      * @returns void
      * @throws ApiError
      */
-    public apiPortraitsIdDelete({
+    public apiPeopleIdDelete({
         id,
     }: {
         /**
-         * Portrait identifier
+         * Person identifier
          */
         id: string,
     }): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/v1/portraits/{id}',
+            url: '/v1/people/{id}',
             path: {
                 'id': id,
             },
@@ -139,27 +142,27 @@ export class PortraitService {
         });
     }
     /**
-     * Updates the Portrait resource.
-     * Updates the Portrait resource.
-     * @returns Portrait Portrait resource updated
+     * Updates the Person resource.
+     * Updates the Person resource.
+     * @returns Person Person resource updated
      * @throws ApiError
      */
-    public apiPortraitsIdPatch({
+    public apiPeopleIdPatch({
         id,
         requestBody,
     }: {
         /**
-         * Portrait identifier
+         * Person identifier
          */
         id: string,
         /**
-         * The updated Portrait resource
+         * The updated Person resource
          */
-        requestBody: Portrait,
-    }): CancelablePromise<Portrait> {
+        requestBody: Person,
+    }): CancelablePromise<Person> {
         return this.httpRequest.request({
             method: 'PATCH',
-            url: '/v1/portraits/{id}',
+            url: '/v1/people/{id}',
             path: {
                 'id': id,
             },

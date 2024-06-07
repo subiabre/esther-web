@@ -10,5 +10,6 @@ export type Portrait = {
     offsetX?: number;
     offsetY?: number;
     readonly image?: string;
+    person?: string | null;
 };
 

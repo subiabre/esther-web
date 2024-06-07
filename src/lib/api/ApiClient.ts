@@ -7,6 +7,7 @@ import type { OpenAPIConfig } from './core/OpenAPI';
 import { FetchHttpRequest } from './core/FetchHttpRequest';
 import { ConfigurableService } from './services/ConfigurableService';
 import { ImageService } from './services/ImageService';
+import { PersonService } from './services/PersonService';
 import { PhotoService } from './services/PhotoService';
 import { PortraitService } from './services/PortraitService';
 import { SessionService } from './services/SessionService';
@@ -16,6 +17,7 @@ type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 export class ApiClient {
     public readonly configurable: ConfigurableService;
     public readonly image: ImageService;
+    public readonly person: PersonService;
     public readonly photo: PhotoService;
     public readonly portrait: PortraitService;
     public readonly session: SessionService;
@@ -36,6 +38,7 @@ export class ApiClient {
         });
         this.configurable = new ConfigurableService(this.request);
         this.image = new ImageService(this.request);
+        this.person = new PersonService(this.request);
         this.photo = new PhotoService(this.request);
         this.portrait = new PortraitService(this.request);
         this.session = new SessionService(this.request);

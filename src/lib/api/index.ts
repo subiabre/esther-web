@@ -18,6 +18,8 @@ export type { ImageMetadata } from './models/ImageMetadata';
 export type { ImageMetadata_jsonld } from './models/ImageMetadata_jsonld';
 export type { ImageThumb } from './models/ImageThumb';
 export type { ImageThumb_jsonld } from './models/ImageThumb_jsonld';
+export type { Person } from './models/Person';
+export type { Person_jsonld } from './models/Person_jsonld';
 export type { Photo } from './models/Photo';
 export type { Photo_jsonld } from './models/Photo_jsonld';
 export type { PhotoAddress } from './models/PhotoAddress';
@@ -41,6 +43,7 @@ export type { User_jsonld } from './models/User_jsonld';
 
 export { ConfigurableService } from './services/ConfigurableService';
 export { ImageService } from './services/ImageService';
+export { PersonService } from './services/PersonService';
 export { PhotoService } from './services/PhotoService';
 export { PortraitService } from './services/PortraitService';
 export { SessionService } from './services/SessionService';

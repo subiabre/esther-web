@@ -7,8 +7,8 @@
 <p class="content-label-labeled">
     {#if bottom}
         <slot />
-        <span class="content-label-label bx--form__helper-text">{label}</span>
         <br />
+        <span class="content-label-label bx--form__helper-text">{label}</span>
     {:else}
         <span class="content-label-label bx--form__helper-text">{label}</span>
         <br />

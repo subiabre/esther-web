@@ -1,7 +1,8 @@
 <script lang="ts">
     import type { Image, Portrait } from "$lib/api";
-    import { Popover, Search, SelectableTile } from "carbon-components-svelte";
+    import { Popover } from "carbon-components-svelte";
     import { onMount } from "svelte";
+    import ResultImagePortraitForm from "./ResultImagePortraitForm.svelte";
 
     onMount(() => {
         window.addEventListener("resize", () => {
@@ -58,10 +59,11 @@
 
     function alignPortraitPopover() {
         const imageEquator = (image.metadata?.height ?? 0) / 2;
-        const portraitEquator = (portrait.offsetY ?? 0) + ((portrait.height ?? 0) / 2);
+        const portraitEquator =
+            (portrait.offsetY ?? 0) + (portrait.height ?? 0) / 2;
 
         if (portraitEquator > imageEquator) {
-           return "top";
+            return "top";
         }
 
         return "bottom";
@@ -94,14 +96,7 @@
     on:mouseleave={handleMouseLeave}
 >
     <Popover caret align={alignment} bind:open={showPopover}>
-        <Search
-            size="sm"
-            on:keydown={(e) => {
-                e.stopPropagation();
-                console.log("input");
-            }}
-        />
-        <SelectableTile>Desconocido</SelectableTile>
+        <ResultImagePortraitForm {alignment} {portrait} />
     </Popover>
 </div>
 

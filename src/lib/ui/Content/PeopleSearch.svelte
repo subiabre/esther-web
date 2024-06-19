@@ -8,6 +8,10 @@
     const dispatch = createEventDispatcher();
 
     async function handleSearchPeople() {
+        if (value === "") {
+            return;
+        }
+
         const searchedPeople = await $api.person.apiPeopleGetCollection({
             name: value,
         });

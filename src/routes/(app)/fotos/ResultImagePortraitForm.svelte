@@ -1,13 +1,16 @@
 <script lang="ts">
     import type { Person, Portrait } from "$lib/api";
     import { api } from "$lib/stores/api";
+    import PeopleSearch from "$lib/ui/Content/PeopleSearch.svelte";
     import PeopleSelect from "$lib/ui/Content/PeopleSelect.svelte";
-    import { Search } from "carbon-components-svelte";
 
     export let portrait: Portrait;
     export let alignment: "top" | "bottom" = "top";
 
     let person: Promise<Person | undefined> = fetchPortraitPerson();
+
+    let search: string = "";
+    let searchedPeople: Person[];
 
     async function fetchPortraitPerson(): Promise<Person | undefined> {
         if (typeof portrait.person !== "string") {
@@ -17,15 +20,6 @@
         return await $api.request.request({
             method: "GET",
             url: portrait.person,
-        });
-    }
-
-    let search: string = "";
-    let searchedPeople: Person[] = [];
-
-    async function handleSearchPeople() {
-        searchedPeople = await $api.person.apiPeopleGetCollection({
-            name: search,
         });
     }
 
@@ -56,7 +50,10 @@
 </script>
 
 {#if alignment === "bottom"}
-    <Search size="sm" bind:value={search} on:input={handleSearchPeople} />
+    <PeopleSearch
+        bind:value={search}
+        on:update={(e) => (searchedPeople = e.detail.people)}
+    />
 {/if}
 
 {#await person then person}
@@ -69,5 +66,8 @@
 {/await}
 
 {#if alignment === "top"}
-    <Search size="sm" bind:value={search} on:input={handleSearchPeople} />
+    <PeopleSearch
+        bind:value={search}
+        on:update={(e) => (searchedPeople = e.detail.people)}
+    />
 {/if}

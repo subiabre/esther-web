@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Person, Portrait } from "$lib/api";
     import { api } from "$lib/stores/api";
-    import Labeled from "./Labeled.svelte";
+    import PeoplePortraitOption from "./PeoplePortraitOption.svelte";
 
     export let person: Person;
 
@@ -25,31 +25,10 @@
     }
 </script>
 
-<figure>
-    {#await portrait then portrait}
-        <img src={portrait.src} alt={person.name} />
-    {/await}
-    <figcaption>
-        <Labeled bottom label="Aparece en {person.portraits?.length} imágenes.">
-            {person.name}
-        </Labeled>
-    </figcaption>
-</figure>
-
-<style>
-    figure {
-        display: flex;
-        align-items: center;
-    }
-
-    figure > img {
-        width: 3rem;
-        height: 3rem;
-
-        border-radius: 100%;
-    }
-
-    figure > figcaption {
-        padding: 0 0 0 1rem;
-    }
-</style>
+{#await portrait then portrait}
+    <PeoplePortraitOption
+        {portrait}
+        caption={person.name || ""}
+        label="Aparece en {person.portraits?.length} fotos."
+    />
+{/await}

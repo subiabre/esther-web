@@ -49,25 +49,29 @@
     }
 </script>
 
-{#if alignment === "bottom"}
-    <PeopleSearch
-        bind:value={search}
-        on:update={(e) => (searchedPeople = e.detail.people)}
-    />
+{#if alignment === "top"}
+    {#await person then person}
+        <PeopleSelect
+            selected={person}
+            people={searchedPeople}
+            on:select={addPerson}
+            on:deselect={removePerson}
+        />
+    {/await}
 {/if}
 
-{#await person then person}
-    <PeopleSelect
-        selected={person}
-        people={searchedPeople}
-        on:select={addPerson}
-        on:deselect={removePerson}
-    />
-{/await}
+<PeopleSearch
+    bind:value={search}
+    on:update={(e) => (searchedPeople = e.detail.people)}
+/>
 
-{#if alignment === "top"}
-    <PeopleSearch
-        bind:value={search}
-        on:update={(e) => (searchedPeople = e.detail.people)}
-    />
+{#if alignment === "bottom"}
+    {#await person then person}
+        <PeopleSelect
+            selected={person}
+            people={searchedPeople}
+            on:select={addPerson}
+            on:deselect={removePerson}
+        />
+    {/await}
 {/if}

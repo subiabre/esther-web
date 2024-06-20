@@ -8,6 +8,6 @@ export type Person_jsonld = {
     readonly '@type'?: string;
     readonly id?: number;
     name?: string;
-    readonly portraits?: Array<string>;
+    portraits?: Array<string>;
 };
 

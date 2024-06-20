@@ -5,6 +5,6 @@
 export type Person = {
     readonly id?: number;
     name?: string;
-    readonly portraits?: Array<string>;
+    portraits?: Array<string>;
 };
 

@@ -21,6 +21,8 @@ export class PhotoService {
         addressKnown,
         addressComponents,
         imagesAlt,
+        imagesPortraitsPerson,
+        imagesPortraitsPersonArray,
     }: {
         /**
          * The collection page number
@@ -44,6 +46,8 @@ export class PhotoService {
          */
         addressComponents?: Array<string>,
         imagesAlt?: string,
+        imagesPortraitsPerson?: string,
+        imagesPortraitsPersonArray?: Array<string>,
     }): CancelablePromise<Array<Photo>> {
         return this.httpRequest.request({
             method: 'GET',
@@ -56,6 +60,8 @@ export class PhotoService {
                 'address[known]': addressKnown,
                 'address[components]': addressComponents,
                 'images.alt': imagesAlt,
+                'images.portraits.person': imagesPortraitsPerson,
+                'images.portraits.person[]': imagesPortraitsPersonArray,
             },
         });
     }

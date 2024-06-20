@@ -7,11 +7,20 @@
 
     const dispatch = createEventDispatcher();
 
-    async function handleSearchPeople() {
+    let inputTimeout: number;
+
+    function handleInput() {
         if (value === "") {
             return;
         }
 
+        dispatch("input", value);
+
+        clearTimeout(inputTimeout);
+        inputTimeout = setTimeout(() => searchPeople(), 250);
+    }
+
+    async function searchPeople() {
         const searchedPeople = await $api.person.apiPeopleGetCollection({
             name: value,
         });
@@ -24,5 +33,5 @@
     size="sm"
     placeholder="Buscar personas..."
     bind:value
-    on:input={handleSearchPeople}
+    on:input={handleInput}
 />

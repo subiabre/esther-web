@@ -92,6 +92,7 @@
     {/await}
     <PeopleSearch
         bind:value={search}
+        on:input={() => (searchedPeople = [])}
         on:update={(e) => (searchedPeople = e.detail.people)}
     />
 {/if}
@@ -99,6 +100,7 @@
 {#if alignment === "bottom"}
     <PeopleSearch
         bind:value={search}
+        on:input={() => (searchedPeople = [])}
         on:update={(e) => (searchedPeople = e.detail.people)}
     />
     {#await person then person}

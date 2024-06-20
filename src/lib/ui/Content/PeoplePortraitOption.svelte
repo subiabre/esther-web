@@ -28,6 +28,8 @@
         height: 3rem;
 
         border-radius: 100%;
+        
+        overflow: hidden;
     }
 
     figure > figcaption {

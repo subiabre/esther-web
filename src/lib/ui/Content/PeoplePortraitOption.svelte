@@ -19,6 +19,8 @@
 
 <style>
     figure {
+        padding: 0 1rem 0 1rem;
+
         display: flex;
         align-items: center;
     }
@@ -28,7 +30,7 @@
         height: 3rem;
 
         border-radius: 100%;
-        
+
         overflow: hidden;
     }
 

@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { Person, Portrait } from "$lib/api";
     import { api } from "$lib/stores/api";
+    import { SkeletonPlaceholder } from "carbon-components-svelte";
     import PeoplePortraitOption from "./PeoplePortraitOption.svelte";
 
     export let person: Person;
@@ -25,7 +26,9 @@
     }
 </script>
 
-{#await portrait then portrait}
+{#await portrait}
+    <SkeletonPlaceholder style="width: 100%; height: 4rem;" />
+{:then portrait}
     <PeoplePortraitOption
         {portrait}
         caption={person.name || ""}

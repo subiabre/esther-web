@@ -71,7 +71,7 @@
 {#if alignment === "top"}
     {#if !newPersonAdded}
         <ClickableTile
-            style="padding: 0 1rem 0 1rem; margin: 0;"
+            style="padding: 0; margin: 0;"
             disabled={search === ""}
             on:click={newPerson}
         >
@@ -111,7 +111,7 @@
     {/await}
     {#if !newPersonAdded}
         <ClickableTile
-            style="padding: 0 1rem 0 1rem; margin: 0;"
+            style="padding: 0; margin: 0;"
             disabled={search === ""}
             on:click={newPerson}
         >

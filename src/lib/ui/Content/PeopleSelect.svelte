@@ -34,8 +34,8 @@
 <div>
     {#each people as person (person.id)}
         <SelectableTile
+            style="padding: 0;"
             selected={selected ? selected.id === person.id : false}
-            style="padding: 0 1rem 0 1rem;"
             on:select={() => handleSelect(person)}
             on:deselect={() => handleDeselect(person)}
         >

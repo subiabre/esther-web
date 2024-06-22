@@ -15,6 +15,7 @@
     import FilterPhotoAddress from "./FilterPhotoAddress.svelte";
     import FilterPhotoAddressUnknown from "./FilterPhotoAddressUnknown.svelte";
     import Row from "$lib/ui/Content/Row.svelte";
+    import FilterPhotoImagesPeople from "./FilterPhotoImagesPeople.svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -36,6 +37,7 @@
     let dateRangeMax: string | undefined;
     let addressKnown: boolean | undefined;
     let addressComponents: string[] | undefined;
+    let imagesPortraitsPersonArray: string[] | undefined;
 
     let photos: Photo[] = [];
     let photosTotal: Number = 0;
@@ -51,6 +53,7 @@
                 addressKnown,
                 addressComponents,
                 imagesAlt,
+                imagesPortraitsPersonArray
             })
             .finally(() => setTimeout(() => slideShow.track(), 100));
     }
@@ -126,6 +129,14 @@
                     update();
                 }}
             />
+            <Row>
+                <h2>Quiénes.</h2>
+            </Row>
+            <FilterPhotoImagesPeople on:change={(e) => {
+                page = 1;
+                imagesPortraitsPersonArray = e.detail.people;
+                update();
+            }} />
             <Row>
                 <h2>Qué.</h2>
             </Row>

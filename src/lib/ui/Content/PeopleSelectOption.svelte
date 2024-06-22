@@ -6,9 +6,9 @@
 
     export let person: Person;
 
-    let portrait: Promise<Portrait> = getRandomPortrait();
+    $: portrait = getRandomPortrait(person);
 
-    async function getRandomPortrait(): Promise<Portrait> {
+    async function getRandomPortrait(person: Person): Promise<Portrait> {
         if (
             typeof person.portraits === "undefined" ||
             person.portraits.length < 1

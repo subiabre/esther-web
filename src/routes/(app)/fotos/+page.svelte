@@ -36,7 +36,7 @@
     let dateRangeMin: string | undefined;
     let dateRangeMax: string | undefined;
     let addressKnown: boolean | undefined;
-    let addressComponents: string[] | undefined;
+    let addressComponentsArray: string[] | undefined;
     let imagesPortraitsPersonArray: string[] | undefined;
 
     let photos: Photo[] = [];
@@ -51,7 +51,7 @@
                 dateRangeMin,
                 dateRangeMax,
                 addressKnown,
-                addressComponents,
+                addressComponentsArray,
                 imagesAlt,
                 imagesPortraitsPersonArray
             })
@@ -66,8 +66,9 @@
                     "date[range:min]": dateRangeMin,
                     "date[range:max]": dateRangeMax,
                     "address[known]": addressKnown,
-                    "address[components][]": addressComponents,
+                    "address[components][]": addressComponentsArray,
                     "images.alt": imagesAlt,
+                    "images.portraits.person[]": imagesPortraitsPersonArray
                 },
                 method: "GET",
                 headers: { Accept: "application/ld+json" },
@@ -114,7 +115,7 @@
                 <FilterPhotoAddressUnknown
                     on:change={(e) => {
                         addressKnown = e.detail.known;
-                        addressComponents = undefined;
+                        addressComponentsArray = undefined;
                         update();
                     }}
                 />
@@ -125,7 +126,7 @@
                     : !addressKnown}
                 on:change={(e) => {
                     page = 1;
-                    addressComponents = e.detail.places;
+                    addressComponentsArray = e.detail.places;
                     update();
                 }}
             />

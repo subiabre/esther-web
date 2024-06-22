@@ -11,9 +11,11 @@
 
     let inputMin: HTMLInputElement;
     let dateMin = photo.date.min?.split("T")[0];
+    let dateMinConstraint = dateMin;
 
     let inputMax: HTMLInputElement;
     let dateMax = photo.date.max?.split("T")[0];
+    let dateMaxConstraint = dateMax;
 
     async function updateDate() {
         photo = await $api.photo.apiPhotosIdPatch({
@@ -35,18 +37,20 @@
     <Labeled label="Después de">
         <input
             type="date"
-            max={dateMax}
+            max={dateMaxConstraint}
             value={dateMin}
             bind:this={inputMin}
+            on:change={() => (dateMinConstraint = inputMin.value)}
         />
     </Labeled>
     <Labeled label="Antes de">
         <input
             type="date"
             max={photo.dateCreated?.split("T")[0]}
-            min={dateMin}
+            min={dateMinConstraint}
             value={dateMax}
             bind:this={inputMax}
+            on:change={() => (dateMaxConstraint = inputMax.value)}
         />
     </Labeled>
     <Button type="submit">Actualizar</Button>

@@ -19,7 +19,7 @@ export class PhotoService {
         dateRangeMin,
         dateRangeMax,
         addressKnown,
-        addressComponents,
+        addressComponentsArray,
         imagesAlt,
         imagesPortraitsPerson,
         imagesPortraitsPersonArray,
@@ -44,7 +44,7 @@ export class PhotoService {
         /**
          * Filter collection by address components key-value pairs.
          */
-        addressComponents?: Array<string>,
+        addressComponentsArray?: Array<string>,
         imagesAlt?: string,
         imagesPortraitsPerson?: string,
         imagesPortraitsPersonArray?: Array<string>,
@@ -58,7 +58,7 @@ export class PhotoService {
                 'date[range:min]': dateRangeMin,
                 'date[range:max]': dateRangeMax,
                 'address[known]': addressKnown,
-                'address[components]': addressComponents,
+                'address[components][]': addressComponentsArray,
                 'images.alt': imagesAlt,
                 'images.portraits.person': imagesPortraitsPerson,
                 'images.portraits.person[]': imagesPortraitsPersonArray,

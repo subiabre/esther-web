@@ -69,7 +69,7 @@
 </script>
 
 {#if alignment === "top"}
-    {#if !newPersonAdded}
+    {#if !newPersonAdded || person === undefined}
         <ClickableTile
             style="padding: 0; margin: 0;"
             disabled={search === ""}
@@ -79,6 +79,7 @@
                 {portrait}
                 caption={search ? search : "Desconocido"}
                 label="Añadir nueva persona"
+                disabled={search === ""}
             />
         </ClickableTile>
     {/if}
@@ -111,7 +112,7 @@
             on:deselect={removePerson}
         />
     {/await}
-    {#if !newPersonAdded}
+    {#if !newPersonAdded || person === undefined}
         <ClickableTile
             style="padding: 0; margin: 0;"
             disabled={search === ""}
@@ -121,6 +122,7 @@
                 {portrait}
                 caption={search ? search : "Desconocido"}
                 label="Añadir nueva persona"
+                disabled={search === ""}
             />
         </ClickableTile>
     {/if}

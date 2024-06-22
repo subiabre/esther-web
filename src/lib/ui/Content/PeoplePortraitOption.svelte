@@ -6,9 +6,11 @@
 
     export let caption: string;
     export let label: string = "";
+
+    export let disabled: boolean = false;
 </script>
 
-<figure>
+<figure class={disabled ? "disabled" : "enabled"}>
     <img src={portrait.src} alt={caption} />
     <figcaption>
         <Labeled bottom {label}>
@@ -23,6 +25,10 @@
 
         display: flex;
         align-items: center;
+    }
+
+    figure.disabled {
+        opacity: 0.5;
     }
 
     figure > img {

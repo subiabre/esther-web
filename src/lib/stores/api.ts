@@ -1,7 +1,8 @@
 import { ApiClient } from "$lib/api";
 import { writable } from "svelte/store";
 import { auth } from "./auth";
-import { API_ADDRESS } from "$env/static/private";
+
+const API_ADDRESS = import.meta.env.VITE_API_ADDRESS;
 
 export const api = writable(new ApiClient({
     BASE: API_ADDRESS,

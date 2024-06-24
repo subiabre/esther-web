@@ -1,0 +1,14 @@
+services:
+  node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: esther-web
+    user: "node"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - 3000:3000

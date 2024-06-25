@@ -19,7 +19,7 @@
 
                     if (
                         currentReelId === targetReelId &&
-                        entry.intersectionRatio < 0.9
+                        entry.intersectionRatio < 0.8
                     ) {
                         let element = document.getElementById(targetReelId);
                         element?.classList.remove("current");

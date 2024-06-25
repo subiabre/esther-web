@@ -33,17 +33,25 @@
     </a>
 </div>
 
-<style>
-    div {
-        margin-bottom: auto;
+<style lang="scss">
+    @import "/src/styles/vars.scss";
 
+    div {
         position: absolute;
         right: 0;
+        bottom: 0;
 
         display: flex;
         flex-direction: row;
         justify-content: end;
 
         text-shadow: 1px 1px 1px black;
+    }
+
+    @media only screen and (min-width: $breakpoint-sm) {
+        div {
+            top: 0;
+            bottom: auto;
+        }
     }
 </style>

@@ -18,7 +18,17 @@
     function copyLink() {
         const link = window.location.host.concat(`/fotos/${photo.id}`);
 
-        navigator.clipboard.writeText(link);
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link);
+        } else {
+            const copyHelper = document.createElement("textarea");
+
+            copyHelper.value = link;
+            document.body.appendChild(copyHelper);
+            copyHelper.select();
+
+            document.execCommand("copy");
+        }
 
         copyFeedback = true;
         setTimeout(() => (copyFeedback = false), 1300);

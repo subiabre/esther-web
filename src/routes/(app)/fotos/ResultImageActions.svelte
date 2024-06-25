@@ -1,8 +1,9 @@
 <script lang="ts">
+    import { page } from "$app/stores";
     import type { Image, Photo } from "$lib/api";
     import { auth } from "$lib/stores/auth";
     import Pad from "$lib/ui/Content/Pad.svelte";
-    import { Button } from "carbon-components-svelte";
+    import { Button, Popover } from "carbon-components-svelte";
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
@@ -12,6 +13,16 @@
 
     let imageIndex: number =
         photo.images.findIndex((value) => value.endsWith(`${image.id}`)) + 1;
+
+    let copyFeedback: boolean = false;
+    function copyLink() {
+        const link = window.location.host.concat(`/fotos/${photo.id}`);
+
+        navigator.clipboard.writeText(link);
+
+        copyFeedback = true;
+        setTimeout(() => (copyFeedback = false), 1300);
+    }
 </script>
 
 <div>
@@ -31,6 +42,12 @@
     <a href={image.src} download="" target="_blank">
         <Button title="Descargar" kind="ghost">💾</Button>
     </a>
+    <Button title="Copiar enlace" kind="ghost" on:click={copyLink}>
+        🔗
+        <Popover align="left" bind:open={copyFeedback}>
+            <p>¡Enlace copiado!</p>
+        </Popover>
+    </Button>
 </div>
 
 <style lang="scss">

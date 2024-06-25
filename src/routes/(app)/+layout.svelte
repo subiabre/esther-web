@@ -58,9 +58,6 @@
                 </Text>
                 <Pad>
                     <Nav>
-                        {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
-                            <NavItem href="/admin">Admin.</NavItem>
-                        {/if}
                         <NavItem href="/fotos">Galería.</NavItem>
                         <NavItem href="/usuario">Cuenta.</NavItem>
                         <NavItem size="small" href="/bienvenido">

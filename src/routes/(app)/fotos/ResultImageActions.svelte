@@ -24,10 +24,15 @@
             const copyHelper = document.createElement("textarea");
 
             copyHelper.value = link;
+            copyHelper.style.width = "0px";
+            copyHelper.style.height = "0px";
+
             document.body.appendChild(copyHelper);
+
             copyHelper.select();
 
             document.execCommand("copy");
+            document.body.removeChild(copyHelper);
         }
 
         copyFeedback = true;

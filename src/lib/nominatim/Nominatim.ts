@@ -44,7 +44,11 @@ export class Nominatim {
             });
 
         if (typeof caches === "undefined") {
-            return await fetch(url).then((res) => res.json());
+            return await fetch(url).then(async (res) => {
+                const data = await res.json();
+
+                return data[0];
+            });
         }
 
         const cache = await caches.open('nominatim');

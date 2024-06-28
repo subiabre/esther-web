@@ -51,13 +51,13 @@
             on:click={() => dispatch("openAdmin")}>😎</Button
         >
     {/if}
-    <Button title="Metadata" kind="ghost" on:click={() => dispatch("metadata")}>
+    <Button title="Mostrar metadatos de imagen" kind="ghost" on:click={() => dispatch("metadata")}>
         🤖
     </Button>
     <a href={image.src} download="" target="_blank">
-        <Button title="Descargar" kind="ghost">💾</Button>
+        <Button title="Abrir imagen en una pestaña nueva" kind="ghost">👀</Button>
     </a>
-    <Button title="Copiar enlace" kind="ghost" on:click={copyLink}>
+    <Button title="Copiar enlace de la foto" kind="ghost" on:click={copyLink}>
         🔗
         <Popover align="left" bind:open={copyFeedback}>
             <p>¡Enlace copiado!</p>

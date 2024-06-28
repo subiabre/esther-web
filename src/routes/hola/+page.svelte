@@ -59,6 +59,8 @@
                             {invalid}
                             bind:value={email}
                         />
+                    </FormGroup>
+                    <FormGroup>
                         <PasswordInput
                             type="password"
                             tooltipPosition="bottom"

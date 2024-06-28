@@ -61,7 +61,8 @@
                         />
                         <PasswordInput
                             type="password"
-                            tooltipPosition="left"
+                            tooltipPosition="bottom"
+                            tooltipAlignment="end"
                             labelText="Contraseña"
                             showPasswordLabel="Mostrar constraseña"
                             hidePasswordLabel="Ocultar constraseña"

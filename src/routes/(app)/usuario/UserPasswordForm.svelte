@@ -47,6 +47,10 @@
     <FormGroup>
         <PasswordInput
             labelText="Contraseña"
+            tooltipPosition="bottom"
+            tooltipAlignment="end"
+            showPasswordLabel="Mostrar constraseña"
+            hidePasswordLabel="Ocultar constraseña"
             on:input={validateLength}
             {warnText}
             {invalidText}

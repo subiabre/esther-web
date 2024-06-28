@@ -35,7 +35,6 @@ export class Nominatim {
             return;
         }
 
-        const cache = await caches.open('nominatim');
         const url = "https://nominatim.openstreetmap.org/lookup?" +
             new URLSearchParams({
                 osm_ids: photo.address.reference,
@@ -44,8 +43,13 @@ export class Nominatim {
                 polygon_geojson: "1",
             });
 
-        const cached = await cache.match(url);
+        if (typeof caches === "undefined") {
+            return await fetch(url).then((res) => res.json());
+        }
 
+        const cache = await caches.open('nominatim');
+
+        const cached = await cache.match(url);
         if (cached) {
             return await cached.json().then(data => data[0]);
         }

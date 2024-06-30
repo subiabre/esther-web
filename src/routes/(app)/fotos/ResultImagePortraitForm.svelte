@@ -5,9 +5,10 @@
     import PeopleSearch from "$lib/ui/Content/PeopleSearch.svelte";
     import PeopleSelect from "$lib/ui/Content/PeopleSelect.svelte";
     import { ClickableTile } from "carbon-components-svelte";
+    import type { PopoverProps } from "carbon-components-svelte/src/Popover/Popover.svelte";
 
     export let portrait: Portrait;
-    export let alignment: "top" | "bottom" = "top";
+    export let alignment: PopoverProps["align"] = "top";
 
     let person: Promise<Person | undefined> = fetchPortraitPerson();
 
@@ -68,7 +69,7 @@
     }
 </script>
 
-{#if alignment === "top"}
+{#if alignment?.startsWith("top")}
     {#if !newPersonAdded || person === undefined}
         <ClickableTile
             style="padding: 0; margin: 0;"
@@ -98,7 +99,7 @@
     />
 {/if}
 
-{#if alignment === "bottom"}
+{#if alignment?.startsWith("bottom")}
     <PeopleSearch
         bind:value={search}
         on:input={() => (searchedPeople = [])}

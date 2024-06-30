@@ -3,6 +3,7 @@
     import { Popover } from "carbon-components-svelte";
     import { onMount } from "svelte";
     import ResultImagePortraitForm from "./ResultImagePortraitForm.svelte";
+    import type { PopoverProps } from "carbon-components-svelte/src/Popover/Popover.svelte";
 
     onMount(() => {
         window.addEventListener("resize", () => {
@@ -24,7 +25,7 @@
     let { width, height } = scalePortraitSizes();
     let { offsetX, offsetY } = scalePortraitOffsets();
 
-    let alignment: "top" | "bottom" = alignPortraitPopover();
+    let alignment: PopoverProps["align"] = alignPortraitPopover();
 
     let zIndex: number = 10;
 
@@ -62,11 +63,25 @@
         const portraitEquator =
             (portrait.offsetY ?? 0) + (portrait.height ?? 0) / 2;
 
+        let align: any = "bottom";
+
         if (portraitEquator > imageEquator) {
-            return "top";
+            align = "top";
         }
 
-        return "bottom";
+        const portraitGreenwich = 
+            (portrait.offsetX ?? 0) + (portrait.width ?? 0) / 2;
+        const portraitLeftMargin = (portraitGreenwich) * 100 / (image.metadata?.width ?? 0);
+        
+        if (portraitLeftMargin < 30) {
+            align = align.concat("-left");
+        }
+
+        if (portraitLeftMargin > 70) {
+            align = align.concat("-right");
+        }
+
+        return align;
     }
 
     let showPopover: boolean = false;

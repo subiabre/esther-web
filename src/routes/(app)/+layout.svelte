@@ -9,7 +9,6 @@
     import { auth, type AuthStorage } from "$lib/stores/auth";
     import { api } from "$lib/stores/api";
     import { fxs } from "$lib/stores/fxs";
-    import { page } from "$app/stores";
     import Pad from "$lib/ui/Content/Pad.svelte";
     import Nav from "$lib/ui/Content/Nav.svelte";
     import NavItem from "$lib/ui/Content/NavItem.svelte";
@@ -58,8 +57,8 @@
                 </Text>
                 <Pad>
                     <Nav>
-                        <NavItem href="/fotos">Galería.</NavItem>
-                        <NavItem href="/usuario">Cuenta.</NavItem>
+                        <NavItem href="/fotos">Explorar.</NavItem>
+                        <NavItem href="/usuario">Mi cuenta.</NavItem>
                         <NavItem size="small" href="/bienvenido">
                             Acerca de.
                         </NavItem>

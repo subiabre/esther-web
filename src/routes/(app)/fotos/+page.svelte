@@ -95,6 +95,10 @@
     $: hasPhotosTotal = photos.length === photosTotal;
 </script>
 
+<svelte:head>
+    <title>Explorar | Esther</title>
+</svelte:head>
+
 <Reel id="filters">
     <Slide id="filters" bind:this={mainSlide}>
         <Text><h1>Filtros.</h1></Text>

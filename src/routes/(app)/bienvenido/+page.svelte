@@ -15,6 +15,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>Hola | Esther</title>
+</svelte:head>
+
 <Reel id="bienvenido">
     <Slide id="🙋" bind:this={mainSlide}>
         <Text>

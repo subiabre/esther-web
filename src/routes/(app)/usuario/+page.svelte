@@ -21,6 +21,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Mi cuenta | Esther</title>
+</svelte:head>
+
 <Reel id="usuario">
     <Slide id="configuracion" bind:this={mainSlide}>
         <Text>

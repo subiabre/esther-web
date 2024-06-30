@@ -20,6 +20,10 @@
     });
 </script>
 
+<svelte:head>
+    <title>Foto {$page.params.id} | Esther</title>
+</svelte:head>
+
 <Reel id="slideshow">
     <Slide id="photo" bind:this={mainSlide}>
         {#await photo then photo}

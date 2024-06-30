@@ -32,8 +32,11 @@
     }
 
     figure > img {
-        width: 3rem;
-        height: 3rem;
+        width: 100%;
+        max-width: 3rem;
+
+        height: auto;
+        max-height: 3rem;
 
         border-radius: 100%;
 

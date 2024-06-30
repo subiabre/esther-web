@@ -15,11 +15,13 @@
     }
 
     async function handleSubmit() {
+        const role = "ROLE_".concat(inputElement.value.toUpperCase().replace(/^ROLE_/, ""));
+
         photo = await $api.photo.apiPhotosIdPatch({
             id: photo.id?.toString() || "",
             // @ts-ignore
             requestBody: {
-                scopes: [...scopes, { role: inputElement.value }],
+                scopes: [...scopes, { role }],
             },
         });
 
@@ -42,7 +44,9 @@
 
 <Labeled label="Visible para los siguientes roles">
     {#each scopes as scope}
-        <Tag filter title="Revocar" on:close={() => handleRemove(scope)}>{scope.role}</Tag>
+        <Tag filter title="Revocar" on:close={() => handleRemove(scope)}
+            >{scope.role}</Tag
+        >
     {/each}
     <Tag>
         <form on:submit|preventDefault={handleSubmit}>

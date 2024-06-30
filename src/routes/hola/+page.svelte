@@ -35,11 +35,11 @@
 
                 localStorage.setItem("auth", JSON.stringify({ session }));
 
-                if (($auth.user?.sessions?.length ?? 0) < 2) {
+                if (($auth.user?.sessions?.length ?? 1) < 2) {
                     goto("/bienvenido");
+                } else {
+                    goto("/fotos");
                 }
-
-                goto("/fotos");
             })
             .catch(() => {
                 invalid = true;

@@ -35,9 +35,20 @@
 
                 localStorage.setItem("auth", JSON.stringify({ session }));
 
+                if (($auth.user?.sessions?.length ?? 0) < 2) {
+                    goto("/bienvenido");
+                }
+
                 goto("/fotos");
             })
-            .catch(() => (invalid = true));
+            .catch(() => {
+                invalid = true;
+
+                const localAuth = localStorage.getItem("auth");
+                if (typeof localAuth !== null) {
+                    $auth.session = null;
+                }
+            });
     }
 </script>
 

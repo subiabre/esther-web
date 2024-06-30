@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Session } from "$lib/api";
+    import type { Session, User } from "$lib/api";
     import {
         Button,
         ButtonSet,
@@ -9,6 +9,7 @@
     import { api } from "$lib/stores/api";
     import { auth } from "$lib/stores/auth";
     import SessionSelect from "./SessionSelect.svelte";
+    import { goto } from "$app/navigation";
 
     let sessions: string[] = $auth.user?.sessions ?? [];
     let selectedSessions: Session[] = [];
@@ -21,13 +22,21 @@
             }),
         );
 
-        $auth.user = await $api.request.request({
-            method: "GET",
-            url: $auth.session?.user ?? "",
-        });
+        $api.request
+            .request({
+                method: "GET",
+                url: $auth.session?.user ?? "",
+            })
+            .then((value) => {
+                $auth.user = value as User;
 
-        sessions = $auth.user?.sessions ?? [];
-        selectedSessions = [];
+                sessions = $auth.user?.sessions ?? [];
+                selectedSessions = [];
+            })
+            .catch(() => {
+                $auth.session = null;
+                goto("/hola");
+            });
     }
 </script>
 

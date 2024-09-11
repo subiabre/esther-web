@@ -23,7 +23,7 @@
     <Slide id="🙋" bind:this={mainSlide}>
         <Text>
             <h1>Gracias.</h1>
-            <h2>😘</h2>
+            <h2>🥰</h2>
             <p>
                 Esther camina sobre hombros de gigantes. Si tu nombre aparece
                 aquí: Gracias.
@@ -94,7 +94,7 @@
             </p>
             <p>
                 <a href="https://www.instagram.com/stiftinhand"
-                    >Su Shitong (Sonia)</a
+                    >Su Shitong</a
                 >, por contribuir con su arte para el personaje de Esther.
             </p>
             <p>
@@ -106,10 +106,6 @@
             <p>
                 Ludim Estrada, por prestar material para pruebas de prototipado
                 y calidad.
-            </p>
-            <p>
-                Ciro Subiabre, por su contribución con fotos originales e
-                información inicial.
             </p>
             <p>
                 Nora García, por su cariño y contribución con fotos originales.
@@ -133,7 +129,7 @@
                 Cristian, Gastón y Nora (de nuevo), por servir de inspiración
                 para este proyecto.
             </p>
-            <p>Mónica, sin la cual nada de esto hubiera ocurrido.</p>
+            <p>Mónica García, sin la cual nada de esto hubiera ocurrido.</p>
         </Text>
     </Slide>
 </Reel>

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { page } from "$app/stores";
     import type { Image, Photo } from "$lib/api";
     import { auth } from "$lib/stores/auth";
     import Pad from "$lib/ui/Content/Pad.svelte";
@@ -51,11 +50,17 @@
             on:click={() => dispatch("openAdmin")}>😎</Button
         >
     {/if}
-    <Button title="Mostrar metadatos de imagen" kind="ghost" on:click={() => dispatch("metadata")}>
+    <Button
+        title="Mostrar metadatos de imagen"
+        kind="ghost"
+        on:click={() => dispatch("metadata")}
+    >
         🤖
     </Button>
     <a href={image.src} download="" target="_blank">
-        <Button title="Abrir imagen en una pestaña nueva" kind="ghost">👀</Button>
+        <Button title="Abrir imagen en una pestaña nueva" kind="ghost"
+            >👀</Button
+        >
     </a>
     <Button title="Copiar enlace de la foto" kind="ghost" on:click={copyLink}>
         🔗

@@ -93,7 +93,7 @@
                 >, por sus efectos de sonido.
             </p>
             <p>
-                <a href="https://www.instagram.com/stiftinhand"
+                <a href="https://www.instagram.com/s.su_art"
                     >Su Shitong</a
                 >, por contribuir con su arte para el personaje de Esther.
             </p>

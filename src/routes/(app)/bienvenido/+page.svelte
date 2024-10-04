@@ -22,7 +22,7 @@
 
 <Reel id="bienvenido">
     <Slide id="🙋" bind:this={mainSlide}>
-        <BigImage src="character/01_hello.gif" alt="Esther te saluda" />
+        <BigImage src="/character/01_hello.gif" alt="Esther te saluda" />
         <Text>
             <h1>Hola.</h1>
             <h2>🙋</h2>
@@ -31,7 +31,7 @@
     </Slide>
     <Slide id="📸">
         <BigImage
-            src="character/02_ilikepics.gif"
+            src="/character/02_ilikepics.gif"
             alt="Esther mira una colección de fotos sueltas y desordenadas"
         />
         <Text>
@@ -50,7 +50,7 @@
     </Slide>
     <Slide id="🙇">
         <BigImage
-            src="character/03_ineedhelp.gif"
+            src="/character/03_ineedhelp.gif"
             alt="Esther está sobrecargada de trabajo"
         />
         <Text>
@@ -70,7 +70,7 @@
     </Slide>
     <Slide id="💪">
         <BigImage
-            src="character/04_togetherdoit.gif"
+            src="/character/04_togetherdoit.gif"
             alt="Esther posa con fotos enmarcadas y ordenadas"
         />
         <Text>

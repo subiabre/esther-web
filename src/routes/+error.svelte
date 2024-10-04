@@ -10,7 +10,7 @@
 <Screen>
     <Reel id="error">
         <Slide id="error">
-            <BigImage src="character/05_error.gif" alt="Esther está sentada con expresión triste" />
+            <BigImage src="/character/05_error.gif" alt="Esther está sentada con expresión triste" />
             <Text>
                 <h1>Error.</h1>
                 <h2>🙃</h2>

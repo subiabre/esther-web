@@ -11,11 +11,11 @@
     import FilterPhotoImagesAlt from "./FilterPhotoImagesAlt.svelte";
     import Gallery from "./Gallery.svelte";
     import Result from "./Result.svelte";
-    import { ClickableTile } from "carbon-components-svelte";
     import FilterPhotoAddress from "./FilterPhotoAddress.svelte";
     import FilterPhotoAddressUnknown from "./FilterPhotoAddressUnknown.svelte";
     import Row from "$lib/ui/Content/Row.svelte";
     import FilterPhotoImagesPeople from "./FilterPhotoImagesPeople.svelte";
+    import GalleryMore from "./GalleryMore.svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -40,8 +40,7 @@
     let imagesPortraitsPersonArray: string[] | undefined;
 
     let photos: Photo[] = [];
-    let photosTotal: Number = 0;
-    let hasPhotosTotal: boolean = true;
+    let photosTotal: number = 0;
 
     async function load(): Promise<Photo[]> {
         return await $api.photo
@@ -53,12 +52,12 @@
                 addressKnown,
                 addressComponentsArray,
                 imagesAlt,
-                imagesPortraitsPersonArray
+                imagesPortraitsPersonArray,
             })
             .finally(() => setTimeout(() => slideShow.track(), 100));
     }
 
-    async function total(): Promise<Number> {
+    async function total(): Promise<number> {
         return await $api.request
             .request({
                 url: "/v1/photos",
@@ -68,7 +67,7 @@
                     "address[known]": addressKnown,
                     "address[components][]": addressComponentsArray,
                     "images.alt": imagesAlt,
-                    "images.portraits.person[]": imagesPortraitsPersonArray
+                    "images.portraits.person[]": imagesPortraitsPersonArray,
                 },
                 method: "GET",
                 headers: { Accept: "application/ld+json" },
@@ -91,8 +90,6 @@
 
         photos = [...curPhotos, ...newPhotos];
     }
-
-    $: hasPhotosTotal = photos.length === photosTotal;
 </script>
 
 <svelte:head>
@@ -137,11 +134,13 @@
             <Row>
                 <h2>Quiénes.</h2>
             </Row>
-            <FilterPhotoImagesPeople on:change={(e) => {
-                page = 1;
-                imagesPortraitsPersonArray = e.detail.people;
-                update();
-            }} />
+            <FilterPhotoImagesPeople
+                on:change={(e) => {
+                    page = 1;
+                    imagesPortraitsPersonArray = e.detail.people;
+                    update();
+                }}
+            />
             <Row>
                 <h2>Qué.</h2>
             </Row>
@@ -163,22 +162,14 @@
         <Text><h1>Resultados.</h1></Text>
         <Pad>
             <Gallery {photos}>
-                <ClickableTile
-                    disabled={hasPhotosTotal}
-                    on:click={() => {
-                        if (hasPhotosTotal) return;
-
+                <GalleryMore
+                    {photos}
+                    {photosTotal}
+                    on:more={() => {
                         page = page + 1;
                         loadmore();
                     }}
-                >
-                    <p>{photos.length} elementos.</p>
-                    {#if hasPhotosTotal}
-                        <p>No hay más resultados disponibles.</p>
-                    {:else}
-                        <p>Cargar más.</p>
-                    {/if}
-                </ClickableTile>
+                />
             </Gallery>
         </Pad>
     </Slide>

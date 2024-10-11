@@ -18,14 +18,17 @@
     <FileSize size={image.metadata?.filesize || 0} />
 </Labeled>
 <Labeled label="Antiguedad de archivo">
-    <TimeAgo timestamp={image.metadata?.filedate || 0} />
+    Última modificación <TimeAgo timestamp={image.metadata?.filedate || 0} />
 </Labeled>
 <Labeled label="Tipo MIME">
     {image.metadata?.mimeType}
 </Labeled>
-<Labeled label="EXIF" />
+<Labeled label="Volcado EXIF" />
 <CodeSnippet
-    expanded
     type="multi"
+    copyLabel="Copiado"
+    copyButtonDescription="Copiar datos EXIF"
+    showLessText="Mostrar menos"
+    showMoreText="Mostrar más"
     code={JSON.stringify(image.metadata?.exif, null, 2)}
 />

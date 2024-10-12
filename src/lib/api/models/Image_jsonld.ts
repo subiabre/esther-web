@@ -35,8 +35,8 @@ export type Image_jsonld = {
      * The Photo to which this Image belongs.
      */
     readonly photo?: string | null;
-    readonly dateCreated?: string;
-    readonly dateUpdated?: string;
+    readonly dateCreated?: string | null;
+    readonly dateUpdated?: string | null;
     readonly srcFilename?: string | null;
 };
 

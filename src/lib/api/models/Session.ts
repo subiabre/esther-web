@@ -20,7 +20,7 @@ export type Session = {
      * Some of the headers in the HTTP request that originated this Session.
      */
     request?: SessionRequest;
-    readonly dateCreated?: string;
-    readonly dateUpdated?: string;
+    readonly dateCreated?: string | null;
+    readonly dateUpdated?: string | null;
 };
 

@@ -3,8 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type ImageThumb = {
-    src?: string;
-    width?: number;
-    height?: number;
+    src?: string | null;
+    width?: number | null;
+    height?: number | null;
 };
 

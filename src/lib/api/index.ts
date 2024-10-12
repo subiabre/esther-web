@@ -26,8 +26,6 @@ export type { PhotoAddress } from './models/PhotoAddress';
 export type { PhotoAddress_jsonld } from './models/PhotoAddress_jsonld';
 export type { PhotoDateRange } from './models/PhotoDateRange';
 export type { PhotoDateRange_jsonld } from './models/PhotoDateRange_jsonld';
-export type { PhotoScope } from './models/PhotoScope';
-export type { PhotoScope_jsonld } from './models/PhotoScope_jsonld';
 export type { Portrait } from './models/Portrait';
 export type { Portrait_jsonld } from './models/Portrait_jsonld';
 export type { Session } from './models/Session';

@@ -4,7 +4,6 @@
 /* eslint-disable */
 import type { PhotoAddress } from './PhotoAddress';
 import type { PhotoDateRange } from './PhotoDateRange';
-import type { PhotoScope } from './PhotoScope';
 /**
  * Photos are displayable, filterable and sortable collections of related Images.
  * e.g. Digital scans of the two sides of an analogic photo.
@@ -19,12 +18,9 @@ export type Photo = {
      * A breakdown of the address and the different components of the Photo's location.
      */
     address?: PhotoAddress;
-    /**
-     * Scopes hold the relationship between an User's role and their access to a Photo.
-     */
-    scopes?: Array<PhotoScope>;
     images: Array<string>;
-    readonly dateCreated?: string;
-    readonly dateUpdated?: string;
+    roles?: Array<string>;
+    readonly dateCreated?: string | null;
+    readonly dateUpdated?: string | null;
 };
 

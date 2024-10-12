@@ -6,8 +6,8 @@ export type ImageThumb_jsonld = {
     readonly '@context'?: (string | Record<string, any>);
     readonly '@id'?: string;
     readonly '@type'?: string;
-    src?: string;
-    width?: number;
-    height?: number;
+    src?: string | null;
+    width?: number | null;
+    height?: number | null;
 };
 

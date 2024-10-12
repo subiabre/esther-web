@@ -26,8 +26,8 @@ export type User_jsonld = {
      * The Sessions created with this User's credentials.
      */
     readonly sessions?: Array<string>;
-    readonly dateCreated?: string;
-    readonly dateUpdated?: string;
+    readonly dateCreated?: string | null;
+    readonly dateUpdated?: string | null;
     /**
      * A visual identifier that represents this user.
      */

@@ -23,7 +23,7 @@ export type Session_jsonld = {
      * Some of the headers in the HTTP request that originated this Session.
      */
     request?: SessionRequest_jsonld;
-    readonly dateCreated?: string;
-    readonly dateUpdated?: string;
+    readonly dateCreated?: string | null;
+    readonly dateUpdated?: string | null;
 };
 

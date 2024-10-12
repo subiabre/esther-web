@@ -1,12 +1,12 @@
 <script lang="ts">
-    import type { Photo, PhotoScope } from "$lib/api";
+    import type { Photo } from "$lib/api";
     import { api } from "$lib/stores/api";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import { Tag } from "carbon-components-svelte";
 
     export let photo: Photo;
 
-    let scopes = photo.scopes ?? [];
+    let roles = photo.roles ?? [];
 
     let inputElement: HTMLInputElement;
 
@@ -15,37 +15,39 @@
     }
 
     async function handleSubmit() {
-        const role = "ROLE_".concat(inputElement.value.toUpperCase().replace(/^ROLE_/, ""));
+        const role = "ROLE_".concat(
+            inputElement.value.toUpperCase().replace(/^ROLE_/, ""),
+        );
 
         photo = await $api.photo.apiPhotosIdPatch({
             id: photo.id?.toString() || "",
             // @ts-ignore
             requestBody: {
-                scopes: [...scopes, { role }],
+                roles: [...roles, role],
             },
         });
 
-        scopes = photo.scopes ?? [];
+        roles = photo.roles ?? [];
         inputElement.value = "";
     }
 
-    async function handleRemove(scope: PhotoScope) {
+    async function handleRemove(role: string) {
         photo = await $api.photo.apiPhotosIdPatch({
             id: photo.id?.toString() || "",
             // @ts-ignore
             requestBody: {
-                scopes: [...scopes.filter((s) => s.role !== scope.role)],
+                roles: [...roles.filter((r) => r !== role)],
             },
         });
 
-        scopes = photo.scopes ?? [];
+        roles = photo.roles ?? [];
     }
 </script>
 
 <Labeled label="Visible para los siguientes roles">
-    {#each scopes as scope}
-        <Tag filter title="Revocar" on:close={() => handleRemove(scope)}
-            >{scope.role}</Tag
+    {#each roles as role}
+        <Tag filter title="Revocar" on:close={() => handleRemove(role)}
+            >{role}</Tag
         >
     {/each}
     <Tag>

@@ -27,6 +27,8 @@
 
     let showPortraits: boolean = false;
     let zPortraits: number = 99;
+
+    let portraits: ResultImagePortraits;
 </script>
 
 <figure>
@@ -49,7 +51,11 @@
                 zPortraits = 98;
             }}
         >
-            <ResultImagePortraitsForm {img} {image} />
+            <ResultImagePortraitsForm
+                {img}
+                {image}
+                on:updated={() => portraits.reloadPortraits()}
+            />
         </Overlaid>
         <Overlaid
             id={image.id + "knowledge"}
@@ -69,6 +75,7 @@
             <ResultPhotoAddress {photo} on:openAddressForm />
             <ResultImagePortraits
                 {image}
+                bind:this={portraits}
                 on:showPortraits={() => {
                     showKnowledge = !showKnowledge;
                     showPortraits = !showPortraits;

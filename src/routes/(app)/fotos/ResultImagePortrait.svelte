@@ -69,10 +69,11 @@
             align = "top";
         }
 
-        const portraitGreenwich = 
+        const portraitGreenwich =
             (portrait.offsetX ?? 0) + (portrait.width ?? 0) / 2;
-        const portraitLeftMargin = (portraitGreenwich) * 100 / (image.metadata?.width ?? 0);
-        
+        const portraitLeftMargin =
+            (portraitGreenwich * 100) / (image.metadata?.width ?? 0);
+
         if (portraitLeftMargin < 30) {
             align = align.concat("-left");
         }
@@ -111,7 +112,7 @@
     on:mouseleave={handleMouseLeave}
 >
     <Popover caret align={alignment} bind:open={showPopover}>
-        <ResultImagePortraitForm {alignment} {portrait} />
+        <ResultImagePortraitForm {alignment} {portrait} on:updated />
     </Popover>
 </div>
 

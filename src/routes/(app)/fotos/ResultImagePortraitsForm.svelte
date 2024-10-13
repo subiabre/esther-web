@@ -34,7 +34,7 @@
     <div {style} class="portraits">
         {#if imgIsLoaded}
             {#each portraits as portrait}
-                <ResultImagePortrait {img} {image} {portrait} />
+                <ResultImagePortrait {img} {image} {portrait} on:updated />
             {/each}
         {/if}
     </div>

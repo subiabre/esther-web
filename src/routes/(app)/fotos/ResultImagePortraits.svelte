@@ -5,12 +5,22 @@
     import { createEventDispatcher } from "svelte";
     import ResultFormTrigger from "./ResultFormTrigger.svelte";
     import ResultImagePortraitsPeople from "./ResultImagePortraitsPeople.svelte";
+    import { api } from "$lib/stores/api";
 
     const dispatch = createEventDispatcher();
 
     export let image: Image;
 
-    $: hasPortraits = image.portraits && image.portraits?.length > 0;
+    $: portraits = image.portraits;
+    $: hasPortraits = portraits && portraits?.length > 0;
+
+    export async function reloadPortraits() {
+        const data = await $api.image.apiImagesIdGet({
+            id: image?.id?.toString() ?? "",
+        });
+
+        portraits = data.portraits;
+    }
 </script>
 
 <Text>
@@ -21,7 +31,7 @@
     >
         <Labeled label="Personas que aparecen en esta imagen.">
             {#if hasPortraits}
-                <ResultImagePortraitsPeople portraits={image.portraits} />
+                <ResultImagePortraitsPeople {portraits} />
             {:else}
                 Nadie
             {/if}

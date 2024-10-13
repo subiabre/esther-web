@@ -6,6 +6,9 @@
     import PeopleSelect from "$lib/ui/Content/PeopleSelect.svelte";
     import { ClickableTile } from "carbon-components-svelte";
     import type { PopoverProps } from "carbon-components-svelte/src/Popover/Popover.svelte";
+    import { createEventDispatcher } from "svelte";
+
+    const dispatch = createEventDispatcher();
 
     export let portrait: Portrait;
     export let alignment: PopoverProps["align"] = "top";
@@ -27,26 +30,34 @@
     }
 
     function addPerson(e: CustomEvent) {
-        person = $api.person.apiPeopleIdPatch({
-            id: e.detail.person.id,
-            requestBody: {
-                portraits: [
-                    ...e.detail.person.portraits,
-                    `/v1/portraits/${portrait.id}`,
-                ],
-            },
-        });
+        person = $api.person
+            .apiPeopleIdPatch({
+                id: e.detail.person.id,
+                requestBody: {
+                    portraits: [
+                        ...e.detail.person.portraits,
+                        `/v1/portraits/${portrait.id}`,
+                    ],
+                },
+            })
+            .then((person) => {
+                dispatch("updated");
+
+                return person;
+            });
     }
 
     async function removePerson(e: CustomEvent) {
-        await $api.person.apiPeopleIdPatch({
-            id: e.detail.person.id,
-            requestBody: {
-                portraits: e.detail.person.portraits.filter((p: string) => {
-                    return p !== `/v1/portraits/${portrait.id}`;
-                }),
-            },
-        });
+        await $api.person
+            .apiPeopleIdPatch({
+                id: e.detail.person.id,
+                requestBody: {
+                    portraits: e.detail.person.portraits.filter((p: string) => {
+                        return p !== `/v1/portraits/${portrait.id}`;
+                    }),
+                },
+            })
+            .then(() => dispatch("updated"));
 
         person = new Promise((res) => res(undefined));
     }

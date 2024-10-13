@@ -4,6 +4,7 @@
     import Text from "$lib/ui/Content/Text.svelte";
     import { createEventDispatcher } from "svelte";
     import ResultFormTrigger from "./ResultFormTrigger.svelte";
+    import ResultImagePortraitsPeople from "./ResultImagePortraitsPeople.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -14,10 +15,13 @@
 
 <Text>
     <h3>Quién.</h3>
-    <ResultFormTrigger disabled={!hasPortraits} on:trigger={() => dispatch("showPortraits")}>
+    <ResultFormTrigger
+        disabled={!hasPortraits}
+        on:trigger={() => dispatch("showPortraits")}
+    >
         <Labeled label="Personas que aparecen en esta imagen.">
             {#if hasPortraits}
-                { image.portraits?.length } retratos
+                <ResultImagePortraitsPeople portraits={image.portraits} />
             {:else}
                 Nadie
             {/if}

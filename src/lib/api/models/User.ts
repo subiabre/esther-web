@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { LogEntry } from './LogEntry';
 /**
  * Someone who interacts with the API.
  */
@@ -23,6 +24,7 @@ export type User = {
      * The Sessions created with this User's credentials.
      */
     readonly sessions?: Array<string>;
+    readonly logEntries?: Array<LogEntry>;
     readonly dateCreated?: string | null;
     readonly dateUpdated?: string | null;
     /**

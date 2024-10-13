@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { LogEntry_jsonld } from './LogEntry_jsonld';
 /**
  * Someone who interacts with the API.
  */
@@ -26,6 +27,7 @@ export type User_jsonld = {
      * The Sessions created with this User's credentials.
      */
     readonly sessions?: Array<string>;
+    readonly logEntries?: Array<LogEntry_jsonld>;
     readonly dateCreated?: string | null;
     readonly dateUpdated?: string | null;
     /**

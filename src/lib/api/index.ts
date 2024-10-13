@@ -18,6 +18,8 @@ export type { ImageMetadata } from './models/ImageMetadata';
 export type { ImageMetadata_jsonld } from './models/ImageMetadata_jsonld';
 export type { ImageThumb } from './models/ImageThumb';
 export type { ImageThumb_jsonld } from './models/ImageThumb_jsonld';
+export type { LogEntry } from './models/LogEntry';
+export type { LogEntry_jsonld } from './models/LogEntry_jsonld';
 export type { Person } from './models/Person';
 export type { Person_jsonld } from './models/Person_jsonld';
 export type { Photo } from './models/Photo';

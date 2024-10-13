@@ -7,7 +7,7 @@ export type ImageMetadata = {
     height?: number;
     mimeType?: string;
     filesize?: number;
-    filedate?: string | null;
+    filedate?: string;
     exif?: Array<string>;
 };
 

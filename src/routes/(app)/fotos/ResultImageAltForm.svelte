@@ -20,24 +20,29 @@
 
     function resizeTextarea() {
         textarea.style.height = `1ex`;
-        textarea.style.height = `${textarea.scrollHeight}px`;
+        textarea.style.height = `${textarea.scrollHeight + 10}px`;
     }
 
     let inputTimeout: number;
 
     function handleKeyUp() {
-        resizeTextarea();
-
         clearTimeout(inputTimeout);
-        inputTimeout = setTimeout(() => updateAlt(), 1500);
+        inputTimeout = setTimeout(() => updateAlt(), 1700);
     }
 
     function handleKeyDown() {
+        label = "🔁 La descripción se actualizará cuando dejes de escribir.";
+
+        resizeTextarea();
         clearTimeout(inputTimeout);
     }
 
     function updateAlt() {
-        if (textareaValue === imageAlt) {
+        const value = textareaValue.trim();
+
+        if (value === "" || value === imageAlt) {
+            label = "Descripción de lo que se ve en esta imagen.";
+
             return;
         }
 
@@ -46,19 +51,19 @@
                 id: image.id?.toString() || "",
                 // @ts-ignore
                 requestBody: {
-                    alt: textareaValue,
+                    alt: value,
                 },
             })
             .then((image: Image) => {
                 imageAlt = image.alt;
-                label = "Descripción actualizada. Gracias por tu ayuda";
+                label = "✅ Descripción actualizada. Gracias por tu ayuda";
             });
     }
 </script>
 
 <Text>
     <h3>Qué.</h3>
-    <ResultFormTrigger on:trigger={() => textarea.focus()}>
+    <ResultFormTrigger width="full" on:trigger={() => textarea.focus()}>
         <Labeled {label}>
             <textarea
                 spellcheck="true"
@@ -74,8 +79,9 @@
 
 <style>
     textarea {
-        min-height: 1ex;
+        width: 100%;
         max-width: 60ch;
+        min-height: 1ex;
 
         padding: 0;
         resize: none;

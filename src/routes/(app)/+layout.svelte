@@ -59,6 +59,7 @@
                     <Nav>
                         <NavItem href="/fotos">Explorar.</NavItem>
                         <NavItem href="/usuario">Mi cuenta.</NavItem>
+                        <NavItem href="/ranking">Ranking.</NavItem>
                         <NavItem size="small" href="/bienvenido">
                             Acerca de.
                         </NavItem>

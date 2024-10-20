@@ -43,7 +43,7 @@
         transition: transform 1s;
     }
 
-    h3.asc {
+    h3.desc {
         transform: rotate(180deg);
     }
 </style>

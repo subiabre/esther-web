@@ -36,6 +36,7 @@
 </script>
 
 <Search
+    size="lg"
     placeholder="Buscar personas"
     on:change={handleSearch}
     on:clear={() => (searchedPeople = [])}

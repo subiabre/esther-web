@@ -118,6 +118,8 @@
                     update();
                 }}
             />
+        </Pad>
+        <Pad>
             <Row>
                 <h2>Dónde.</h2>
                 <FilterPhotoAddressKnown
@@ -136,6 +138,8 @@
                     update();
                 }}
             />
+        </Pad>
+        <Pad>
             <Row>
                 <h2>Quiénes.</h2>
             </Row>
@@ -146,6 +150,8 @@
                     update();
                 }}
             />
+        </Pad>
+        <Pad>
             <Row>
                 <h2>Qué.</h2>
             </Row>

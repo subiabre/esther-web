@@ -4,7 +4,7 @@
 
 <style>
     div {
-        padding: 1em 0;
+        padding: 0 0 1rem 0;
         display: flex;
 
         flex-direction: row;

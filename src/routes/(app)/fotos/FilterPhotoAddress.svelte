@@ -47,11 +47,10 @@
 </script>
 
 <NominatimSearch
+    size="lg"
     {disabled}
     bind:value={searchedValue}
-    placeholder={disabled
-        ? "Fotos sin lugar conocido"
-        : "Buscar lugares"}
+    placeholder={disabled ? "Fotos sin lugar conocido" : "Buscar lugares"}
     on:clear={() => (searchedPlaces = [])}
     on:change={(e) => (searchedPlaces = e.detail.places)}
 />

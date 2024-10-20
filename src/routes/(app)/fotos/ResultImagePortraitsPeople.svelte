@@ -13,7 +13,7 @@
 
 {#if typeof portraits !== "undefined"}
     {#if portraitsWithPerson.length > 0}
-        {#each portraitsWithPerson as portrait, index}
+        {#each portraitsWithPerson as portrait, index (portrait.id)}
             <ResultImagePortraitsPerson
                 {portrait}
                 {index}

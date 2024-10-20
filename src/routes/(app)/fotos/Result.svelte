@@ -48,7 +48,7 @@
         {/await}
     {/if}
 </Modal>
-{#each photo.images as image}
+{#each photo.images as image (image)}
     <ResultImage
         {photo}
         source={image}

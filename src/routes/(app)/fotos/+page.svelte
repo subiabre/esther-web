@@ -16,6 +16,7 @@
     import Row from "$lib/ui/Content/Row.svelte";
     import FilterPhotoImagesPeople from "./FilterPhotoImagesPeople.svelte";
     import GalleryMore from "./GalleryMore.svelte";
+    import FilterPhotoDateOrder from "./FilterPhotoDateOrder.svelte";
 
     let mainSlide: Slide;
     let slideShow: Reel;
@@ -102,6 +103,12 @@
         <Pad>
             <Row>
                 <h2>Cuándo.</h2>
+                <FilterPhotoDateOrder
+                    on:change={(e) => {
+                        dateOrder = e.detail.order;
+                        update();
+                    }}
+                />
             </Row>
             <FilterPhotoDateRange
                 on:change={(e) => {

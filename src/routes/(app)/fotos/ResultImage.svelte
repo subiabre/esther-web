@@ -14,7 +14,9 @@
     export let photo: Photo;
     export let source: string;
 
+    let figure: HTMLElement;
     let img: HTMLImageElement;
+
     let image: CancelablePromise<Image> = $api.request.request({
         method: "GET",
         url: source,
@@ -29,14 +31,33 @@
     let zPortraits: number = 99;
 
     let portraits: ResultImagePortraits;
+
+    function calcHeight(image: Image): number {
+        const height = image.metadata?.height || 0;
+
+        if (height > figure.offsetHeight) {
+            return figure.offsetHeight;
+        }
+
+        return height;
+    }
+
+    function calcWidth(image: Image): number {
+        const height = image.metadata?.height || 0;
+        const width = image.metadata?.width || 0;
+
+        return Math.round((width * calcHeight(image)) / height);
+    }
 </script>
 
-<figure>
+<figure bind:this={figure}>
     {#await image then image}
         <img
             loading="lazy"
             src={image.src}
             alt={image.alt}
+            height={calcHeight(image)}
+            width={calcWidth(image)}
             bind:this={img}
         />
         <Modal

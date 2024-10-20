@@ -25,6 +25,7 @@
         <Button
             type="submit"
             kind="ghost"
+            size="field"
             title={order === "asc"
                 ? "Cambiar a orden descendente"
                 : "Cambiar a orden ascendente"}

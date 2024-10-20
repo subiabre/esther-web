@@ -12,7 +12,7 @@
     import Gallery from "./Gallery.svelte";
     import Result from "./Result.svelte";
     import FilterPhotoAddress from "./FilterPhotoAddress.svelte";
-    import FilterPhotoAddressUnknown from "./FilterPhotoAddressUnknown.svelte";
+    import FilterPhotoAddressKnown from "./FilterPhotoAddressKnown.svelte";
     import Row from "$lib/ui/Content/Row.svelte";
     import FilterPhotoImagesPeople from "./FilterPhotoImagesPeople.svelte";
     import GalleryMore from "./GalleryMore.svelte";
@@ -120,7 +120,7 @@
             />
             <Row>
                 <h2>Dónde.</h2>
-                <FilterPhotoAddressUnknown
+                <FilterPhotoAddressKnown
                     on:change={(e) => {
                         addressKnown = e.detail.known;
                         addressComponentsArray = undefined;
@@ -129,9 +129,7 @@
                 />
             </Row>
             <FilterPhotoAddress
-                disabled={typeof addressKnown === "undefined"
-                    ? false
-                    : !addressKnown}
+                disabled={typeof addressKnown === "undefined" ? false : true}
                 on:change={(e) => {
                     page = 1;
                     addressComponentsArray = e.detail.places;

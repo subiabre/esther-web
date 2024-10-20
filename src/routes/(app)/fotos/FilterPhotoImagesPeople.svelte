@@ -36,7 +36,7 @@
 </script>
 
 <Search
-    placeholder="Buscar fotos por personas"
+    placeholder="Buscar personas"
     on:change={handleSearch}
     on:clear={() => (searchedPeople = [])}
     bind:value={searchedValue}

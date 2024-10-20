@@ -4,12 +4,12 @@
 
     const dispatch = createEventDispatcher();
 
-    let addressUnknown: boolean = false;
+    let known: boolean = true;
 
     function handleToggle() {
-        addressUnknown = !addressUnknown;
+        known = !known;
 
-        dispatch("change", { known: addressUnknown ? false : undefined });
+        dispatch("change", { known: known ? undefined : false });
     }
 </script>
 
@@ -18,15 +18,16 @@
         <Button
             type="submit"
             kind="ghost"
-            title={addressUnknown
-                ? "Mostrar todos los lugares"
-                : "Excluir lugares conocidos"}
+            size="field"
+            title={known
+                ? "Cambiar a fotos sin lugar"
+                : "Cambiar a fotos de cualquier lugar"}
         >
             <h3>
-                {#if addressUnknown}
-                    🌇
+                {#if known}
+                    🌉
                 {:else}
-                    🌃
+                    🌁
                 {/if}
             </h3>
         </Button>

@@ -16,7 +16,7 @@
 </script>
 
 <Search
-    placeholder="Buscar en la descripción de imágenes..."
+    placeholder="Buscar en la descripción de imágenes"
     on:change={handleChange}
     on:clear
     bind:value

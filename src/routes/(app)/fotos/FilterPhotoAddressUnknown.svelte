@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Toggle } from "carbon-components-svelte";
+    import { Button } from "carbon-components-svelte";
     import { createEventDispatcher } from "svelte";
 
     const dispatch = createEventDispatcher();
@@ -7,22 +7,34 @@
     let addressUnknown: boolean = false;
 
     function handleToggle() {
+        addressUnknown = !addressUnknown;
+
         dispatch("change", { known: addressUnknown ? false : undefined });
     }
 </script>
 
 <div>
-    <Toggle
-        size="sm"
-        labelA="Todos los lugares"
-        labelB="Lugares desconocidos"
-        bind:toggled={addressUnknown}
-        on:toggle={handleToggle}
-    />
+    <form on:submit|preventDefault={handleToggle}>
+        <Button
+            type="submit"
+            kind="ghost"
+            title={addressUnknown
+                ? "Todos los lugares"
+                : "Excluir lugares conocidos"}
+        >
+            <h3>
+                {#if addressUnknown}
+                    🌇
+                {:else}
+                    🌃
+                {/if}
+            </h3>
+        </Button>
+    </form>
 </div>
 
 <style>
     div {
-        margin-left: 1em;
+        margin-left: auto;
     }
 </style>

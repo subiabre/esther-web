@@ -14,7 +14,7 @@
 
         gap: 1rem;
         grid-auto-flow: dense;
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 90px), 1fr));
+        grid-template-columns: 1;
 
         @include screen-size-sm(
             grid-template-columns,

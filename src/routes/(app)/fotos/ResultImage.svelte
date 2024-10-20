@@ -31,23 +31,6 @@
     let zPortraits: number = 99;
 
     let portraits: ResultImagePortraits;
-
-    function calcHeight(image: Image): number {
-        const height = image.metadata?.height || 0;
-
-        if (height > figure.offsetHeight) {
-            return figure.offsetHeight;
-        }
-
-        return height;
-    }
-
-    function calcWidth(image: Image): number {
-        const height = image.metadata?.height || 0;
-        const width = image.metadata?.width || 0;
-
-        return Math.round((width * calcHeight(image)) / height);
-    }
 </script>
 
 <figure bind:this={figure}>
@@ -56,8 +39,6 @@
             loading="lazy"
             src={image.src}
             alt={image.alt}
-            height={calcHeight(image)}
-            width={calcWidth(image)}
             bind:this={img}
         />
         <Modal

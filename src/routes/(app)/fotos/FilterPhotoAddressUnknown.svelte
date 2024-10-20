@@ -19,7 +19,7 @@
             type="submit"
             kind="ghost"
             title={addressUnknown
-                ? "Todos los lugares"
+                ? "Mostrar todos los lugares"
                 : "Excluir lugares conocidos"}
         >
             <h3>

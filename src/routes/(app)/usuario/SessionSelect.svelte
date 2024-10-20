@@ -18,7 +18,7 @@
 </script>
 
 <Grid>
-    {#each sessions as session (session)}
+    {#each sessions as session}
         <SessionOption
             url={session}
             on:select={handleSelect}

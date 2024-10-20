@@ -1,21 +1,21 @@
 <script lang="ts">
     import type { Session } from "$lib/api";
-    import { auth } from "$lib/stores/auth";
     import Labeled from "$lib/ui/Content/Labeled.svelte";
     import TimeAgo from "$lib/ui/Content/TimeAgo.svelte";
     import UAParser from "ua-parser-js";
 
     export let session: Session;
+    export let current: boolean = false;
 
     let userAgent: UAParser.IResult = new UAParser(
         session.request?.userAgent ?? "",
     ).getResult();
 </script>
 
-<Labeled label="👉 Identificador">
+<Labeled label="📌 ID">
     {session.id}
-    {#if session.id == ($auth.session?.id || "")}
-        (actual)
+    {#if current}
+        (Actual)
     {/if}
 </Labeled>
 <Labeled label="🕑 Creada">

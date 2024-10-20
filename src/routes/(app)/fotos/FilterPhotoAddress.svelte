@@ -49,7 +49,7 @@
 <NominatimSearch
     {disabled}
     bind:value={searchedValue}
-    placeholder="Buscar fotos por lugar"
+    placeholder={disabled ? "Filtradas fotos sin lugar conocido" : "Buscar fotos por lugar"}
     on:clear={() => (searchedPlaces = [])}
     on:change={(e) => (searchedPlaces = e.detail.places)}
 />

@@ -33,7 +33,12 @@
 
 <figure>
     {#await image then image}
-        <img bind:this={img} src={image.src} alt={image.alt} />
+        <img
+            loading="lazy"
+            src={image.src}
+            alt={image.alt}
+            bind:this={img}
+        />
         <Modal
             passiveModal
             modalHeading="Metadatos de la imagen"

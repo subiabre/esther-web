@@ -55,8 +55,8 @@ export class PhotoService {
             query: {
                 'page': page,
                 'date[order]': dateOrder,
-                'date[range:min]': dateRangeMin,
-                'date[range:max]': dateRangeMax,
+                'date[range.min]': dateRangeMin,
+                'date[range.max]': dateRangeMax,
                 'address[known]': addressKnown,
                 'address[components][]': addressComponentsArray,
                 'images.alt': imagesAlt,

@@ -11,19 +11,27 @@
     $: hasPhotosTotal = photos.length === photosTotal;
     $: face = calcFace(photosTotal, photos.length);
 
-    function calcFace(total: number, current: number) {
-        const remaining = total - current;
+    function calcRemaining(total: number, current: number) {
+        return total - current;
+    }
 
-        if (remaining < 50) {
-            return "😟";
+    function calcFace(total: number, current: number) {
+        const remaining = calcRemaining(total, current);
+
+        if (remaining === 0) {
+            return "😵";
         }
 
-        if (remaining < 100) {
+        if (remaining < 30) {
+            return "😓";
+        }
+
+        if (remaining < 60) {
             return "😅";
         }
 
-        if (remaining > 400) {
-            return "😃";
+        if (remaining > 120) {
+            return "😧";
         }
 
         return "😌";
@@ -31,6 +39,7 @@
 </script>
 
 <ClickableTile
+    title="Cargar más"
     light={!hasPhotosTotal}
     disabled={hasPhotosTotal}
     on:click={() => {
@@ -42,11 +51,11 @@
     <h4>
         {face}&nbsp;
         {#if !hasPhotosTotal}
-            Cargar más.
+            {calcRemaining(photosTotal, photos.length)} fotos más.
         {:else}
             No hay más.
         {/if}
     </h4>
-    <p>{photos.length} elementos cargados.</p>
-    <p>{photosTotal} elementos filtrados.</p>
+    <p>{photosTotal} fotos filtradas.</p>
+    <p>{photos.length} fotos cargadas.</p>
 </ClickableTile>

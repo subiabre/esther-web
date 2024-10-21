@@ -56,7 +56,7 @@
             })
             .then((image: Image) => {
                 imageAlt = image.alt;
-                label = "✅ Descripción actualizada. Gracias por tu ayuda";
+                label = "✅ Descripción actualizada. Gracias por tu ayuda.";
             });
     }
 </script>

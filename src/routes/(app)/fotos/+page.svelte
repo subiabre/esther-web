@@ -141,7 +141,7 @@
         </Pad>
         <Pad>
             <Row>
-                <h2>Quiénes.</h2>
+                <h2>Quién.</h2>
             </Row>
             <FilterPhotoImagesPeople
                 on:change={(e) => {

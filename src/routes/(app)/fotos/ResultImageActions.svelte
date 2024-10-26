@@ -41,11 +41,11 @@
 
 <div>
     <Button
-        title="Mostrar metadatos de imagen"
+        title="Mostrar detalles de imagen"
         kind="ghost"
-        on:click={() => dispatch("metadata")}
+        on:click={() => dispatch("imageDetails")}
     >
-        🤖
+        📃
     </Button>
     <a href={image.src} download="" target="_blank">
         <Button title="Abrir imagen en una pestaña nueva" kind="ghost"
@@ -55,6 +55,11 @@
     <strong title="Imagen {imageIndex} de {photo.images.length} en esta foto.">
         <Pad>{imageIndex} / {photo.images.length}</Pad>
     </strong>
+    <Button
+        title="Mostrar detalles de foto"
+        kind="ghost"
+        on:click={() => dispatch("photoDetails")}>📄</Button
+    >
     {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
         <Button
             title="Administrar foto"

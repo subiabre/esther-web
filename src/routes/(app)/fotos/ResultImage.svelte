@@ -10,6 +10,7 @@
     import ResultPhotoAddress from "./ResultPhotoAddress.svelte";
     import ResultImagePortraits from "./ResultImagePortraits.svelte";
     import ResultImagePortraitsForm from "./ResultImagePortraitsForm.svelte";
+    import ResultPhotoDetails from "./ResultPhotoDetails.svelte";
 
     export let photo: Photo;
     export let source: string;
@@ -22,7 +23,8 @@
         url: source,
     });
 
-    let openMetadata: boolean = false;
+    let photoDetails: boolean = false;
+    let imageDetails: boolean = false;
 
     let showKnowledge: boolean = false;
     let zKnowledge: number = 100;
@@ -43,8 +45,15 @@
         />
         <Modal
             passiveModal
+            modalHeading="Detalles de la fotografía"
+            bind:open={photoDetails}
+        >
+            <ResultPhotoDetails {photo} />
+        </Modal>
+        <Modal
+            passiveModal
             modalHeading="Detalles de la imagen"
-            bind:open={openMetadata}
+            bind:open={imageDetails}
         >
             <ResultImageDetails {image} />
         </Modal>
@@ -76,7 +85,8 @@
                 {photo}
                 {image}
                 on:openAdmin
-                on:metadata={() => (openMetadata = !openMetadata)}
+                on:photoDetails={() => (photoDetails = !photoDetails)}
+                on:imageDetails={() => (imageDetails = !imageDetails)}
             />
             <ResultPhotoDate {photo} on:openDateForm />
             <ResultPhotoAddress {photo} on:openAddressForm />

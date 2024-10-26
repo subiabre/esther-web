@@ -8,9 +8,20 @@
     export let image: Image;
 
 </script>
-<Labeled label="Archivo">
+<h5>Especímen</h5>
+<Labeled label="ID">
+    {image.id}
+</Labeled>
+<Labeled label="Ruta al archivo">
     {image.src}
 </Labeled>
+<Labeled label="Fecha de adición">
+    <TimeAgo timestamp={image.dateCreated || 0} />
+</Labeled>
+<Labeled label="Última actualización">
+    <TimeAgo timestamp={image.dateUpdated || 0} />
+</Labeled>
+<h5>Metadatos</h5>
 <Labeled label="Dimensiones de la imagen">
     {image.metadata?.width} x {image.metadata?.height}
 </Labeled>

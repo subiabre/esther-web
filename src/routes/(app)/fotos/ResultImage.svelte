@@ -6,7 +6,7 @@
     import ResultImageActions from "./ResultImageActions.svelte";
     import ResultImageAltForm from "./ResultImageAltForm.svelte";
     import ResultPhotoDate from "./ResultPhotoDate.svelte";
-    import ResultImageMetadata from "./ResultImageMetadata.svelte";
+    import ResultImageDetails from "./ResultImageDetails.svelte";
     import ResultPhotoAddress from "./ResultPhotoAddress.svelte";
     import ResultImagePortraits from "./ResultImagePortraits.svelte";
     import ResultImagePortraitsForm from "./ResultImagePortraitsForm.svelte";
@@ -43,10 +43,10 @@
         />
         <Modal
             passiveModal
-            modalHeading="Metadatos de la imagen"
+            modalHeading="Detalles de la imagen"
             bind:open={openMetadata}
         >
-            <ResultImageMetadata {image} />
+            <ResultImageDetails {image} />
         </Modal>
         <Overlaid
             id={image.id + "portraits"}

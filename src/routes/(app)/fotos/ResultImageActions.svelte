@@ -41,11 +41,11 @@
 
 <div>
     <Button
-        title="Mostrar detalles de imagen"
+        title="Mostrar detalles de la imagen"
         kind="ghost"
         on:click={() => dispatch("imageDetails")}
     >
-        📃
+        🧐
     </Button>
     <a href={image.src} download="" target="_blank">
         <Button title="Abrir imagen en una pestaña nueva" kind="ghost"
@@ -56,9 +56,9 @@
         <Pad>{imageIndex} / {photo.images.length}</Pad>
     </strong>
     <Button
-        title="Mostrar detalles de foto"
+        title="Mostrar detalles de la foto"
         kind="ghost"
-        on:click={() => dispatch("photoDetails")}>📄</Button
+        on:click={() => dispatch("photoDetails")}>🤓</Button
     >
     {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
         <Button

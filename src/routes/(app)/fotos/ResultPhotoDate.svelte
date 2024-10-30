@@ -9,18 +9,18 @@
 
     export let photo: Photo;
 
-    let label: string = "Fechas mínima y máxima de la fotografía.";
+    function displayDate(date: string): string {
+        return new Date(date.split("T")[0]).toLocaleDateString();
+    }
 </script>
 
 <Text>
     <h3>Cuándo.</h3>
     <ResultFormTrigger on:trigger={() => dispatch("openDateForm")}>
-        <Labeled {label}>
-            {new Date(photo.date.min).toLocaleDateString()}
-            |
-            {new Date(
-                photo.date.max || photo.dateCreated || "",
-            ).toLocaleDateString()}
+        <Labeled label="Fechas entre las que se tomó la fotografía.">
+            {displayDate(photo.date.min)}
+            -
+            {displayDate(photo.date.max || "")}
         </Labeled>
     </ResultFormTrigger>
 </Text>

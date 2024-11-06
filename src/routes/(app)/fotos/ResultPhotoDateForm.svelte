@@ -18,8 +18,8 @@
     let dateMaxConstraint = dateMax;
 
     async function updateDate() {
-        photo = await $api.photo.apiPhotosIdPatch({
-            id: photo.id?.toString() || "",
+        photo = await $api.photo.apiPhotosCodePatch({
+            code: photo.code || "",
             // @ts-ignore
             requestBody: {
                 date: {

@@ -96,19 +96,19 @@ export class PhotoService {
      * @returns Photo Photo resource
      * @throws ApiError
      */
-    public apiPhotosIdGet({
-        id,
+    public apiPhotosCodeGet({
+        code,
     }: {
         /**
          * Photo identifier
          */
-        id: string,
+        code: string,
     }): CancelablePromise<Photo> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/v1/photos/{id}',
+            url: '/v1/photos/{code}',
             path: {
-                'id': id,
+                'code': code,
             },
             errors: {
                 404: `Resource not found`,
@@ -121,14 +121,14 @@ export class PhotoService {
      * @returns Photo Photo resource updated
      * @throws ApiError
      */
-    public apiPhotosIdPut({
-        id,
+    public apiPhotosCodePut({
+        code,
         requestBody,
     }: {
         /**
          * Photo identifier
          */
-        id: string,
+        code: string,
         /**
          * The updated Photo resource
          */
@@ -136,9 +136,9 @@ export class PhotoService {
     }): CancelablePromise<Photo> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/v1/photos/{id}',
+            url: '/v1/photos/{code}',
             path: {
-                'id': id,
+                'code': code,
             },
             body: requestBody,
             mediaType: 'application/json',
@@ -155,19 +155,19 @@ export class PhotoService {
      * @returns void
      * @throws ApiError
      */
-    public apiPhotosIdDelete({
-        id,
+    public apiPhotosCodeDelete({
+        code,
     }: {
         /**
          * Photo identifier
          */
-        id: string,
+        code: string,
     }): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/v1/photos/{id}',
+            url: '/v1/photos/{code}',
             path: {
-                'id': id,
+                'code': code,
             },
             errors: {
                 404: `Resource not found`,
@@ -180,14 +180,14 @@ export class PhotoService {
      * @returns Photo Photo resource updated
      * @throws ApiError
      */
-    public apiPhotosIdPatch({
-        id,
+    public apiPhotosCodePatch({
+        code,
         requestBody,
     }: {
         /**
          * Photo identifier
          */
-        id: string,
+        code: string,
         /**
          * The updated Photo resource
          */
@@ -195,9 +195,9 @@ export class PhotoService {
     }): CancelablePromise<Photo> {
         return this.httpRequest.request({
             method: 'PATCH',
-            url: '/v1/photos/{id}',
+            url: '/v1/photos/{code}',
             path: {
-                'id': id,
+                'code': code,
             },
             body: requestBody,
             mediaType: 'application/merge-patch+json',

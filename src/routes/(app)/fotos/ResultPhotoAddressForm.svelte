@@ -16,8 +16,8 @@
     async function updateAddress(e: CustomEvent) {
         place = e.detail.place;
 
-        photo = await $api.photo.apiPhotosIdPatch({
-            id: photo.id?.toString() || "",
+        photo = await $api.photo.apiPhotosCodePatch({
+            code: photo.code || "",
             // @ts-ignore
             requestBody: {
                 address: {

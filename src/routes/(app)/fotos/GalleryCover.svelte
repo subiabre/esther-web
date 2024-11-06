@@ -33,8 +33,8 @@
 </script>
 
 <a
-    href="#photo{photo.id}"
-    title="Foto número {photo.id}"
+    href="#{photo.code}"
+    title="Foto {photo.code}"
     class="gallery-thumb {mode}"
 >
     <figure on:mouseenter={() => dispatch("teased")}>

@@ -9,8 +9,8 @@
 
 </script>
 <h5>Especímen</h5>
-<Labeled label="ID">
-    {image.id}
+<Labeled label="Número de catálogo">
+    #{image.id}
 </Labeled>
 <Labeled label="Ruta al archivo">
     {image.src}

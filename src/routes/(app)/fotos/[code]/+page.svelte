@@ -10,7 +10,7 @@
 
     let mainSlide: Slide;
 
-    let photo = $api.photo.apiPhotosIdGet({ id: $page.params.id || "" });
+    let photo = $api.photo.apiPhotosCodeGet({ code: $page.params.code || "" });
 
     onMount(() => {
         mainSlide.focus();

@@ -7,8 +7,11 @@
 
 </script>
 <h5>Especímen</h5>
-<Labeled label="ID">
-    {photo.id}
+<Labeled label="Código de fotografía">
+    {photo.code}
+</Labeled>
+<Labeled label="Número de catálogo">
+    #{photo.id}
 </Labeled>
 <Labeled label="Fecha de adición">
     <TimeAgo timestamp={photo.dateCreated || 0} />

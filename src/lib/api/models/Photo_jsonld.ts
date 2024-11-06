@@ -14,6 +14,10 @@ export type Photo_jsonld = {
     readonly '@type'?: string;
     readonly id?: number;
     /**
+     * A user-supplied code for this Photo. If left blank, the numeric ID will be taken.
+     */
+    code?: string | null;
+    /**
      * Photos are dated approximately between a range of dates.
      */
     date: PhotoDateRange_jsonld;

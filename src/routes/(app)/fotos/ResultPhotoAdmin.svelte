@@ -19,8 +19,8 @@
             inputElement.value.toUpperCase().replace(/^ROLE_/, ""),
         );
 
-        photo = await $api.photo.apiPhotosIdPatch({
-            id: photo.id?.toString() || "",
+        photo = await $api.photo.apiPhotosCodePatch({
+            code: photo.code || "",
             // @ts-ignore
             requestBody: {
                 roles: [...roles, role],
@@ -32,8 +32,8 @@
     }
 
     async function handleRemove(role: string) {
-        photo = await $api.photo.apiPhotosIdPatch({
-            id: photo.id?.toString() || "",
+        photo = await $api.photo.apiPhotosCodePatch({
+            code: photo.code || "",
             // @ts-ignore
             requestBody: {
                 roles: [...roles.filter((r) => r !== role)],

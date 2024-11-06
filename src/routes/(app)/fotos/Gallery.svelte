@@ -7,7 +7,7 @@
 </script>
 
 <Grid columns={3}>
-    {#each photos as photo (photo.id)}
+    {#each photos as photo (photo.code)}
         <GalleryThumb {photo} />
     {/each}
     <slot />

@@ -15,7 +15,7 @@
 
     let copyFeedback: boolean = false;
     function copyLink() {
-        const link = window.location.host.concat(`/fotos/${photo.id}`);
+        const link = window.location.host.concat(`/fotos/${photo.code}`);
 
         if (navigator.clipboard) {
             navigator.clipboard.writeText(link);

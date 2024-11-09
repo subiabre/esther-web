@@ -84,7 +84,12 @@
                 Así podré devolverte el favor y ayudarte a ti y a más gente como
                 tú a encontrar más fácil los recuerdos que buscas.
             </p>
-            <p>Muchas gracias por tu colaboración.</p>
+            <p>
+                Tus aportes son necesarios, pero puedes empezar por <a
+                    href="/fotos/CHR037"
+                    >una foto que ya tengo bien catalogada</a
+                > para entender mejor cómo puedes ayudar.
+            </p>
         </Text>
     </Slide>
 </Reel>

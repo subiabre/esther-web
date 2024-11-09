@@ -22,7 +22,7 @@
 </script>
 
 <svelte:head>
-    <title>Foto {$page.params.id} | Esther</title>
+    <title>{$page.params.code} | Esther</title>
 </svelte:head>
 
 <Reel id="slideshow">

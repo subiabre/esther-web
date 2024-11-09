@@ -187,7 +187,7 @@
 </Reel>
 <Reel id="slideshow" bind:this={slideShow}>
     {#each photos as photo (photo.code)}
-        <Slide id={photo.code || ""}>
+        <Slide id="P{photo.code || ""}">
             <Result {photo} />
         </Slide>
     {/each}

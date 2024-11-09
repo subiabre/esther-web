@@ -33,7 +33,7 @@
 </script>
 
 <a
-    href="#{photo.code}"
+    href="#P{photo.code}"
     title="Foto {photo.code}"
     class="gallery-thumb {mode}"
 >

@@ -21,13 +21,13 @@
     let mainSlide: Slide;
     let slideShow: Reel;
 
-    onMount(() => {
-        update();
+    onMount(async () => {
+        await update();
         mainSlide.focus();
     });
 
     afterNavigate(() => {
-        mainSlide.focus();
+        setTimeout(() => mainSlide.focus(), 1000);
     });
 
     let page: number = 1;
@@ -187,7 +187,7 @@
 </Reel>
 <Reel id="slideshow" bind:this={slideShow}>
     {#each photos as photo (photo.code)}
-        <Slide id="P{photo.code || ""}">
+        <Slide id="P{photo.code || ''}">
             <Result {photo} />
         </Slide>
     {/each}

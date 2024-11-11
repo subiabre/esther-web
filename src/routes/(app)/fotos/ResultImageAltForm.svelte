@@ -6,10 +6,6 @@
     import { onMount } from "svelte";
     import ResultFormTrigger from "./ResultFormTrigger.svelte";
 
-    onMount(() => {
-        resizeTextarea();
-    });
-
     export let image: Image;
     let imageAlt: string | null | undefined = image.alt;
 
@@ -59,6 +55,10 @@
                 label = "✅ Descripción actualizada. Gracias por tu ayuda.";
             });
     }
+
+    onMount(() => {
+        setTimeout(() => resizeTextarea(), 100);
+    });
 </script>
 
 <Text>

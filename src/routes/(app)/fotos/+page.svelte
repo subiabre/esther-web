@@ -27,7 +27,7 @@
     });
 
     afterNavigate(() => {
-        setTimeout(() => mainSlide.focus(), 1000);
+        mainSlide.focus();
     });
 
     let page: number = 1;

@@ -48,24 +48,30 @@
         🧐
     </Button>
     <a href={image.src} download="" target="_blank">
-        <Button title="Abrir imagen en una pestaña nueva" kind="ghost"
-            >👀</Button
-        >
+        <Button title="Abrir imagen en una pestaña nueva" kind="ghost">
+            👀
+        </Button>
     </a>
     <strong title="Imagen {imageIndex} de {photo.images.length} en esta foto.">
-        <Pad>{imageIndex} / {photo.images.length}</Pad>
+        <Pad>
+            <span>{imageIndex}/{photo.images.length}</span>
+        </Pad>
     </strong>
     <Button
         title="Mostrar detalles de la foto"
         kind="ghost"
-        on:click={() => dispatch("photoDetails")}>🤓</Button
+        on:click={() => dispatch("photoDetails")}
     >
+        🤓
+    </Button>
     {#if $auth.user?.roles?.includes("ROLE_ADMIN")}
         <Button
             title="Administrar foto"
             kind="ghost"
-            on:click={() => dispatch("openAdmin")}>😎</Button
+            on:click={() => dispatch("openAdmin")}
         >
+            😎
+        </Button>
     {/if}
     <Button title="Copiar enlace de la foto" kind="ghost" on:click={copyLink}>
         🔗

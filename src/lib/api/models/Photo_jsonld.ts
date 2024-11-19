@@ -27,6 +27,10 @@ export type Photo_jsonld = {
     address?: PhotoAddress_jsonld;
     images: Array<string>;
     roles?: Array<string>;
+    /**
+     * A group tag for Photos that belong together.
+     */
+    reel?: string | null;
     readonly dateCreated?: string | null;
     readonly dateUpdated?: string | null;
 };

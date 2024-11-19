@@ -24,6 +24,10 @@ export type Photo = {
     address?: PhotoAddress;
     images: Array<string>;
     roles?: Array<string>;
+    /**
+     * A group tag for Photos that belong together.
+     */
+    reel?: string | null;
     readonly dateCreated?: string | null;
     readonly dateUpdated?: string | null;
 };

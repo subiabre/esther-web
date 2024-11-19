@@ -34,6 +34,6 @@ export type Image = {
     readonly photo?: string | null;
     readonly dateCreated?: string | null;
     readonly dateUpdated?: string | null;
-    readonly srcFilename?: string | null;
+    readonly filename?: string | null;
 };
 

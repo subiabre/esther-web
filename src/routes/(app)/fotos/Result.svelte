@@ -5,7 +5,8 @@
     import ResultPhotoDateForm from "./ResultPhotoDateForm.svelte";
     import ResultPhotoAddressForm from "./ResultPhotoAddressForm.svelte";
     import { nominatim } from "$lib/nominatim";
-    import ResultPhotoAdmin from "./ResultPhotoAdmin.svelte";
+    import ResultPhotoAdminReel from "./ResultPhotoAdminReel.svelte";
+    import ResultPhotoAdminRoles from "./ResultPhotoAdminRoles.svelte";
 
     export let photo: Photo;
 
@@ -15,7 +16,8 @@
 </script>
 
 <Modal passiveModal modalHeading="Administrar fotografía" bind:open={openAdmin}>
-    <ResultPhotoAdmin {photo} />
+    <ResultPhotoAdminReel {photo} />
+    <ResultPhotoAdminRoles {photo} />
 </Modal>
 <Modal
     passiveModal

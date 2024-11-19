@@ -14,7 +14,7 @@
         inputElement.style.width = `${inputElement.value.length}ch`;
     }
 
-    async function handleSubmit() {
+    async function handleRoleAdd() {
         const role = "ROLE_".concat(
             inputElement.value.toUpperCase().replace(/^ROLE_/, ""),
         );
@@ -31,7 +31,7 @@
         inputElement.value = "";
     }
 
-    async function handleRemove(role: string) {
+    async function handleRoleRemove(role: string) {
         photo = await $api.photo.apiPhotosCodePatch({
             code: photo.code || "",
             // @ts-ignore
@@ -44,14 +44,14 @@
     }
 </script>
 
-<Labeled label="Visible para los siguientes roles">
+<Labeled label="Visible para los roles">
     {#each roles as role}
-        <Tag filter title="Revocar" on:close={() => handleRemove(role)}
+        <Tag filter title="Revocar rol" on:close={() => handleRoleRemove(role)}
             >{role}</Tag
         >
     {/each}
     <Tag>
-        <form on:submit|preventDefault={handleSubmit}>
+        <form on:submit|preventDefault={handleRoleAdd}>
             <input
                 type="text"
                 placeholder="Añadir rol"
